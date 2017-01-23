@@ -4,7 +4,8 @@
 
 #include "LocalResources.h"
 
-sf::Texture loadTexture(std::string id) {
+sf::Texture LocalResources::loadTexture(std::string id) {
     // load texture and return thing
-    printf("loading texture");
+    printf("loading texture named %s", id.c_str());
+    return sf::Texture();
 }

@@ -3,7 +3,7 @@ project(i_am_synthetic_c___sfml)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES src/main.cpp src/IResources.h src/LocalResources.cpp src/LocalResources.h src/Locator.cpp src/Locator.h)
+set(SOURCE_FILES src/main.cpp src/IResources.h src/LocalResources.cpp src/LocalResources.h src/Locator.cpp src/Locator.h src/NullResources.h src/NullResources.cpp)
 add_executable(i_am_synthetic_c___sfml ${SOURCE_FILES})
 
 # Detect and add SFML

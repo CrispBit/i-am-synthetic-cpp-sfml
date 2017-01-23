@@ -10,7 +10,6 @@
 
 class IResources {
 public:
-    ~IResources() {}
     virtual sf::Texture loadTexture(std::string id) = 0;
 };
 

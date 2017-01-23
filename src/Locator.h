@@ -6,12 +6,27 @@
 #define I_AM_SYNTHETIC_C_SFML_LOCATOR_H
 
 #include "LocalResources.h"
+#include "NullResources.h"
+
 #include <memory>
 
 class Locator {
 public:
     static std::shared_ptr<IResources> getResource() { return service_; }
-    static std::shared_ptr<IResources> service_;
-};
 
+    static void provide(std::shared_ptr<IResources> service) {
+        service_.reset();
+        if (service == NULL) {
+            service_ = std::move(nullService_);
+        } else {
+            service_ = std::move(service);
+        }
+    }
+
+    Locator();
+
+private:
+    static std::shared_ptr<IResources> service_;
+    static std::shared_ptr<NullResources> nullService_;
+};
 #endif

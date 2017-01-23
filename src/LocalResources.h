@@ -9,6 +9,6 @@
 
 class LocalResources : public IResources {
 public:
-    virtual sf::Texture loadTexture(std::string id) override {}
+    virtual sf::Texture loadTexture(std::string id) override;
 };
 #endif
