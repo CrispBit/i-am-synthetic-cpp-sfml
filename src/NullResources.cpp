@@ -6,6 +6,6 @@
 
 sf::Texture NullResources::loadTexture(std::string id) {
     // load texture and return thing
-    printf("null texture being loaded named %s", id.c_str());
+    std::cout << "null texture being loaded named " << id << "\n";
     return sf::Texture();
 }

@@ -6,6 +6,7 @@
 #define I_AM_SYNTHETIC_C_SFML_LOCALRESOURCES_H
 
 #include "IResources.h"
+#include "Locator.h"
 
 class LocalResources : public IResources {
 public:

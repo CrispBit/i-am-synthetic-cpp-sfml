@@ -6,6 +6,7 @@
 
 sf::Texture LocalResources::loadTexture(std::string id) {
     // load texture and return thing
-    printf("loading texture named %s", id.c_str());
+    printf("loading texture named %s\n", id.c_str());
+    std::cout << "Location: " << Locator::rootPath.string() << "\n";
     return sf::Texture();
 }

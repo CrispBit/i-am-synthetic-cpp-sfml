@@ -7,6 +7,7 @@
 
 #include "LocalResources.h"
 #include "NullResources.h"
+#include <boost/filesystem.hpp>
 
 #include <memory>
 
@@ -23,6 +24,9 @@ public:
         }
     }
 
+    static void provideArgs(char* arg);
+
+    static boost::filesystem::path rootPath;
     Locator();
 
 private:
