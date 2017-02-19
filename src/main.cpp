@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
     splashSprite.setTexture(splash);
 
     sf::RenderWindow window(sf::VideoMode(windowDim, windowDim), "(Loading) I Am Synthetic", sf::Style::None);
-    // don't need to clear because sprite takes up entire window
+    // no need to clear because sprite takes up entire window
     window.draw(splashSprite);
     window.display();
 
