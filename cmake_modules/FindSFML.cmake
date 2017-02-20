@@ -75,7 +75,7 @@ set(FIND_SFML_PATHS
 
 # find the SFML include directory
 find_path(SFML_INCLUDE_DIR SFML/Config.hpp
-          PATH_SUFFIXES include
+          PATH_SUFFIXES ../../../Downloads/include
           PATHS ${FIND_SFML_PATHS})
 
 # check the version number

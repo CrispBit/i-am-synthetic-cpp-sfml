@@ -4,7 +4,7 @@
 
 #include "Locator.h"
 
-std::shared_ptr<NullResources> Locator::nullService_ = std::make_shared<NullResources>();
+std::shared_ptr<IResources> Locator::nullService_ = std::make_shared<NullResources>();
 std::shared_ptr<IResources> Locator::service_ = std::move(Locator::nullService_);
 
 boost::filesystem::path Locator::rootPath;
@@ -14,6 +14,6 @@ Locator::Locator() {
 }
 
 void Locator::provideArgs(char arg[]) {
-    Locator::rootPath = boost::filesystem::system_complete(arg);
+    Locator::rootPath = boost::filesystem::system_complete(arg).branch_path().branch_path();
     if (!rootPath.has_filename()) std::cout << "TO-DO";
 }

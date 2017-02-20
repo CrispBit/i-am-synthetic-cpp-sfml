@@ -1,7 +1,17 @@
 #include <iostream>
 #include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
 #include <boost/filesystem.hpp>
-#include "LocalResources.h"
+#include "resources/LocalResources.h"
+
+void handleAsync() {
+    sf::Clock clock;
+    std::unique_ptr<sf::Music> introMusic = Locator::getResource() -> loadMusic("main-menu", "intro.wav");
+    introMusic -> setLoop(true);
+    introMusic -> play();
+    const float timePassed = clock.getElapsedTime().asSeconds();
+    sf::sleep(sf::seconds(3 - timePassed));
+}
 
 int main(int argc, char** argv) {
     const float_t scale = .6;
@@ -19,6 +29,8 @@ int main(int argc, char** argv) {
     // no need to clear because sprite takes up entire window
     window.draw(splashSprite);
     window.display();
+
+    handleAsync();
 
     while (window.isOpen()) {
         sf::Event event;

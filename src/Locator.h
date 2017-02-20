@@ -5,8 +5,8 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_LOCATOR_H
 #define I_AM_SYNTHETIC_C_SFML_LOCATOR_H
 
-#include "LocalResources.h"
-#include "NullResources.h"
+#include "resources/LocalResources.h"
+#include "resources/NullResources.h"
 #include <boost/filesystem.hpp>
 
 #include <memory>
@@ -31,6 +31,6 @@ public:
 
 private:
     static std::shared_ptr<IResources> service_;
-    static std::shared_ptr<NullResources> nullService_;
+    static std::shared_ptr<IResources> nullService_;
 };
 #endif
