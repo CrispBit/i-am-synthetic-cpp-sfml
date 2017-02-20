@@ -14,6 +14,6 @@ Locator::Locator() {
 }
 
 void Locator::provideArgs(char arg[]) {
-    Locator::rootPath = boost::filesystem::system_complete(arg).branch_path().branch_path();
+    Locator::rootPath = boost::filesystem::canonical(arg).remove_filename().parent_path();
     if (!rootPath.has_filename()) std::cout << "TO-DO";
 }
