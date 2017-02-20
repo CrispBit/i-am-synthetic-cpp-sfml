@@ -14,7 +14,7 @@ void handleAsync() {
 }
 
 int main(int argc, char** argv) {
-    const float_t scale = .6;
+    const float scale = .6;
     const uint16_t windowDim = (uint16_t) (std::min(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height) * scale);
 
     Locator::provideArgs(argv[0]);
