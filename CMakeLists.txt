@@ -3,6 +3,8 @@ project(i_am_synthetic_c___sfml)
 
 set(CMAKE_CXX_STANDARD 14)
 
+add_compile_options(-Wall)
+
 set(SOURCE_FILES src/main.cpp src/resources/IResources.h src/resources/LocalResources.cpp src/resources/LocalResources.h src/Locator.cpp src/Locator.h src/resources/NullResources.h src/resources/NullResources.cpp)
 add_executable(i_am_synthetic_c___sfml ${SOURCE_FILES})
 
@@ -14,6 +16,8 @@ if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(i_am_synthetic_c___sfml ${SFML_LIBRARIES})
 endif()
-add_definitions("-Wall")
-FIND_PACKAGE(Boost COMPONENTS system thread filesystem REQUIRED)
-TARGET_LINK_LIBRARIES(i_am_synthetic_c___sfml ${Boost_LIBRARIES})
+if(SYSTEM_YAMLCPP)
+    find_package(YamlCpp)
+endif()
+find_package(Boost COMPONENTS system thread filesystem REQUIRED)
+target_link_libraries(i_am_synthetic_c___sfml ${Boost_LIBRARIES} -static-libstdc++ -static-libgcc)

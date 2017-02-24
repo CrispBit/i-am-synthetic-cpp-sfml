@@ -7,7 +7,7 @@
 void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t h) {
     sf::Clock clock;
     std::unique_ptr<sf::Music> introMusic = Locator::getResource() -> loadMusic("main-menu", "intro.wav");
-    introMusic -> setVolume(6); //TODO: think about this
+    introMusic -> setVolume(6); // TODO: think about this
     introMusic -> setLoop(true);
     introMusic -> play();
 
@@ -26,6 +26,7 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t
     splash.close();
 
     mainMenu.create(sf::VideoMode(width, height), "I Am Synthetic", sf::Style::Titlebar + sf::Style::Close);
+    mainMenu.clear();
     while (mainMenu.isOpen()) {
         sf::Event event;
         while (mainMenu.pollEvent(event)) {
@@ -52,6 +53,7 @@ int main(int argc, char** argv) {
 
     sf::RenderWindow window(sf::VideoMode(windowDim, windowDim), "(Loading) I Am Synthetic", sf::Style::None);
     // no need to clear because sprite takes up entire window
+    window.clear();
     window.draw(splashSprite);
     window.display();
 
