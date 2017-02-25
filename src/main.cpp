@@ -83,7 +83,6 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t
                 }
             }
         }
-        mainMenu.clear();
         std::vector<sf::Sprite> sprites{backgroundSprite};
         drawMain(mainMenu, sprites);
     }
