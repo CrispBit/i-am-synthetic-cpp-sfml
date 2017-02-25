@@ -16,9 +16,8 @@ std::unique_ptr<sf::Music> NullResources::loadMusic(std::string state, std::stri
     return std::make_unique<sf::Music>();
 }
 
-YAML::Node
-NullResources::loadYAML(std::string id) {
-    // load YAML Node and return thing
+std::string NullResources::loadYAML(std::string id) {
+    // returns YAML path
     std::cout << "null YAML Node being loaded named " << id << "\n";
-    return YAML::LoadFile("");
+    return "";
 }
