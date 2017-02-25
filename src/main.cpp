@@ -12,7 +12,7 @@ void drawMain(sf::RenderWindow& mainMenu, std::vector<sf::Sprite> sprites) {
     mainMenu.display();
 }
 
-void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t h, const uint16_t windowDim) {
+void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t h) {
     sf::Clock clock;
     std::unique_ptr<sf::Music> introMusic = Locator::getResource() -> loadMusic("main-menu", "intro.wav");
     introMusic -> setVolume(6); // TODO: think about this
@@ -45,8 +45,7 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t
     sf::Texture background = Locator::getResource() -> loadTexture("main-menu", "background.png");
     sf::Sprite backgroundSprite;
     backgroundSprite.setTexture(background);
-    const float backgroundScale = std::max((float) background.getSize().x / width, (float) background.getSize().y / height);
-    std::cout << backgroundScale;
+    const float backgroundScale = std::max((float) width / background.getSize().x, (float) height / background.getSize().y);
     backgroundSprite.setScale(backgroundScale, backgroundScale);
 
     while (splash.isOpen()) {
@@ -111,6 +110,6 @@ int main(int argc, char** argv) {
     window.draw(splashSprite);
     window.display();
 
-    handleTransition(window, (uint16_t) (width / scale), (uint16_t) (height / scale), (uint16_t) (windowDim / scale));
+    handleTransition(window, (uint16_t) (width / scale), (uint16_t) (height / scale));
     return 0;
 }
