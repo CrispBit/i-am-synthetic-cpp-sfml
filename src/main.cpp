@@ -21,7 +21,7 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t
     const uint16_t height = h;
 
     for (const std::pair<std::string, std::string> cItem : Locator::defaultConfig) {
-        YAML::Node config = std::move(Locator::getResource() -> loadYAML("default-config"));
+        YAML::Node config = YAML::LoadFile(Locator::getResource()->loadYAML("config.yml"));
         std::string str = cItem.first;
         if (!config[str]) {
             std::cout << "3:\n";
