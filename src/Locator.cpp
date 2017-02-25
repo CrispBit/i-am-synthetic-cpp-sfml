@@ -8,7 +8,7 @@ std::shared_ptr<IResources> Locator::nullService_ = std::make_shared<NullResourc
 std::shared_ptr<IResources> Locator::service_ = std::move(Locator::nullService_);
 
 std::map<std::string, std::string> Locator::defaultConfig = {
-        {"fullscreen"s , "yes"s}
+        {"fullscreen" , "yes"}
 };
 
 boost::filesystem::path Locator::rootPath;
