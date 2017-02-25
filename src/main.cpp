@@ -5,9 +5,11 @@
 #include "resources/LocalResources.h"
 
 void drawMain(sf::RenderWindow& mainMenu, std::vector<sf::Sprite> sprites) {
+    mainMenu.clear();
     for (sf::Sprite sprite : sprites) {
         mainMenu.draw(sprite);
     }
+    mainMenu.display();
 }
 
 void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t h, const uint16_t windowDim) {
@@ -43,7 +45,8 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t
     sf::Texture background = Locator::getResource() -> loadTexture("main-menu", "background.png");
     sf::Sprite backgroundSprite;
     backgroundSprite.setTexture(background);
-    const float backgroundScale = (float) (windowDim / std::max(background.getSize().x, background.getSize().y));
+    const float backgroundScale = std::max((float) background.getSize().x / width, (float) background.getSize().y / height);
+    std::cout << backgroundScale;
     backgroundSprite.setScale(backgroundScale, backgroundScale);
 
     while (splash.isOpen()) {
@@ -64,13 +67,21 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t
     mainMenu.setVisible(true);
     splash.close();
 
-    mainMenu.create(sf::VideoMode(width, height), "I Am Synthetic", sf::Style::Titlebar + sf::Style::Close);
+    const bool useFullScreen = config["video"]["fullscreen"].as<bool>();
+
+    mainMenu.create(sf::VideoMode(width, height), "I Am Synthetic", sf::Style::Titlebar + sf::Style::Close + (useFullScreen ? sf::Style::Fullscreen : 0));
     mainMenu.clear();
     while (mainMenu.isOpen()) {
         sf::Event event;
         while (mainMenu.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 mainMenu.close();
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::Escape) {
+                    if (useFullScreen)
+                        mainMenu.create(sf::VideoMode(width, height), "I Am Synthetic", sf::Style::Titlebar + sf::Style::Close);
+                }
+            }
         }
         mainMenu.clear();
         std::vector<sf::Sprite> sprites{backgroundSprite};
