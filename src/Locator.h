@@ -27,6 +27,7 @@ public:
     static void provideArgs(char* arg);
 
     static boost::filesystem::path rootPath;
+    static std::map<std::string, std::string> defaultConfig;
     Locator();
 
 private:

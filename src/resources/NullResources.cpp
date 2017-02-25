@@ -15,3 +15,10 @@ std::unique_ptr<sf::Music> NullResources::loadMusic(std::string state, std::stri
     std::cout << "null music being loaded named " << id << " during " << state << " state" << "\n";
     return std::make_unique<sf::Music>();
 }
+
+std::unique_ptr<YAML::Node>
+NullResources::loadYAML(std::string id) {
+    // load YAML Node and return thing
+    std::cout << "null YAML Node being loaded named " << id << "\n";
+    return std::make_unique<YAML::Node>();
+}

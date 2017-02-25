@@ -31,3 +31,14 @@ std::unique_ptr<sf::Music> LocalResources::loadMusic(std::string state, std::str
 
     return returnMusic;
 }
+
+std::unique_ptr<YAML::Node> loadYAML(std::string id) {
+    // load YAML Node and return thing
+    std::string path = (Locator::rootPath / "assets" / "config" / id).generic_string();
+
+    printf("loading YAML Node named %s\n", id.c_str());
+    std::unique_ptr<YAML::Node> returnNode = std::make_unique<YAML::Node>();
+    *returnNode = YAML::LoadFile(path);
+
+    return returnNode;
+}
