@@ -20,13 +20,18 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t
     const uint16_t width = w;
     const uint16_t height = h;
 
-    for (const std::pair<std::string, std::string> cItem : Locator::defaultConfig) {
-        YAML::Node config = YAML::LoadFile(Locator::getResource()->loadYAML("config.yml"));
-        std::string str = cItem.first;
-        if (!config[str]) {
-            std::cout << "3:\n";
+    std::string configPath = Locator::getResource()->loadYAML("config.yaml");
+    YAML::Node config = YAML::LoadFile(configPath);
+
+    for (auto it = Locator::defaultConfig.begin(); it != Locator::defaultConfig.end(); ++it) {
+        std::string key = it->first.as<std::string>();
+        if (!config[key]) {
+            config[key] = Locator::defaultConfig[key];
         }
     }
+
+    std::ofstream fout(configPath);
+    fout << config;
 
     // TODO: change to RenderTexture
     sf::RenderWindow mainMenu(sf::VideoMode(0,0), "I Am Synthetic", sf::Style::Titlebar + sf::Style::Close);
@@ -83,7 +88,10 @@ int main(int argc, char** argv) {
     Locator::provideArgs(argv[0]);
 
     Locator::provide(std::make_unique<LocalResources>());
-    sf::Texture splash = Locator::getResource() -> loadTexture("main-menu", "splash.png");
+    std::string defaultConfigPath = Locator::getResource()->loadYAML("default-config.yaml");
+    Locator::provideConfig(defaultConfigPath);
+
+    sf::Texture splash = Locator::getResource()->loadTexture("main-menu", "splash.png");
     sf::Sprite splashSprite;
     splashSprite.setScale((float) windowDim / splash.getSize().x, (float) windowDim / splash.getSize().y);
     splashSprite.setTexture(splash);

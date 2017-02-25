@@ -25,9 +25,10 @@ public:
     }
 
     static void provideArgs(char* arg);
+    static void provideConfig(std::string path);
 
     static boost::filesystem::path rootPath;
-    static std::map<std::string, std::string> defaultConfig;
+    static YAML::Node defaultConfig;
     Locator();
 
 private:
