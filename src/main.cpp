@@ -14,7 +14,7 @@ void drawMain(sf::RenderWindow& mainMenu, std::vector<sf::Sprite> sprites) {
 
 void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t h) {
     sf::Clock clock;
-    std::unique_ptr<sf::Music> introMusic = Locator::getResource() -> loadMusic("main-menu", "intro.wav");
+    std::unique_ptr<sf::Music> introMusic = Locator::getResource()->loadMusic("main-menu", "intro.wav");
     introMusic -> setVolume(6); // TODO: think about this
     introMusic -> setLoop(true);
     introMusic -> play();
@@ -35,14 +35,10 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t
     std::ofstream fout(configPath);
     fout << config;
 
-    // TODO: change to RenderTexture
-    sf::RenderWindow mainMenu(sf::VideoMode(0,0), "I Am Synthetic", sf::Style::Titlebar + sf::Style::Close);
-    mainMenu.setVisible(false);
-    mainMenu.setSize(sf::Vector2u(width, height)); // must initialize with 0,0 so it doesn't appear during splash
-    mainMenu.setPosition(sf::Vector2i(sf::VideoMode::getDesktopMode().width / 2 - width / 2, sf::VideoMode::getDesktopMode().height / 2 - height / 2));
+    sf::RenderWindow mainMenu;
 
     // load main menu background
-    sf::Texture background = Locator::getResource() -> loadTexture("main-menu", "background.png");
+    sf::Texture background = Locator::getResource()->loadTexture("main-menu", "background.png");
     sf::Sprite backgroundSprite;
     backgroundSprite.setTexture(background);
     const float backgroundScale = std::max((float) width / background.getSize().x, (float) height / background.getSize().y);
@@ -63,12 +59,8 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t
         }
     }
 
-    mainMenu.setVisible(true);
-    splash.close();
-
     const bool useFullScreen = config["video"]["fullscreen"].as<bool>();
-
-    mainMenu.create(sf::VideoMode(width, height), "I Am Synthetic", sf::Style::Titlebar + sf::Style::Close + (useFullScreen ? sf::Style::Fullscreen : 0));
+    mainMenu.create(useFullScreen ? sf::VideoMode::getFullscreenModes()[0] : sf::VideoMode(width, height), "I Am Synthetic", useFullScreen ? sf::Style::Fullscreen : sf::Style::Titlebar + sf::Style::Close);
     mainMenu.clear();
     while (mainMenu.isOpen()) {
         sf::Event event;
