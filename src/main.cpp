@@ -3,24 +3,22 @@
 #include <SFML/Audio.hpp>
 #include <boost/filesystem.hpp>
 #include "resources/LocalResources.h"
+#include "Button.h"
 
-void drawMain(sf::RenderWindow& mainMenu, std::vector<sf::Sprite> sprites) {
+void drawMain(sf::RenderWindow& mainMenu, std::vector<sf::Sprite>& sprites) {
     mainMenu.clear();
-    for (sf::Sprite sprite : sprites) {
+    for (sf::Sprite& sprite : sprites) {
         mainMenu.draw(sprite);
     }
     mainMenu.display();
 }
 
-void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t h) {
+void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint16_t height) {
     sf::Clock clock;
     std::unique_ptr<sf::Music> introMusic = Locator::getResource()->loadMusic("main-menu", "intro.wav");
     introMusic -> setVolume(6); // TODO: think about this
     introMusic -> setLoop(true);
     introMusic -> play();
-
-    const uint16_t width = w;
-    const uint16_t height = h;
 
     std::string configPath = Locator::getResource()->loadYAML("config.yaml");
     YAML::Node config = YAML::LoadFile(configPath);
@@ -43,6 +41,23 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t
     backgroundSprite.setTexture(background);
     const float backgroundScale = std::max((float) width / background.getSize().x, (float) height / background.getSize().y);
     backgroundSprite.setScale(backgroundScale, backgroundScale);
+
+    std::array<Button, 2> buttons{Button("Chapter Select", ButtonType::mainMenu), Button("Credits", ButtonType::mainMenu)};
+
+    for (uint8_t i = 0; i < buttons.size(); i++) {
+        Button& menuButton = buttons[i];
+        const uint16_t oldBtnWidth = (uint16_t) menuButton.getTexture()->getSize().x;
+        const uint16_t oldBtnHeight = (uint16_t) menuButton.getTexture()->getSize().y;
+        const uint8_t gap = 5;
+        const float ratio = (float) oldBtnHeight / oldBtnWidth;
+        std::cout << ratio << "\n";
+        const float scale = .2;
+        const uint16_t btnWidth = (uint16_t) (width * scale);
+        const uint16_t btnHeight = (uint16_t) (btnWidth * ratio);
+        std::cout << btnHeight;
+        menuButton.setScale((float) btnWidth / oldBtnWidth, (float) btnHeight / oldBtnHeight);
+        menuButton.setPosition(0, i * btnHeight + (i + 1) * gap);
+    }
 
     while (splash.isOpen()) {
         const float timePassed = clock.getElapsedTime().asSeconds();
@@ -75,6 +90,7 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t w, const uint16_t
             }
         }
         std::vector<sf::Sprite> sprites{backgroundSprite};
+        sprites.insert(sprites.end(), &buttons[0], &buttons[buttons.size()]);
         drawMain(mainMenu, sprites);
     }
 }
