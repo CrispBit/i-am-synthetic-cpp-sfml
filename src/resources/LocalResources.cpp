@@ -40,3 +40,11 @@ std::string LocalResources::loadYAML(std::string id) {
 
     return path;
 }
+
+sf::Font LocalResources::loadFont(std::string id) {
+    // load font and return thing
+    std::string path = (Locator::rootPath / "assets" / "fonts" / id).generic_string();
+    sf::Font font;
+    font.loadFromFile(path);
+    return font;
+}

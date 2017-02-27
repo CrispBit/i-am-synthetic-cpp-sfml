@@ -5,7 +5,7 @@
 #include "resources/LocalResources.h"
 #include "Button.h"
 
-void drawMain(sf::RenderWindow& mainMenu, std::vector<sf::Sprite>& sprites) {
+void drawMain(sf::RenderWindow& mainMenu, std::vector<sf::Sprite> sprites) {
     mainMenu.clear();
     for (sf::Sprite& sprite : sprites) {
         mainMenu.draw(sprite);
@@ -50,11 +50,9 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
         const uint16_t oldBtnHeight = (uint16_t) menuButton.getTexture()->getSize().y;
         const uint8_t gap = 5;
         const float ratio = (float) oldBtnHeight / oldBtnWidth;
-        std::cout << ratio << "\n";
-        const float scale = .2;
+        const float scale = .1;
         const uint16_t btnWidth = (uint16_t) (width * scale);
         const uint16_t btnHeight = (uint16_t) (btnWidth * ratio);
-        std::cout << btnHeight;
         menuButton.setScale((float) btnWidth / oldBtnWidth, (float) btnHeight / oldBtnHeight);
         menuButton.setPosition(0, i * btnHeight + (i + 1) * gap);
     }
@@ -92,7 +90,7 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
         std::vector<sf::Sprite> sprites{backgroundSprite};
         sprites.insert(sprites.end(), &buttons[0], &buttons[buttons.size()]);
         drawMain(mainMenu, sprites);
-    }
+}
 }
 
 int main(int argc, char** argv) {

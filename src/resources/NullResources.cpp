@@ -21,3 +21,9 @@ std::string NullResources::loadYAML(std::string id) {
     std::cout << "null YAML Node being loaded named " << id << "\n";
     return "";
 }
+
+sf::Font NullResources::loadFont(std::string id) {
+    // load font and return thing
+    std::cout << "null font being loaded named " << id << "\n";
+    return sf::Font();
+}

@@ -14,12 +14,21 @@
 
 class Button : public sf::Sprite {
 public:
-    void setLabel(std::string);
-    std::string getText();
-    Button(std::string, ButtonType);
+    void setLabel(std::string text);
+    const std::string getText();
+    Button(std::string text, ButtonType type, bool autoSize = false);
+    Button(const Button &b2);
 private:
     std::string label;
+    sf::Text text;
+    sf::Font font;
+    sf::Sprite background;
     sf::Texture texture;
+    sf::RenderTexture renderTexture;
+    ButtonType type;
+    bool autoSize;
+    uint16_t defaultSize;
+    void init(std::string text, ButtonType type, bool autoSize);
 };
 
 #endif
