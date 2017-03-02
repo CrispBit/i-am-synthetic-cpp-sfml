@@ -6,8 +6,8 @@
 #include <string>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
-#include "Locator.h"
-#include "resources/ButtonType.h"
+#include "../Locator.h"
+#include "../resources/ButtonType.h"
 
 #ifndef I_AM_SYNTHETIC_C_SFML_BUTTON_H
 #define I_AM_SYNTHETIC_C_SFML_BUTTON_H

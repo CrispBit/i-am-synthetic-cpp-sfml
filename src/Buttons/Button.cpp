@@ -8,7 +8,7 @@ void Button::setLabel(std::string text) {
     this->text.setFont(this->font);
     this->text.setString(text);
     this->text.setCharacterSize(autoSize ? this->texture.getSize().x / this->text.getCharacterSize() * text.size() : this->defaultSize);
-    this->text.setPosition(this->texture.getSize().x / 2 - this->text.getLocalBounds().width / 2, this->texture.getSize().y / 2 - this->text.getCharacterSize() / 2);
+    this->text.setPosition(this->texture.getSize().x / 2 - this->text.getLocalBounds().width / 2, this->texture.getSize().y / 2 - this->text.getLocalBounds().height / 2);
     this->label = text;
     this->renderTexture.create(this->texture.getSize().x, this->texture.getSize().y);
     this->renderTexture.draw(this->background);
@@ -30,6 +30,8 @@ void Button::init(std::string text, ButtonType type, bool autoSize) {
             this->texture = Locator::getResource()->loadTexture("main-menu", "menu-button.png");
             this->background.setTexture(texture);
             this->text.setCharacterSize(autoSize ? this->texture.getSize().x / text.size() * 2 : defaultSize);
+            this->text.setOutlineThickness((uint16_t) (this->defaultSize / 7.5));
+            this->text.setFillColor(sf::Color::Green);
             this->font = Locator::getResource()->loadFont("Boogaloo-Regular.ttf");
             break;
     }
