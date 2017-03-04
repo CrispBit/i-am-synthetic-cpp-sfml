@@ -16,6 +16,12 @@ void drawMain(sf::RenderWindow& mainMenu, std::vector<sf::Sprite> sprites, std::
     mainMenu.display();
 }
 
+void updateButtons(std::vector<std::shared_ptr<Button>> buttons, sf::Event event) {
+    for (std::shared_ptr<Button> button : buttons) {
+        button->update(event);
+    }
+}
+
 void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint16_t height) {
     sf::Clock clock;
     std::unique_ptr<sf::Music> introMusic = Locator::getResource()->loadMusic("main-menu", "intro.wav");
@@ -91,6 +97,8 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
                     if (useFullScreen)
                         mainMenu.create(sf::VideoMode(width, height), "I Am Synthetic", sf::Style::Titlebar + sf::Style::Close);
                 }
+            } else {
+                updateButtons(buttons, event);
             }
         }
         std::vector<sf::Sprite> sprites{backgroundSprite};

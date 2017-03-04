@@ -43,6 +43,10 @@ Button::Button(const Button &b2) {
     this->init(b2.label, b2.type, b2.autoSize);
 }
 
+void Button::update(sf::Event event) {
+    if (event.type == sf::Event::MouseButtonPressed) std::cout << "test" << std::endl;
+}
+
 const std::string Button::getText() {
     return this->label;
 }
