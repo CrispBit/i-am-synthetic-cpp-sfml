@@ -12,6 +12,8 @@ class PlayButton : public Button {
     using Button::Button;
 public:
     ~PlayButton(){}
+private:
+    void clickHandler();
 };
 
 

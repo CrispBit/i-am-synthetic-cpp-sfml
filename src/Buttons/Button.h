@@ -18,9 +18,9 @@ public:
     const std::string getText();
     Button(std::string text, ButtonType type, bool autoSize = false);
     Button(const Button &b2);
-    void update(sf::Event event);
-    virtual void clickHandler(){};
+    void update(sf::Event event, const sf::RenderWindow& window);
     virtual ~Button(){}
+    sf::Event event;
 private:
     std::string label;
     sf::Text text;
@@ -31,6 +31,7 @@ private:
     ButtonType type;
     bool autoSize;
     uint16_t defaultSize;
+    virtual void clickHandler(){}
     void init(std::string text, ButtonType type, bool autoSize);
 };
 

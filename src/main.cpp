@@ -16,9 +16,9 @@ void drawMain(sf::RenderWindow& mainMenu, std::vector<sf::Sprite> sprites, std::
     mainMenu.display();
 }
 
-void updateButtons(std::vector<std::shared_ptr<Button>> buttons, sf::Event event) {
+void updateButtons(std::vector<std::shared_ptr<Button>> buttons, sf::Event event, const sf::RenderWindow& window) {
     for (std::shared_ptr<Button> button : buttons) {
-        button->update(event);
+        button->update(event, window);
     }
 }
 
@@ -98,7 +98,7 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
                         mainMenu.create(sf::VideoMode(width, height), "I Am Synthetic", sf::Style::Titlebar + sf::Style::Close);
                 }
             } else {
-                updateButtons(buttons, event);
+                updateButtons(buttons, event, mainMenu);
             }
         }
         std::vector<sf::Sprite> sprites{backgroundSprite};

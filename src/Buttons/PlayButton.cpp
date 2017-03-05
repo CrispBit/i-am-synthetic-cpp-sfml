@@ -3,3 +3,7 @@
 //
 
 #include "PlayButton.h"
+
+void PlayButton::clickHandler() {
+   std::cout << this->event.type;
+}

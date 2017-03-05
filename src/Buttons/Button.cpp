@@ -43,8 +43,22 @@ Button::Button(const Button &b2) {
     this->init(b2.label, b2.type, b2.autoSize);
 }
 
-void Button::update(sf::Event event) {
-    if (event.type == sf::Event::MouseButtonPressed) std::cout << "test" << std::endl;
+void Button::update(sf::Event event, const sf::RenderWindow& window) {
+    int mx = sf::Mouse::getPosition(window).x;
+    int my = sf::Mouse::getPosition(window).y;
+    int x = (int) this->getPosition().x;
+    int y = (int) this->getPosition().y;
+    int w = this->getTexture()->getSize().x;
+    int h = this->getTexture()->getSize().y;
+    if (mx < x || my < y || mx > (x + w) || my > (y + h)) return;
+    this->event = event;
+    switch (event.type) {
+        case sf::Event::MouseButtonPressed:
+            this->clickHandler();
+            break;
+        default:
+            break;
+    }
 }
 
 const std::string Button::getText() {
