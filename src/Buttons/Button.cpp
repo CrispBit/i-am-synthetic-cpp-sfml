@@ -4,6 +4,7 @@
 
 #include "Button.h"
 
+Button::isPressed = false;
 void Button::setLabel(std::string text) {
     this->text.setFont(this->font);
     this->text.setString(text);
@@ -54,8 +55,13 @@ void Button::update(sf::Event event, const sf::RenderWindow& window) {
     this->event = event;
     switch (event.type) {
         case sf::Event::MouseButtonPressed:
-            this->clickHandler();
+            this->isPressed = true;
+            this->downHandler();
             break;
+        case sf::Event::MouseButtonReleased:
+            if (this->isPressed) this->clickHandler();
+            else this->releaseHandler();
+            this->isPressed = false;
         default:
             break;
     }

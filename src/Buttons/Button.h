@@ -21,6 +21,7 @@ public:
     void update(sf::Event event, const sf::RenderWindow& window);
     virtual ~Button(){}
     sf::Event event;
+    bool isPressed;
 private:
     std::string label;
     sf::Text text;
@@ -32,6 +33,8 @@ private:
     bool autoSize;
     uint16_t defaultSize;
     virtual void clickHandler(){}
+    virtual void downHandler(){}
+    virtual void releaseHandler(){}
     void init(std::string text, ButtonType type, bool autoSize);
 };
 
