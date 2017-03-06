@@ -48,8 +48,8 @@ void Button::update(sf::Event event, const sf::RenderWindow& window) {
     int my = sf::Mouse::getPosition(window).y;
     int x = (int) this->getPosition().x;
     int y = (int) this->getPosition().y;
-    int w = this->getTexture()->getSize().x;
-    int h = this->getTexture()->getSize().y;
+    float w = this->getGlobalBounds().width;
+    float h = this->getGlobalBounds().height;
     if (mx < x || my < y || mx > (x + w) || my > (y + h)) return;
     this->event = event;
     switch (event.type) {
