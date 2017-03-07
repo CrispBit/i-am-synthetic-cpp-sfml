@@ -19,22 +19,26 @@ public:
     Button(std::string text, ButtonType type, bool autoSize = false);
     Button(const Button &b2);
     void update(sf::Event event, const sf::RenderWindow& window);
+    void updateTexture();
     virtual ~Button(){}
     sf::Event event;
-    bool isPressed;
+    sf::Texture texture;
+    bool isPressed = false;
+    bool isHovered = false;
 private:
     std::string label;
     sf::Text text;
     sf::Font font;
     sf::Sprite background;
-    sf::Texture texture;
     sf::RenderTexture renderTexture;
     ButtonType type;
     bool autoSize;
     uint16_t defaultSize;
+    virtual void hoverExit(){}
     virtual void clickHandler(){}
     virtual void downHandler(){}
     virtual void releaseHandler(){}
+    virtual void hoverHandler(bool first){}
     void init(std::string text, ButtonType type, bool autoSize);
 };
 

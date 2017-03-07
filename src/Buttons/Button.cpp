@@ -4,18 +4,21 @@
 
 #include "Button.h"
 
-Button::isPressed = false;
-void Button::setLabel(std::string text) {
-    this->text.setFont(this->font);
-    this->text.setString(text);
-    this->text.setCharacterSize(autoSize ? this->texture.getSize().x / this->text.getCharacterSize() * text.size() : this->defaultSize);
-    this->text.setPosition(this->texture.getSize().x / 2 - this->text.getLocalBounds().width / 2, this->texture.getSize().y / 2 - this->text.getLocalBounds().height / 2);
-    this->label = text;
+void Button::updateTexture() {
     this->renderTexture.create(this->texture.getSize().x, this->texture.getSize().y);
     this->renderTexture.draw(this->background);
     this->renderTexture.draw(this->text);
     this->renderTexture.display();
     this->setTexture(renderTexture.getTexture());
+}
+
+void Button::setLabel(std::string text) {
+    this->text.setFont(this->font);
+    this->text.setString(text);
+    this->text.setCharacterSize(autoSize ? (uint) (this->texture.getSize().x / this->text.getCharacterSize() * text.size()) : this->defaultSize);
+    this->text.setPosition(this->texture.getSize().x / 2 - this->text.getLocalBounds().width / 2, this->texture.getSize().y / 2 - this->text.getLocalBounds().height / 2);
+    this->label = text;
+    this->updateTexture();
 }
 
 Button::Button(std::string text, ButtonType type, bool autoSize) {
@@ -51,7 +54,13 @@ void Button::update(sf::Event event, const sf::RenderWindow& window) {
     int y = (int) this->getPosition().y;
     float w = this->getGlobalBounds().width;
     float h = this->getGlobalBounds().height;
-    if (mx < x || my < y || mx > (x + w) || my > (y + h)) return;
+    if (mx < x || my < y || mx > (x + w) || my > (y + h)) {
+        if (isHovered) {
+            isHovered = false;
+            this->hoverExit();
+        }
+        return;
+    }
     this->event = event;
     switch (event.type) {
         case sf::Event::MouseButtonPressed:
@@ -62,6 +71,11 @@ void Button::update(sf::Event event, const sf::RenderWindow& window) {
             if (this->isPressed) this->clickHandler();
             else this->releaseHandler();
             this->isPressed = false;
+            break;
+        case sf::Event::MouseMoved:
+            this->hoverHandler(!isHovered);
+            if (!isHovered) isHovered = true;
+            break;
         default:
             break;
     }

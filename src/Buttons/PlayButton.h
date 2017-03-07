@@ -14,6 +14,8 @@ public:
     ~PlayButton(){}
 private:
     void clickHandler();
+    void hoverHandler(bool first);
+    void hoverExit();
 };
 
 
