@@ -84,6 +84,7 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
         }
     }
 
+    mainMenu.setFramerateLimit((uint) config["video"]["fps"].as<int>());
     const bool useFullScreen = config["video"]["fullscreen"].as<bool>();
     mainMenu.create(useFullScreen ? sf::VideoMode::getFullscreenModes()[0] : sf::VideoMode(width, height), "I Am Synthetic", useFullScreen ? sf::Style::Fullscreen : sf::Style::Titlebar + sf::Style::Close);
     mainMenu.clear();
