@@ -15,15 +15,7 @@ class Locator {
 public:
     static std::shared_ptr<IResources> getResource() { return service_; }
 
-    static void provide(std::shared_ptr<IResources> service) {
-        service_.reset();
-        if (service == NULL) {
-            service_ = std::move(nullService_);
-        } else {
-            service_ = std::move(service);
-        }
-    }
-
+    static void provide(std::shared_ptr<IResources> service);
     static void provideArgs(char* arg);
     static void provideConfig(std::string path);
 

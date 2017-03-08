@@ -51,8 +51,8 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
     const float backgroundScale = std::max((float) width / background.getSize().x, (float) height / background.getSize().y);
     backgroundSprite.setScale(backgroundScale, backgroundScale);
 
-    std::vector<std::shared_ptr<Button>> buttons{std::make_shared<PlayButton>("Chapter Select", ButtonType::mainMenu),
-                                                    std::make_shared<PlayButton>("Credits", ButtonType::mainMenu)};
+    std::vector<std::shared_ptr<Button>> buttons{std::make_shared<PlayButton>("Chapter Select"),
+                                                    std::make_shared<PlayButton>("Credits")};
 
     for (uint8_t i = 0; i < buttons.size(); i++) {
         std::shared_ptr<Button> menuButton = buttons[i];
@@ -84,7 +84,6 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
         }
     }
 
-    mainMenu.setFramerateLimit((uint) config["video"]["fps"].as<int>());
     const bool useFullScreen = config["video"]["fullscreen"].as<bool>();
     mainMenu.create(useFullScreen ? sf::VideoMode::getFullscreenModes()[0] : sf::VideoMode(width, height), "I Am Synthetic", useFullScreen ? sf::Style::Fullscreen : sf::Style::Titlebar + sf::Style::Close);
     mainMenu.clear();
@@ -115,6 +114,7 @@ int main(int argc, char** argv) {
     const uint16_t windowDim = (uint16_t) (std::min(width, height) * scale);
 
     Locator::provideArgs(argv[0]);
+    MainMenuTextures::init();
 
     Locator::provide(std::make_unique<LocalResources>());
     std::string defaultConfigPath = Locator::getResource()->loadYAML("default-config.yaml");

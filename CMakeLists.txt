@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_compile_options(-Wall)
 
-set(SOURCE_FILES src/main.cpp src/resources/IResources.h src/resources/LocalResources.cpp src/resources/LocalResources.h src/Locator.cpp src/Locator.h src/resources/NullResources.h src/resources/NullResources.cpp src/Buttons/Button.cpp src/Buttons/Button.h src/resources/ButtonType.h src/Buttons/PlayButton.cpp src/Buttons/PlayButton.h)
+set(SOURCE_FILES src/main.cpp src/resources/IResources.h src/resources/LocalResources.cpp src/resources/LocalResources.h src/Locator.cpp src/Locator.h src/resources/NullResources.h src/resources/NullResources.cpp src/Buttons/Button.cpp src/Buttons/Button.h src/Buttons/PlayButton.cpp src/Buttons/PlayButton.h src/Buttons/MainMenuButton.cpp src/Buttons/MainMenuButton.h src/Buttons/MainMenuTextures.cpp src/Buttons/MainMenuTextures.h)
 add_executable(i_am_synthetic_c___sfml ${SOURCE_FILES})
 
 # Detect and add SFML

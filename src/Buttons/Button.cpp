@@ -5,7 +5,9 @@
 #include "Button.h"
 
 void Button::updateTexture() {
-    this->renderTexture.create(this->texture.getSize().x, this->texture.getSize().y);
+    this->text.setPosition(this->texture->getSize().x / 2 - this->text.getLocalBounds().width / 2, this->texture->getSize().y / 2 - this->text.getLocalBounds().height / 2);
+    this->renderTexture.create(this->texture->getSize().x, this->texture->getSize().y);
+    this->background.setTexture(*this->texture);
     this->renderTexture.draw(this->background);
     this->renderTexture.draw(this->text);
     this->renderTexture.display();
@@ -15,36 +17,21 @@ void Button::updateTexture() {
 void Button::setLabel(std::string text) {
     this->text.setFont(this->font);
     this->text.setString(text);
-    this->text.setCharacterSize(autoSize ? (uint) (this->texture.getSize().x / this->text.getCharacterSize() * text.size()) : this->defaultSize);
-    this->text.setPosition(this->texture.getSize().x / 2 - this->text.getLocalBounds().width / 2, this->texture.getSize().y / 2 - this->text.getLocalBounds().height / 2);
+    this->text.setCharacterSize(autoSize ? (uint) (this->texture->getSize().x / this->text.getCharacterSize() * text.size()) : this->defaultSize);
     this->label = text;
-    this->updateTexture();
 }
 
-Button::Button(std::string text, ButtonType type, bool autoSize) {
-    this->init(text, type, autoSize);
+Button::Button(std::string text, bool autoSize) {
+    this->init(text, autoSize);
 }
 
-void Button::init(std::string text, ButtonType type, bool autoSize) {
-    this->type = type;
+void Button::init(std::string text, bool autoSize) {
     this->autoSize = autoSize;
-    switch (type) {
-        case ButtonType::mainMenu:
-            this->defaultSize = 350;
-            this->texture = Locator::getResource()->loadTexture("main-menu", "menu-button.png");
-            this->background.setTexture(texture);
-            this->text.setCharacterSize(autoSize ? this->texture.getSize().x / text.size() * 2 : defaultSize);
-            this->text.setOutlineThickness((uint16_t) (this->defaultSize / 7.5));
-            this->text.setFillColor(sf::Color::Green);
-            this->font = Locator::getResource()->loadFont("Boogaloo-Regular.ttf");
-            break;
-    }
-
     this->setLabel(text);
 }
 
 Button::Button(const Button &b2) {
-    this->init(b2.label, b2.type, b2.autoSize);
+    this->init(b2.label, b2.autoSize);
 }
 
 void Button::update(sf::Event event, const sf::RenderWindow& window) {
@@ -57,7 +44,7 @@ void Button::update(sf::Event event, const sf::RenderWindow& window) {
     if (mx < x || my < y || mx > (x + w) || my > (y + h)) {
         if (isHovered) {
             isHovered = false;
-            this->hoverExit();
+            this->sHoverExit();
         }
         return;
     }
@@ -65,15 +52,15 @@ void Button::update(sf::Event event, const sf::RenderWindow& window) {
     switch (event.type) {
         case sf::Event::MouseButtonPressed:
             this->isPressed = true;
-            this->downHandler();
+            this->sDownHandler();
             break;
         case sf::Event::MouseButtonReleased:
-            if (this->isPressed) this->clickHandler();
-            else this->releaseHandler();
+            if (this->isPressed) this->sClickHandler();
+            else this->sReleaseHandler();
             this->isPressed = false;
             break;
         case sf::Event::MouseMoved:
-            this->hoverHandler(!isHovered);
+            this->sHoverHandler(!isHovered);
             if (!isHovered) isHovered = true;
             break;
         default:

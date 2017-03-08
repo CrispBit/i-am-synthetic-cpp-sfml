@@ -5,17 +5,13 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_PLAYBUTTON_H
 #define I_AM_SYNTHETIC_C_SFML_PLAYBUTTON_H
 
+#include "MainMenuButton.h"
 
-#include "Button.h"
-
-class PlayButton : public Button {
-    using Button::Button;
+class PlayButton : public MainMenuButton {
+    using MainMenuButton::MainMenuButton;
 public:
     ~PlayButton(){}
 private:
-    void clickHandler();
-    void hoverHandler(bool first);
-    void hoverExit();
 };
 
 
