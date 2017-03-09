@@ -87,19 +87,34 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
     const bool useFullScreen = config["video"]["fullscreen"].as<bool>();
     mainMenu.create(useFullScreen ? sf::VideoMode::getFullscreenModes()[0] : sf::VideoMode(width, height), "I Am Synthetic", useFullScreen ? sf::Style::Fullscreen : sf::Style::Titlebar + sf::Style::Close);
     mainMenu.clear();
+
+    bool active = true;
     while (mainMenu.isOpen()) {
         sf::Event event;
         while (mainMenu.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                mainMenu.close();
-            if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::Escape) {
-                    if (useFullScreen)
-                        mainMenu.create(sf::VideoMode(width, height), "I Am Synthetic", sf::Style::Titlebar + sf::Style::Close);
+            do {
+                switch (event.type) {
+
+                    case sf::Event::GainedFocus:
+                        active = true;
+                        break;
+                    case sf::Event::LostFocus:
+                        active = false;
+                        break;
+                    case sf::Event::Closed:
+                        mainMenu.close();
+                        break;
+                    case sf::Event::KeyPressed:
+                        if (event.key.code == sf::Keyboard::Escape) {
+                            if (useFullScreen)
+                                mainMenu.create(sf::VideoMode(width, height), "I Am Synthetic",
+                                                sf::Style::Titlebar + sf::Style::Close);
+                        }
+                        break;
+                    default:
+                        updateButtons(buttons, event, mainMenu);
                 }
-            } else {
-                updateButtons(buttons, event, mainMenu);
-            }
+            } while (!active && mainMenu.waitEvent(event));
         }
         std::vector<sf::Sprite> sprites{backgroundSprite};
         drawMain(mainMenu, sprites, buttons);
