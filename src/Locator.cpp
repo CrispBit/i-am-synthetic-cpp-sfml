@@ -4,23 +4,36 @@
 
 #include "Locator.h"
 
-std::shared_ptr<IResources> Locator::nullService_ = std::make_shared<NullResources>();
-std::shared_ptr<IResources> Locator::service_ = std::move(Locator::nullService_);
+std::shared_ptr<IWindowSubroutines> Locator::nullResourcesService_ = std::make_shared<NullWindowSubroutines>();
+std::shared_ptr<IWindowSubroutines> Locator::resourcesService_ = Locator::nullResourcesService_;
+
+std::shared_ptr<IWindowSubroutines> Locator::nullWindowRoutinesService_ = std::make_shared<NullWindowSubroutines>();
+std::shared_ptr<IWindowSubroutines> Locator::windowRoutinesService_ = Locator::nullWindowRoutinesService_;
 
 YAML::Node Locator::defaultConfig;
 
 boost::filesystem::path Locator::rootPath;
 
 Locator::Locator() {
-    Locator::service_.reset();
+    Locator::resourcesService_.reset();
+    Locator::windowRoutinesService_.reset();
 }
 
-void Locator::provide(std::shared_ptr<IResources> service) {
-    service_.reset();
+void Locator::provideResourcesService(std::shared_ptr<IWindowSubroutines> service) {
+    resourcesService_.reset();
     if (service == NULL) {
-        service_ = std::move(nullService_);
+        resourcesService_ = nullResourcesService_;
     } else {
-        service_ = std::move(service);
+        resourcesService_ = std::move(service);
+    }
+}
+
+void Locator::provideWindowSubroutinesService(std::shared_ptr<IWindowSubroutines> service) {
+    windowRoutinesService_.reset();
+    if (service == NULL) {
+        windowRoutinesService_ = nullWindowRoutinesService_;
+    } else {
+        windowRoutinesService_ = std::move(service);
     }
 }
 

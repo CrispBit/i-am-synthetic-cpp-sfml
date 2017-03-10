@@ -17,7 +17,7 @@ public:
     const std::string getText();
     Button(std::string text, bool autoSize = false);
     Button(const Button &b2);
-    void update(sf::Event event, const sf::RenderWindow& window);
+    void update(sf::Event event, sf::RenderWindow& window);
     void updateTexture();
     virtual ~Button(){}
     sf::Event event;
@@ -31,11 +31,18 @@ protected:
     bool autoSize;
     uint16_t defaultSize;
     sf::Sprite background;
+
     virtual void sHoverExit(){}
     virtual void sClickHandler(){}
     virtual void sDownHandler(){}
     virtual void sReleaseHandler(){}
     virtual void sHoverHandler(bool first){}
+
+    virtual void hoverExit(){}
+    virtual void clickHandler(sf::RenderWindow& window){}
+    virtual void downHandler(){}
+    virtual void releaseHandler(){}
+    virtual void hoverHandler(bool first){}
 private:
     sf::RenderTexture renderTexture;
     void init(std::string text, bool autoSize);

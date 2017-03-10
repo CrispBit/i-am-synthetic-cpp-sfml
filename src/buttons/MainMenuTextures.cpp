@@ -7,7 +7,7 @@
 sf::Texture MainMenuTextures::defaultTexture;
 sf::Texture MainMenuTextures::highlightedTexture;
 void MainMenuTextures::init() {
-    Locator::provide(std::make_unique<LocalResources>());
+    Locator::provideResourcesService(std::make_unique<InfoWindowSubroutines>());
     defaultTexture = Locator::getResource()->loadTexture("main-menu", "menu-button.png");
     highlightedTexture = Locator::getResource()->loadTexture("main-menu", "menu-button_highlighted.png");
 }

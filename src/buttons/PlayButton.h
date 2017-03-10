@@ -11,8 +11,7 @@ class PlayButton : public MainMenuButton {
     using MainMenuButton::MainMenuButton;
 public:
     ~PlayButton(){}
-private:
 };
 
 
-#endif //I_AM_SYNTHETIC_C_SFML_PLAYBUTTON_H
+#endif

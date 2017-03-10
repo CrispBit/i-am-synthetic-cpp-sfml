@@ -8,7 +8,7 @@
 #include <iostream>
 #include "IResources.h"
 
-class NullResources : public IResources {
+class NullWindowSubroutines : public IWindowSubroutines {
 public:
     virtual sf::Texture loadTexture(std::string state, std::string id, sf::IntRect* rect = 0) override;
     virtual std::unique_ptr<sf::Music> loadMusic(std::string state, std::string id) override;

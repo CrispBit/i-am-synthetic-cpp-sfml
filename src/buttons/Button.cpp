@@ -34,7 +34,7 @@ Button::Button(const Button &b2) {
     this->init(b2.label, b2.autoSize);
 }
 
-void Button::update(sf::Event event, const sf::RenderWindow& window) {
+void Button::update(sf::Event event, sf::RenderWindow& window) {
     int mx = sf::Mouse::getPosition(window).x;
     int my = sf::Mouse::getPosition(window).y;
     int x = (int) this->getPosition().x;
@@ -53,14 +53,19 @@ void Button::update(sf::Event event, const sf::RenderWindow& window) {
         case sf::Event::MouseButtonPressed:
             this->isPressed = true;
             this->sDownHandler();
+            this->downHandler();
             break;
         case sf::Event::MouseButtonReleased:
-            if (this->isPressed) this->sClickHandler();
+            if (this->isPressed) {
+                this->sClickHandler();
+                this->clickHandler(window);
+            }
             else this->sReleaseHandler();
             this->isPressed = false;
             break;
         case sf::Event::MouseMoved:
             this->sHoverHandler(!isHovered);
+            this->hoverHandler(!isHovered);
             if (!isHovered) isHovered = true;
             break;
         default:

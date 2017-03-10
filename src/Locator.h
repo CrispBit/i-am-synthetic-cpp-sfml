@@ -7,15 +7,19 @@
 
 #include "resources/LocalResources.h"
 #include "resources/NullResources.h"
-#include <boost/filesystem.hpp>
 
+#include "window-subroutines/InfoWindowSubroutines.h"
+#include "window-subroutines/NullWindowSubroutines.h"
+
+#include <boost/filesystem.hpp>
 #include <memory>
 
 class Locator {
 public:
-    static std::shared_ptr<IResources> getResource() { return service_; }
+    static std::shared_ptr<IWindowSubroutines> getResource() { return resourcesService_; }
 
-    static void provide(std::shared_ptr<IResources> service);
+    static void provideResourcesService(std::shared_ptr<IWindowSubroutines> service);
+    static void provideWindowSubroutinesService(std::shared_ptr<IWindowSubroutines> service);
     static void provideArgs(char* arg);
     static void provideConfig(std::string path);
 
@@ -24,7 +28,10 @@ public:
     Locator();
 
 private:
-    static std::shared_ptr<IResources> service_;
-    static std::shared_ptr<IResources> nullService_;
+    static std::shared_ptr<IWindowSubroutines> resourcesService_;
+    static std::shared_ptr<IWindowSubroutines> nullResourcesService_;
+
+    static std::shared_ptr<IWindowSubroutines> windowRoutinesService_;
+    static std::shared_ptr<IWindowSubroutines> nullWindowRoutinesService_;
 };
 #endif

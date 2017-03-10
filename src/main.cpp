@@ -4,6 +4,7 @@
 #include <boost/filesystem.hpp>
 #include "resources/LocalResources.h"
 #include "Buttons/PlayButton.h"
+#include "Buttons/CreditsButton.h"
 
 void drawMain(sf::RenderWindow& mainMenu, std::vector<sf::Sprite> sprites, std::vector<std::shared_ptr<Button>> buttons) {
     mainMenu.clear();
@@ -16,7 +17,7 @@ void drawMain(sf::RenderWindow& mainMenu, std::vector<sf::Sprite> sprites, std::
     mainMenu.display();
 }
 
-void updateButtons(std::vector<std::shared_ptr<Button>> buttons, sf::Event event, const sf::RenderWindow& window) {
+void updateButtons(std::vector<std::shared_ptr<Button>> buttons, sf::Event event, sf::RenderWindow& window) {
     for (std::shared_ptr<Button> button : buttons) {
         button->update(event, window);
     }
@@ -52,7 +53,7 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
     backgroundSprite.setScale(backgroundScale, backgroundScale);
 
     std::vector<std::shared_ptr<Button>> buttons{std::make_shared<PlayButton>("Chapter Select"),
-                                                    std::make_shared<PlayButton>("Credits")};
+                                                    std::make_shared<CreditsButton>("Credits")};
 
     for (uint8_t i = 0; i < buttons.size(); i++) {
         std::shared_ptr<Button> menuButton = buttons[i];
@@ -87,6 +88,7 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
     const bool useFullScreen = config["video"]["fullscreen"].as<bool>();
     mainMenu.create(useFullScreen ? sf::VideoMode::getFullscreenModes()[0] : sf::VideoMode(width, height), "I Am Synthetic", useFullScreen ? sf::Style::Fullscreen : sf::Style::Titlebar + sf::Style::Close);
     mainMenu.clear();
+    std::vector<sf::Sprite> sprites{backgroundSprite};
 
     bool active = true;
     while (mainMenu.isOpen()) {
@@ -94,7 +96,6 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
         while (mainMenu.pollEvent(event)) {
             do {
                 switch (event.type) {
-
                     case sf::Event::GainedFocus:
                         active = true;
                         break;
@@ -105,6 +106,7 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
                         mainMenu.close();
                         break;
                     case sf::Event::KeyPressed:
+                        // TODO: make this threaded using a window subroutine from InfoWindowSubroutines
                         if (event.key.code == sf::Keyboard::Escape) {
                             if (useFullScreen)
                                 mainMenu.create(sf::VideoMode(width, height), "I Am Synthetic",
@@ -116,7 +118,6 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
                 }
             } while (!active && mainMenu.waitEvent(event));
         }
-        std::vector<sf::Sprite> sprites{backgroundSprite};
         drawMain(mainMenu, sprites, buttons);
     }
 }
@@ -131,7 +132,7 @@ int main(int argc, char** argv) {
     Locator::provideArgs(argv[0]);
     MainMenuTextures::init();
 
-    Locator::provide(std::make_unique<LocalResources>());
+    Locator::provideResourcesService(std::make_unique<InfoWindowSubroutines>());
     std::string defaultConfigPath = Locator::getResource()->loadYAML("default-config.yaml");
     Locator::provideConfig(defaultConfigPath);
 
