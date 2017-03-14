@@ -17,7 +17,7 @@ void Button::updateTexture() {
 void Button::setLabel(std::string text) {
     this->text.setFont(this->font);
     this->text.setString(text);
-    this->text.setCharacterSize(autoSize ? (uint) (this->texture->getSize().x / this->text.getCharacterSize() * text.size()) : this->defaultSize);
+    this->text.setCharacterSize(autoSize ? (uint16_t) (this->texture->getSize().x / this->text.getCharacterSize() * text.size()) : this->defaultSize);
     this->label = text;
 }
 
