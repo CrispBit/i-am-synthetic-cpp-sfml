@@ -16,9 +16,9 @@
 
 class Locator {
 public:
-    static std::shared_ptr<IWindowSubroutines> getResource() { return resourcesService_; }
+    static std::shared_ptr<IResources> getResource() { return resourcesService_; }
 
-    static void provideResourcesService(std::shared_ptr<IWindowSubroutines> service);
+    static void provideResourcesService(std::shared_ptr<IResources> service);
     static void provideWindowSubroutinesService(std::shared_ptr<IWindowSubroutines> service);
     static void provideArgs(char* arg);
     static void provideConfig(std::string path);
@@ -28,8 +28,8 @@ public:
     Locator();
 
 private:
-    static std::shared_ptr<IWindowSubroutines> resourcesService_;
-    static std::shared_ptr<IWindowSubroutines> nullResourcesService_;
+    static std::shared_ptr<IResources> resourcesService_;
+    static std::shared_ptr<IResources> nullResourcesService_;
 
     static std::shared_ptr<IWindowSubroutines> windowRoutinesService_;
     static std::shared_ptr<IWindowSubroutines> nullWindowRoutinesService_;

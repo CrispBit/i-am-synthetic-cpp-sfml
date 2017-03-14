@@ -4,6 +4,6 @@
 
 #include "NullWindowSubroutines.h"
 
-void handleExits(sf::RenderWindow& window) {
+void NullWindowSubroutines::handleExits(sf::RenderWindow& window) {
     std::cout << "window exit handler invoked";
 }

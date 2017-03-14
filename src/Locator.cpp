@@ -4,8 +4,8 @@
 
 #include "Locator.h"
 
-std::shared_ptr<IWindowSubroutines> Locator::nullResourcesService_ = std::make_shared<NullWindowSubroutines>();
-std::shared_ptr<IWindowSubroutines> Locator::resourcesService_ = Locator::nullResourcesService_;
+std::shared_ptr<IResources> Locator::nullResourcesService_ = std::make_shared<NullResources>();
+std::shared_ptr<IResources> Locator::resourcesService_ = Locator::nullResourcesService_;
 
 std::shared_ptr<IWindowSubroutines> Locator::nullWindowRoutinesService_ = std::make_shared<NullWindowSubroutines>();
 std::shared_ptr<IWindowSubroutines> Locator::windowRoutinesService_ = Locator::nullWindowRoutinesService_;
@@ -19,7 +19,7 @@ Locator::Locator() {
     Locator::windowRoutinesService_.reset();
 }
 
-void Locator::provideResourcesService(std::shared_ptr<IWindowSubroutines> service) {
+void Locator::provideResourcesService(std::shared_ptr<IResources> service) {
     resourcesService_.reset();
     if (service == NULL) {
         resourcesService_ = nullResourcesService_;

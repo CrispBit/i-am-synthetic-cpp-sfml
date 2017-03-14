@@ -4,6 +4,6 @@
 
 #include "InfoWindowSubroutines.h"
 
-void handleExits(sf::RenderWindow& window) {
+void InfoWindowSubroutines::handleExits(sf::RenderWindow& window) {
     std::cout << "window exit handler invoked";
 }

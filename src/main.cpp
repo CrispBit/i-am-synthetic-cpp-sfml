@@ -3,6 +3,7 @@
 #include <SFML/Audio.hpp>
 #include <boost/filesystem.hpp>
 #include "resources/LocalResources.h"
+#include "window-subroutines/InfoWindowSubroutines.h"
 #include "Buttons/PlayButton.h"
 #include "Buttons/CreditsButton.h"
 
@@ -134,9 +135,11 @@ int main(int argc, char** argv) {
     Locator::provideArgs(argv[0]);
     MainMenuTextures::init();
 
-    Locator::provideResourcesService(std::make_unique<InfoWindowSubroutines>());
+    Locator::provideResourcesService(std::make_unique<LocalResources>());
     std::string defaultConfigPath = Locator::getResource()->loadYAML("default-config.yaml");
     Locator::provideConfig(defaultConfigPath);
+
+    Locator::provideWindowSubroutinesService(std::make_unique<InfoWindowSubroutines>());
 
     sf::Texture splash = Locator::getResource()->loadTexture("main-menu", "splash.png");
     sf::Sprite splashSprite;

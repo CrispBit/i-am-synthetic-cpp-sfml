@@ -4,7 +4,7 @@
 
 #include "LocalResources.h"
 
-sf::Texture InfoWindowSubroutines::loadTexture(std::string state, std::string id, sf::IntRect* rect) {
+sf::Texture LocalResources::loadTexture(std::string state, std::string id, sf::IntRect* rect) {
     // load texture and return thing
     std::string path = (Locator::rootPath / "assets" / "images" / state / id).generic_string();
 
@@ -20,7 +20,7 @@ sf::Texture InfoWindowSubroutines::loadTexture(std::string state, std::string id
     return returnTexture;
 }
 
-std::unique_ptr<sf::Music> InfoWindowSubroutines::loadMusic(std::string state, std::string id) {
+std::unique_ptr<sf::Music> LocalResources::loadMusic(std::string state, std::string id) {
     // load music and return thing
     std::string path = (Locator::rootPath / "assets" / "audio" / "music" / state / id).generic_string();
 
@@ -32,7 +32,7 @@ std::unique_ptr<sf::Music> InfoWindowSubroutines::loadMusic(std::string state, s
     return returnMusic;
 }
 
-std::string InfoWindowSubroutines::loadYAML(std::string id) {
+std::string LocalResources::loadYAML(std::string id) {
     // returns YAML path
     std::string path = (Locator::rootPath / "assets" / "config" / id).generic_string();
 
@@ -41,7 +41,7 @@ std::string InfoWindowSubroutines::loadYAML(std::string id) {
     return path;
 }
 
-sf::Font InfoWindowSubroutines::loadFont(std::string id) {
+sf::Font LocalResources::loadFont(std::string id) {
     // load font and return thing
     std::string path = (Locator::rootPath / "assets" / "fonts" / id).generic_string();
     sf::Font font;
