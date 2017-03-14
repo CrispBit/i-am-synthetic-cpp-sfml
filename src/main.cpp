@@ -44,7 +44,6 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
     fout << config;
 
     sf::RenderWindow mainMenu;
-    mainMenu.setFramerateLimit(config["video"]["fps"].as<uint16_t>());
 
     // load main menu background
     sf::Texture background = Locator::getResource()->loadTexture("main-menu", "background.png");
@@ -90,6 +89,8 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
     mainMenu.create(useFullScreen ? sf::VideoMode::getFullscreenModes()[0] : sf::VideoMode(width, height), "I Am Synthetic", useFullScreen ? sf::Style::Fullscreen : sf::Style::Titlebar + sf::Style::Close);
     mainMenu.clear();
     std::vector<sf::Sprite> sprites{backgroundSprite};
+
+    mainMenu.setFramerateLimit(config["video"]["fps"].as<uint16_t>());
 
     bool active = true;
     while (mainMenu.isOpen()) {
