@@ -44,6 +44,7 @@ void handleTransition(sf::RenderWindow& splash, const uint16_t width, const uint
     fout << config;
 
     sf::RenderWindow mainMenu;
+    mainMenu.setFramerateLimit(config["video"]["fps"].as<uint16_t>());
 
     // load main menu background
     sf::Texture background = Locator::getResource()->loadTexture("main-menu", "background.png");
