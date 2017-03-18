@@ -8,30 +8,29 @@
 #include "resources/LocalResources.h"
 #include "resources/NullResources.h"
 
-#include "window-subroutines/InfoWindowSubroutines.h"
-#include "window-subroutines/NullWindowSubroutines.h"
-
 #include <boost/filesystem.hpp>
 #include <memory>
+
+enum class Configs {
+    DEFAULT,
+    CURRENT
+};
 
 class Locator {
 public:
     static std::shared_ptr<IResources> getResource() { return resourcesService_; }
 
     static void provideResourcesService(std::shared_ptr<IResources> service);
-    static void provideWindowSubroutinesService(std::shared_ptr<IWindowSubroutines> service);
     static void provideArgs(char* arg);
-    static void provideConfig(std::string path);
+    static void provideConfig(std::string path, Configs config);
 
     static boost::filesystem::path rootPath;
     static YAML::Node defaultConfig;
+    static YAML::Node currentConfig;
     Locator();
 
 private:
     static std::shared_ptr<IResources> resourcesService_;
     static std::shared_ptr<IResources> nullResourcesService_;
-
-    static std::shared_ptr<IWindowSubroutines> windowRoutinesService_;
-    static std::shared_ptr<IWindowSubroutines> nullWindowRoutinesService_;
 };
 #endif

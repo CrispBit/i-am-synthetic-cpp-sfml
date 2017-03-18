@@ -7,16 +7,13 @@
 std::shared_ptr<IResources> Locator::nullResourcesService_ = std::make_shared<NullResources>();
 std::shared_ptr<IResources> Locator::resourcesService_ = Locator::nullResourcesService_;
 
-std::shared_ptr<IWindowSubroutines> Locator::nullWindowRoutinesService_ = std::make_shared<NullWindowSubroutines>();
-std::shared_ptr<IWindowSubroutines> Locator::windowRoutinesService_ = Locator::nullWindowRoutinesService_;
-
 YAML::Node Locator::defaultConfig;
+YAML::Node Locator::currentConfig;
 
 boost::filesystem::path Locator::rootPath;
 
 Locator::Locator() {
     Locator::resourcesService_.reset();
-    Locator::windowRoutinesService_.reset();
 }
 
 void Locator::provideResourcesService(std::shared_ptr<IResources> service) {
@@ -28,20 +25,18 @@ void Locator::provideResourcesService(std::shared_ptr<IResources> service) {
     }
 }
 
-void Locator::provideWindowSubroutinesService(std::shared_ptr<IWindowSubroutines> service) {
-    windowRoutinesService_.reset();
-    if (service == NULL) {
-        windowRoutinesService_ = nullWindowRoutinesService_;
-    } else {
-        windowRoutinesService_ = std::move(service);
-    }
-}
-
 void Locator::provideArgs(char arg[]) {
     Locator::rootPath = boost::filesystem::canonical(arg).remove_filename().parent_path();
     if (!rootPath.has_filename()) std::cout << "TO-DO";
 }
 
-void Locator::provideConfig(std::string path) {
-    Locator::defaultConfig = YAML::LoadFile(path); // TODO: work for other config files
+void Locator::provideConfig(std::string path, Configs config) {
+    switch (config) {
+        case Configs::DEFAULT:
+            Locator::defaultConfig = YAML::LoadFile(path); // TODO: work for other config files
+            break;
+        case Configs::CURRENT:
+            Locator::currentConfig = YAML::LoadFile(path);
+            break;
+    }
 }
