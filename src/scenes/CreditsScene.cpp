@@ -3,3 +3,7 @@
 //
 
 #include "CreditsScene.h"
+
+CreditsScene::CreditsScene() {
+    std::cout << "test";
+}

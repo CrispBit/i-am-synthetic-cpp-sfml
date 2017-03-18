@@ -3,8 +3,8 @@
 //
 
 #include "CreditsButton.h"
+#include "../scenes/CreditsScene.h"
 
 void CreditsButton::clickHandler(sf::RenderWindow& window) {
-    window.clear();
-    window.display();
+    CreditsScene().loop(window);
 }
