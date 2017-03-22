@@ -40,10 +40,11 @@ void Scene::loop(sf::RenderWindow& window) {
                         break;
                     case sf::Event::KeyPressed:
                         if (event.key.code == sf::Keyboard::Escape) {
-                            if (this->fullscreen)
+                            if (this->fullscreen) {
                                 this->fullscreen = false;
                                 window.create(sf::VideoMode(width, height), "I Am Synthetic",
                                               sf::Style::Titlebar + sf::Style::Close);
+                            }
                         }
                         break;
                     default:
