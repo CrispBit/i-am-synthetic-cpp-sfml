@@ -5,7 +5,7 @@
 #include "MainMenuScene.h"
 
 MainMenuScene::MainMenuScene() {
-    this->buttons = {std::make_shared<PlayButton>("Chapter Select"),
+    this->buttons = {std::make_shared<PlayButton>("Play"),
                      std::make_shared<CreditsButton>("Credits")};
 
     // load main menu background

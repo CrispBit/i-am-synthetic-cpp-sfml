@@ -5,8 +5,8 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_CREDITSBUTTON_H
 #define I_AM_SYNTHETIC_C_SFML_CREDITSBUTTON_H
 
-
 #include "MainMenuButton.h"
+#include "../scenes/CreditsScene.h"
 
 class CreditsButton : public MainMenuButton {
     using MainMenuButton::MainMenuButton;
@@ -15,6 +15,5 @@ public:
 protected:
     virtual void clickHandler(sf::RenderWindow& window);
 };
-
 
 #endif

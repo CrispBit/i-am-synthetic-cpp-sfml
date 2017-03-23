@@ -3,3 +3,7 @@
 //
 
 #include "PlayButton.h"
+
+void PlayButton::clickHandler(sf::RenderWindow& window) {
+    PlayScene().loop(window);
+}

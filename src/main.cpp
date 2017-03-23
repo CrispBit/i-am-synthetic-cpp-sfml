@@ -12,7 +12,7 @@ void handleTransition(sf::RenderWindow& splash) {
     introMusic -> setLoop(true);
     introMusic -> play();
 
-    std::string configPath = Locator::getResource()->loadYAML("config.yaml");
+    std::string configPath = Locator::getResource()->loadPath("config.yaml");
     YAML::Node &config = Locator::currentConfig;
 
     for (auto it = Locator::defaultConfig.begin(); it != Locator::defaultConfig.end(); ++it) {
@@ -57,8 +57,8 @@ int main(int argc, char** argv) {
     MainMenuTextures::init();
 
     Locator::provideResourcesService(std::make_unique<LocalResources>());
-    std::string defaultConfigPath = Locator::getResource()->loadYAML("default-config.yaml");
-    std::string configPath = Locator::getResource()->loadYAML("config.yaml");
+    std::string defaultConfigPath = Locator::getResource()->loadPath("default-config.yaml");
+    std::string configPath = Locator::getResource()->loadPath("config.yaml");
     Locator::provideConfig(defaultConfigPath, Configs::DEFAULT);
     Locator::provideConfig(configPath, Configs::CURRENT);
 

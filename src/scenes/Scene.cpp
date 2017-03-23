@@ -18,11 +18,14 @@ void Scene::updateButtons(sf::Event event, sf::RenderWindow &window) {
 }
 
 void Scene::loop(sf::RenderWindow& window) {
-    if (!window.isOpen()) window.create(fullscreen ? sf::VideoMode::getFullscreenModes()[0] :
-                                        sf::VideoMode(width, height), "I Am Synthetic", fullscreen ?
-                                                                                        sf::Style::Fullscreen :
-                                                                                        sf::Style::Titlebar +
-                                                                                        sf::Style::Close);
+    if (!window.isOpen()) {
+        window.create(fullscreen ? sf::VideoMode::getFullscreenModes()[0] :
+                      sf::VideoMode(width, height), "I Am Synthetic", fullscreen ?
+                                                                      sf::Style::Fullscreen :
+                                                                      sf::Style::Titlebar +
+                                                                      sf::Style::Close);
+        window.requestFocus();
+    }
     bool active = true;
     while (window.isOpen()) {
         sf::Event event;
@@ -40,10 +43,11 @@ void Scene::loop(sf::RenderWindow& window) {
                         break;
                     case sf::Event::KeyPressed:
                         if (event.key.code == sf::Keyboard::Escape) {
-                            if (this->fullscreen)
+                            if (this->fullscreen) {
                                 this->fullscreen = false;
                                 window.create(sf::VideoMode(width, height), "I Am Synthetic",
                                               sf::Style::Titlebar + sf::Style::Close);
+                            }
                         }
                         break;
                     default:

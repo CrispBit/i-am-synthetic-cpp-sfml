@@ -12,7 +12,7 @@ class NullResources : public IResources {
 public:
     virtual sf::Texture loadTexture(std::string state, std::string id, sf::IntRect* rect = 0) override;
     virtual std::unique_ptr<sf::Music> loadMusic(std::string state, std::string id) override;
-    virtual std::string loadYAML(std::string state) override;
+    virtual std::string loadPath(std::string state) override;
     virtual sf::Font loadFont(std::string id) override;
 };
 
