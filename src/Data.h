@@ -10,9 +10,9 @@
 
 class Data {
 public:
-    int levelid;
-    std::ostream& operator<<(std::ofstream& save);
-    std::istream& operator>>(std::ifstream& save);
+    uint8_t levelid;
+    friend std::ofstream& operator<<(std::ofstream& save, Data data);
+    friend std::ifstream& operator>>(std::ifstream& save, Data data);
 };
 
-#endif //I_AM_SYNTHETIC_C_SFML_DATA_H
+#endif

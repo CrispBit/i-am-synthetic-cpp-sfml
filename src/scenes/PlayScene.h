@@ -12,4 +12,4 @@ public:
     PlayScene();
 };
 
-#endif //I_AM_SYNTHETIC_C_SFML_CHAPTERSELECTSCENE_H
+#endif

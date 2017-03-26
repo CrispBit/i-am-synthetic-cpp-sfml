@@ -7,6 +7,12 @@
 
 PlayScene::PlayScene() {
     Data data = Data();
-    std::ofstream save = std::ofstream(Locator::getResource()->loadPath("save"));
-    data << save << std::endl;
+    std::string savePath = Locator::getResource()->loadPath("save");
+    if (!boost::filesystem::exists(boost::filesystem::path(savePath))) {
+        data.levelid = 1;
+    } else {
+        std::ifstream saveIn = std::ifstream(savePath, std::ios::in | std::ios::binary);
+        saveIn >> data;
+        saveIn.close();
+    }
 }

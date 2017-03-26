@@ -4,11 +4,12 @@
 
 #include "Data.h"
 
-std::ostream& Data::operator<<(std::ofstream& save) {
-    std::cout << "lol" << std::endl;
+std::ofstream& operator<<(std::ofstream& save, Data data) {
+    save.write(reinterpret_cast<char*>(&data.levelid), sizeof(data.levelid));
     return save;
 }
 
-std::istream& Data::operator>>(std::ifstream& save) {
+std::ifstream& operator>>(std::ifstream& save, Data data) {
+    save.read(reinterpret_cast<char*>(&data.levelid), sizeof(data.levelid));
     return save;
 }
