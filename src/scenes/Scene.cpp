@@ -19,11 +19,8 @@ void Scene::updateButtons(sf::Event event, sf::RenderWindow &window) {
 
 void Scene::loop(sf::RenderWindow& window) {
     if (!window.isOpen()) {
-        window.create(fullscreen ? sf::VideoMode::getFullscreenModes()[0] :
-                      sf::VideoMode(width, height), "I Am Synthetic", fullscreen ?
-                                                                      sf::Style::Fullscreen :
-                                                                      sf::Style::Titlebar +
-                                                                      sf::Style::Close);
+        window.create(sf::VideoMode(width, height), "I Am Synthetic", sf::Style::Default |
+                (fullscreen ? sf::Style::Fullscreen : 0));
         window.requestFocus();
     }
     bool active = true;
