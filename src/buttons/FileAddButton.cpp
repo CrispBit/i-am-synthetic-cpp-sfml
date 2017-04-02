@@ -15,7 +15,8 @@ FileAddButton::FileAddButton(std::vector<std::shared_ptr<Button>>* fileArray, ui
 }
 
 void FileAddButton::sClickHandler() {
-
+    this->fileButtons->insert(this->fileButtons->begin() + this->fileButtons->size() - 1, std::make_shared<FileButton>(*fileButtons));
+    position();
 }
 
 void FileAddButton::sHoverHandler(bool first) {

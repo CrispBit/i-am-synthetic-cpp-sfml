@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "Button.h"
+#include "FileButton.h"
 
 class FileAddButton : public Button {
 public:
