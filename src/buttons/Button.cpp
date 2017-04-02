@@ -5,11 +5,15 @@
 #include "Button.h"
 
 void Button::updateTexture() {
-    this->text.setPosition(this->texture->getSize().x / 2 - this->text.getLocalBounds().width / 2, this->texture->getSize().y / 2 - this->text.getLocalBounds().height / 2);
     this->renderTexture.create(this->texture->getSize().x, this->texture->getSize().y);
     this->background.setTexture(*this->texture);
     this->renderTexture.draw(this->background);
-    this->renderTexture.draw(this->text);
+
+    if (this->hasText) {
+        this->text.setPosition(this->texture->getSize().x / 2 - this->text.getLocalBounds().width / 2, this->texture->getSize().y / 2 - this->text.getLocalBounds().height / 2);
+        this->renderTexture.draw(this->text);
+    }
+
     this->renderTexture.display();
     this->setTexture(renderTexture.getTexture());
 }
@@ -23,6 +27,10 @@ void Button::setLabel(std::string text) {
 
 Button::Button(std::string text, bool autoSize) {
     this->init(text, autoSize);
+}
+
+Button::Button() {
+    this->hasText = false;
 }
 
 void Button::init(std::string text, bool autoSize) {

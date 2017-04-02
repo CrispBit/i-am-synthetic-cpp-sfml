@@ -7,6 +7,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include "../Locator.h"
+#include "MainMenuTextures.h"
 
 #ifndef I_AM_SYNTHETIC_C_SFML_BUTTON_H
 #define I_AM_SYNTHETIC_C_SFML_BUTTON_H
@@ -15,6 +16,7 @@ class Button : public sf::Sprite {
 public:
     void setLabel(std::string text);
     const std::string getText();
+    Button();
     Button(std::string text, bool autoSize = false);
     Button(const Button &b2);
     void update(sf::Event event, sf::RenderWindow& window);
@@ -24,6 +26,7 @@ public:
     sf::Texture* texture = nullptr;
     bool isPressed = false;
     bool isHovered = false;
+    bool hasText = true;
 protected:
     std::string label;
     sf::Text text;

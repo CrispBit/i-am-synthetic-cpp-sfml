@@ -24,5 +24,4 @@ protected:
     bool fullscreen;
 };
 
-
-#endif //I_AM_SYNTHETIC_C_SFML_SCENE_H
+#endif

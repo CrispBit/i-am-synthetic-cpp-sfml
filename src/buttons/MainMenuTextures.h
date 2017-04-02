@@ -11,10 +11,14 @@
 
 class MainMenuTextures {
 public:
+    static void init();
     static sf::Texture defaultTexture;
     static sf::Texture highlightedTexture;
-    static void init();
+    static sf::Texture fileTexture;
+    static sf::Texture highlightedFileTexture;
+    static sf::Texture selectedFileTexture;
+    static sf::Texture addFileTexture;
+    static sf::Texture highlightedAddFileTexture;
 };
-
 
 #endif

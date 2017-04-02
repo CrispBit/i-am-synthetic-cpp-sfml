@@ -18,5 +18,4 @@ private:
     void sHoverExit();
 };
 
-
-#endif //I_AM_SYNTHETIC_C_SFML_MAINMENUBUTTON_H
+#endif
