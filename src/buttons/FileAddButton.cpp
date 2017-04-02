@@ -4,6 +4,16 @@
 
 #include "FileAddButton.h"
 
+namespace patch
+{
+    template < typename T > std::string to_string( const T& n )
+    {
+        std::ostringstream stm ;
+        stm << n ;
+        return stm.str() ;
+    }
+}
+
 FileAddButton::FileAddButton(std::vector<std::shared_ptr<Button>>* fileArray, uint16_t width, uint16_t height) : Button() {
     this->texture = &MainMenuTextures::addFileTexture;
     this->updateTexture();
@@ -16,6 +26,11 @@ FileAddButton::FileAddButton(std::vector<std::shared_ptr<Button>>* fileArray, ui
 
 void FileAddButton::sClickHandler() {
     this->fileButtons->insert(this->fileButtons->begin() + this->fileButtons->size() - 1, std::make_shared<FileButton>(*fileButtons));
+    Data data = Data();
+    data.levelid = 1;
+    std::string savePath = Locator::getResource()->loadPath("saves/save" + patch::to_string(this->fileButtons->size() - 1));
+    std::ofstream saveOut = std::ofstream(savePath, std::ios::out | std::ios::binary);
+    saveOut << data;
     position();
 }
 
