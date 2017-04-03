@@ -31,6 +31,7 @@ void FileAddButton::sClickHandler() {
     std::string savePath = Locator::getResource()->loadPath("saves/save" + patch::to_string(this->fileButtons->size() - 1));
     std::ofstream saveOut = std::ofstream(savePath, std::ios::out | std::ios::binary);
     saveOut << data;
+    saveOut.close();
     position();
 }
 

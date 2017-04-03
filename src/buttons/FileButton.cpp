@@ -4,17 +4,7 @@
 
 #include "FileButton.h"
 
-namespace patch
-{
-    template < typename T > std::string to_string( const T& n )
-    {
-        std::ostringstream stm ;
-        stm << n ;
-        return stm.str() ;
-    }
-}
-
-FileButton::FileButton(std::vector<std::shared_ptr<Button>>& fileArray) : Button("File " + patch::to_string(fileArray.size()), false) {
+FileButton::FileButton(std::vector<std::shared_ptr<Button>>& fileArray) : Button("File", false) {
     this->defaultSize = 350;
     this->texture = &MainMenuTextures::fileTexture;
     this->text.setCharacterSize(autoSize ? this->texture->getSize().x / (int) label.size() * 2 : defaultSize);

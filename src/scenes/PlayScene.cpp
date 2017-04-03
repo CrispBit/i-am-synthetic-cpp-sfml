@@ -15,24 +15,15 @@ namespace patch
 }
 
 PlayScene::PlayScene() {
-    // Data data = Data();
-    uint8_t i = 0;
-    while (boost::filesystem::exists(boost::filesystem::path("saves/save" + patch::to_string(++i)))) {
-        // display file buttons
+    uint16_t i = 0;
+    while (boost::filesystem::exists(boost::filesystem::path(Locator::getResource()->loadPath("saves/save" + patch::to_string(++i))))) {
+        std::cout << "test" << std::endl;
+        fileButtons.push_back(std::make_shared<FileButton>(fileButtons));
     }
 
     std::shared_ptr<FileAddButton> newFileButton = std::make_shared<FileAddButton>(&fileButtons, width, height);
     fileButtons.push_back(newFileButton);
     newFileButton->position();
-    // this->fileButtons = {std::make_shared<FileAddButton>(fileButtons, width, height)};
-    /* std::string savePath = Locator::getResource()->loadPath("saves/save1");
-    if (!boost::filesystem::exists(boost::filesystem::path(savePath))) {
-        data.levelid = 1;
-    } else {
-        std::ifstream saveIn = std::ifstream(savePath, std::ios::in | std::ios::binary);
-        saveIn >> data;
-        saveIn.close();
-    }*/
 }
 
 void PlayScene::updateButtons(sf::Event event, sf::RenderWindow &window) {
