@@ -17,7 +17,7 @@ public:
     virtual void loop(sf::RenderWindow& window);
 protected:
     virtual void draw(sf::RenderWindow& window);
-    virtual void updateButtons(sf::Event event, sf::RenderWindow& window);
+    virtual bool updateButtons(sf::Event event, sf::RenderWindow& window);
     std::vector<std::shared_ptr<Button>> buttons;
     std::vector<GameObject> gameObjects;
     uint16_t width, height;

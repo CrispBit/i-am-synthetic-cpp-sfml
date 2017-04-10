@@ -4,6 +4,7 @@
 
 #include "CreditsButton.h"
 
-void CreditsButton::clickHandler(sf::RenderWindow& window) {
+bool CreditsButton::clickHandler(sf::RenderWindow& window) {
     CreditsScene().loop(window);
+    return true;
 }

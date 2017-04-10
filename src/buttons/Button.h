@@ -19,8 +19,9 @@ public:
     Button();
     Button(std::string text, bool autoSize = false);
     Button(const Button &b2);
-    void update(sf::Event event, sf::RenderWindow& window);
+    bool update(sf::Event event, sf::RenderWindow& window);
     void updateTexture();
+    void setRelativeScale(const float scale = .1);
     virtual ~Button(){}
     sf::Event event;
     sf::Texture* texture = nullptr;
@@ -41,11 +42,9 @@ protected:
     virtual void sReleaseHandler(){}
     virtual void sHoverHandler(bool first){}
 
-    virtual void hoverExit(){}
-    virtual void clickHandler(sf::RenderWindow& window){}
-    virtual void downHandler(){}
-    virtual void releaseHandler(){}
-    virtual void hoverHandler(bool first){}
+    virtual bool clickHandler(sf::RenderWindow& window){return true;}
+    virtual bool downHandler(){return true;}
+    virtual bool hoverHandler(bool first){return true;}
 private:
     sf::RenderTexture renderTexture;
     void init(std::string text, bool autoSize);

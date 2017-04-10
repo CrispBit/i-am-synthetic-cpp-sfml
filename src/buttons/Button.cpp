@@ -42,7 +42,8 @@ Button::Button(const Button &b2) {
     this->init(b2.label, b2.autoSize);
 }
 
-void Button::update(sf::Event event, sf::RenderWindow& window) {
+bool Button::update(sf::Event event, sf::RenderWindow& window) {
+    bool stay = true;
     int mx = sf::Mouse::getPosition(window).x;
     int my = sf::Mouse::getPosition(window).y;
     int x = (int) this->getPosition().x;
@@ -54,31 +55,41 @@ void Button::update(sf::Event event, sf::RenderWindow& window) {
             isHovered = false;
             this->sHoverExit();
         }
-        return;
+        return stay;
     }
     this->event = event;
     switch (event.type) {
         case sf::Event::MouseButtonPressed:
             this->isPressed = true;
             this->sDownHandler();
-            this->downHandler();
+            stay = this->downHandler();
             break;
         case sf::Event::MouseButtonReleased:
             if (this->isPressed) {
                 this->sClickHandler();
-                this->clickHandler(window);
+                stay = this->clickHandler(window);
             }
             else this->sReleaseHandler();
             this->isPressed = false;
             break;
         case sf::Event::MouseMoved:
             this->sHoverHandler(!isHovered);
-            this->hoverHandler(!isHovered);
+            stay = this->hoverHandler(!isHovered);
             if (!isHovered) isHovered = true;
             break;
         default:
             break;
     }
+    return stay;
+}
+
+void Button::setRelativeScale(const float scale) {
+    const uint16_t oldBtnWidth = (uint16_t) getTexture()->getSize().x;
+    const uint16_t oldBtnHeight = (uint16_t) getTexture()->getSize().y;
+    const float ratio = (float) oldBtnHeight / oldBtnWidth;
+    const uint16_t btnWidth = (uint16_t) (oldBtnWidth * scale);
+    const uint16_t btnHeight = (uint16_t) (btnWidth * ratio);
+    setScale((float) btnWidth / oldBtnWidth, (float) btnHeight / oldBtnHeight);
 }
 
 const std::string Button::getText() {

@@ -13,7 +13,7 @@ class CreditsButton : public MainMenuButton {
 public:
     ~CreditsButton(){}
 protected:
-    virtual void clickHandler(sf::RenderWindow& window);
+    virtual bool clickHandler(sf::RenderWindow& window);
 };
 
 #endif

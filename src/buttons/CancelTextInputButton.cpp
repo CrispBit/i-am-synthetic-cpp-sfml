@@ -4,6 +4,7 @@
 
 #include "CancelTextInputButton.h"
 
-void CancelTextInputButton::clickHandler(sf::RenderWindow& window) {
-    std::cout << "click handler invoked" << std::endl;
+bool CancelTextInputButton::clickHandler(sf::RenderWindow& window) {
+    std::cout << "cancelling text input" << std::endl;
+    return false;
 }

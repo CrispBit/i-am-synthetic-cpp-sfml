@@ -26,14 +26,16 @@ PlayScene::PlayScene() {
     newFileButton->position();
 }
 
-void PlayScene::updateButtons(sf::Event event, sf::RenderWindow &window) {
+bool PlayScene::updateButtons(sf::Event event, sf::RenderWindow &window) {
+    bool stay = true;
     for (std::shared_ptr<Button> button : buttons) {
-        button->update(event, window);
+        if (!button->update(event, window)) stay = false;
     }
 
     for (std::shared_ptr<Button> fileButton : fileButtons) {
-        fileButton->update(event, window);
+        if (!fileButton->update(event, window)) stay = false;
     }
+    return stay;
 }
 
 void PlayScene::draw(sf::RenderWindow& window)  {

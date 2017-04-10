@@ -24,11 +24,11 @@ FileAddButton::FileAddButton(std::vector<std::shared_ptr<Button>>* fileArray, ui
     this->fileButtons = fileArray;
 }
 
-void FileAddButton::clickHandler(sf::RenderWindow& window) {
+bool FileAddButton::clickHandler(sf::RenderWindow& window) {
     std::cout << "derp" << std::endl;
-    CancelTextInputButton cancelBtn = CancelTextInputButton("Cancel");
-    ConfirmFilenameButton confirmBtn = ConfirmFilenameButton("Confirm");
-    TextInput("What is your name?", &cancelBtn, &confirmBtn).loop(window);
+    std::shared_ptr<Button> cancelBtn = std::make_shared<CancelTextInputButton>("Cancel");
+    std::shared_ptr<Button> confirmBtn = std::make_shared<ConfirmFilenameButton>("Confirm");
+    TextInput("What is your name?", cancelBtn, confirmBtn).loop(window);
     /*this->fileButtons->insert(this->fileButtons->begin() + this->fileButtons->size() - 1, std::make_shared<FileButton>(*fileButtons));
     Data data = Data();
     data.levelid = 1;
@@ -37,7 +37,7 @@ void FileAddButton::clickHandler(sf::RenderWindow& window) {
     saveOut << data;
     saveOut.close();
     position();*/
-    // TextInput().loop(&window);
+    return true;
 }
 
 void FileAddButton::sHoverHandler(bool first) {

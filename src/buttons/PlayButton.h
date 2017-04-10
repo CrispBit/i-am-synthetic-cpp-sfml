@@ -13,7 +13,7 @@ class PlayButton : public MainMenuButton {
 public:
     ~PlayButton(){}
 protected:
-    virtual void clickHandler(sf::RenderWindow& window);
+    virtual bool clickHandler(sf::RenderWindow& window);
 };
 
 #endif

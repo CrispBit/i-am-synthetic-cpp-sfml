@@ -4,6 +4,7 @@
 
 #include "ConfirmFilenameButton.h"
 
-void ConfirmFilenameButton::clickHandler(sf::RenderWindow& window) {
+bool ConfirmFilenameButton::clickHandler(sf::RenderWindow& window) {
     std::cout << "click handler invoked" << std::endl;
+    return false;
 }

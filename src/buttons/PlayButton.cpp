@@ -4,6 +4,7 @@
 
 #include "PlayButton.h"
 
-void PlayButton::clickHandler(sf::RenderWindow& window) {
+bool PlayButton::clickHandler(sf::RenderWindow& window) {
     PlayScene().loop(window);
+    return true;
 }

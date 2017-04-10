@@ -11,10 +11,12 @@ Scene::Scene() {
     this->fullscreen = config["video"]["fullscreen"].as<bool>();
 }
 
-void Scene::updateButtons(sf::Event event, sf::RenderWindow &window) {
+bool Scene::updateButtons(sf::Event event, sf::RenderWindow &window) {
+    bool stay = true;
     for (std::shared_ptr<Button> button : buttons) {
-        button->update(event, window);
+        if (!button->update(event, window)) stay = false;
     }
+    return stay;
 }
 
 void Scene::loop(sf::RenderWindow& window) {
@@ -48,7 +50,7 @@ void Scene::loop(sf::RenderWindow& window) {
                         }
                         break;
                     default:
-                        updateButtons(event, window);
+                        if (!updateButtons(event, window)) return;
                 }
             } while (!active && window.waitEvent(event));
         }

@@ -20,7 +20,7 @@ public:
     void position();
 private:
     uint16_t width, height;
-    void clickHandler(sf::RenderWindow& window);
+    bool clickHandler(sf::RenderWindow& window);
     void sHoverHandler(bool first);
     void sHoverExit();
     std::vector<std::shared_ptr<Button>> *fileButtons;

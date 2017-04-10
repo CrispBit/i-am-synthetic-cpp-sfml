@@ -16,7 +16,7 @@ public:
     PlayScene();
 protected:
     std::vector<std::shared_ptr<Button>> fileButtons = {};
-    void updateButtons(sf::Event event, sf::RenderWindow &window) override;
+    bool updateButtons(sf::Event event, sf::RenderWindow &window) override;
     void draw(sf::RenderWindow& window) override;
 };
 

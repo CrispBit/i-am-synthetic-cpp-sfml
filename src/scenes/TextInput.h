@@ -9,10 +9,10 @@
 
 class TextInput : public Scene {
 public:
-    TextInput(std::string inputText, Button *cancelBtn, Button *okBtn);
+    TextInput(std::string inputText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn);
 private:
-    Button *cancelBtn;
-    Button *okBtn;
+    std::shared_ptr<Button> cancelBtn;
+    std::shared_ptr<Button> okBtn;
 };
 
 #endif
