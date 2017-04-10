@@ -8,7 +8,10 @@
 #include <vector>
 #include "Button.h"
 #include "FileButton.h"
+#include "CancelTextInputButton.h"
+#include "ConfirmFilenameButton.h"
 #include "../Data.h"
+#include "../scenes/TextInput.h"
 
 class FileAddButton : public Button {
 public:
@@ -17,7 +20,7 @@ public:
     void position();
 private:
     uint16_t width, height;
-    void sClickHandler();
+    void clickHandler(sf::RenderWindow& window);
     void sHoverHandler(bool first);
     void sHoverExit();
     std::vector<std::shared_ptr<Button>> *fileButtons;

@@ -12,4 +12,4 @@ public:
     CreditsScene();
 };
 
-#endif //I_AM_SYNTHETIC_C_SFML_CREDITSSCENE_H
+#endif

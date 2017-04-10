@@ -15,11 +15,11 @@ namespace patch
 }
 
 PlayScene::PlayScene() {
-    uint16_t i = 0;
+    /*uint16_t i = 0;
     while (boost::filesystem::exists(boost::filesystem::path(Locator::getResource()->loadPath("saves/save" + patch::to_string(++i))))) {
         std::cout << "test" << std::endl;
         fileButtons.push_back(std::make_shared<FileButton>(fileButtons));
-    }
+    }*/
 
     std::shared_ptr<FileAddButton> newFileButton = std::make_shared<FileAddButton>(&fileButtons, width, height);
     fileButtons.push_back(newFileButton);

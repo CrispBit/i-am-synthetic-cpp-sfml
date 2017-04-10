@@ -13,8 +13,8 @@ class GameObject {
 public:
     GameObject(std::shared_ptr<sf::Texture> t);
     sf::Sprite* getSprite();
-private:
     sf::Sprite sprite;
+private:
     std::shared_ptr<sf::Texture> texture;
 };
 

@@ -12,6 +12,7 @@ class PlayButton : public MainMenuButton {
     using MainMenuButton::MainMenuButton;
 public:
     ~PlayButton(){}
+protected:
     virtual void clickHandler(sf::RenderWindow& window);
 };
 
