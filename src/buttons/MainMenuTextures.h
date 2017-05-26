@@ -19,6 +19,8 @@ public:
     static sf::Texture selectedFileTexture;
     static sf::Texture addFileTexture;
     static sf::Texture highlightedAddFileTexture;
+
+    static sf::Font defaultFont;
 };
 
 #endif

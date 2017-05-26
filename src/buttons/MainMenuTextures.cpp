@@ -12,6 +12,8 @@ sf::Texture MainMenuTextures::selectedFileTexture;
 sf::Texture MainMenuTextures::addFileTexture;
 sf::Texture MainMenuTextures::highlightedAddFileTexture;
 
+sf::Font MainMenuTextures::defaultFont;
+
 void MainMenuTextures::init() {
     Locator::provideResourcesService(std::make_unique<LocalResources>());
     defaultTexture = Locator::getResource()->loadTexture("main-menu", "menu-button.png");
@@ -21,4 +23,6 @@ void MainMenuTextures::init() {
     selectedFileTexture = Locator::getResource()->loadTexture("file-select", "file-button_selected.png");
     addFileTexture = Locator::getResource()->loadTexture("file-select", "file-button_add.png");
     highlightedAddFileTexture = Locator::getResource()->loadTexture("file-select", "file-button_add_highlighted.png");
+
+    defaultFont = Locator::getResource()->loadFont("Boogaloo-Regular.ttf");
 }

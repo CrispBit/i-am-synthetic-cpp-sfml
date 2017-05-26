@@ -4,9 +4,10 @@
 
 #include "TextInput.h"
 
-TextInput::TextInput(std::string inputText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn) {
+TextInput::TextInput(std::string promptString, std::string defaultText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn, uint16_t len) : promptText(promptString, MainMenuTextures::defaultFont) {
     this->cancelBtn = cancelBtn;
     this->okBtn = okBtn;
+    this->maxLen = len;
     this->cancelBtn->setRelativeScale();
     this->okBtn->setRelativeScale();
     const uint8_t gap = 20;
@@ -19,6 +20,17 @@ TextInput::TextInput(std::string inputText, std::shared_ptr<Button> cancelBtn, s
     background->setRepeated(true);
     GameObject backgroundObject = GameObject(background);
     backgroundObject.sprite.setTextureRect(windowBounds);
+
+    promptText.setCharacterSize(30);
+
     this->gameObjects = {backgroundObject};
     this->buttons = {this->cancelBtn, this->okBtn};
+}
+
+void TextInput::sDraw(sf::RenderWindow& window) {
+    window.draw(promptText);
+}
+
+void TextInput::handleEvent(sf::Event event) {
+
 }

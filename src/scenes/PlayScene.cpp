@@ -38,16 +38,8 @@ bool PlayScene::updateButtons(sf::Event event, sf::RenderWindow &window) {
     return stay;
 }
 
-void PlayScene::draw(sf::RenderWindow& window)  {
-    window.clear();
-    for (GameObject &obj : gameObjects) {
-        window.draw(*obj.getSprite());
-    }
-    for (std::shared_ptr<Button> button : buttons) {
-        window.draw(*button);
-    }
+void PlayScene::sDraw(sf::RenderWindow& window)  {
     for (std::shared_ptr<Button> fileButton : fileButtons) {
         window.draw(*fileButton);
     }
-    window.display();
 }

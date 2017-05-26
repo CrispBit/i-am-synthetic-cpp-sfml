@@ -46,5 +46,8 @@ sf::Font LocalResources::loadFont(std::string id) {
     std::string path = (Locator::rootPath / "assets" / "fonts" / id).generic_string();
     sf::Font font;
     font.loadFromFile(path);
+
+    printf("loading font named %s\n", id.c_str());
+
     return font;
 }

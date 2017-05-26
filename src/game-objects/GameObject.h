@@ -8,14 +8,11 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <memory>
+#include <SFML/Graphics/Text.hpp>
 
 class GameObject {
 public:
-    GameObject(std::shared_ptr<sf::Texture> t);
-    sf::Sprite* getSprite();
-    sf::Sprite sprite;
-private:
-    std::shared_ptr<sf::Texture> texture;
+    GameObject();
 };
 
 #endif

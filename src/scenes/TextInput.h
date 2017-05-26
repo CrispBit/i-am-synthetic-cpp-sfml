@@ -9,10 +9,18 @@
 
 class TextInput : public Scene {
 public:
-    TextInput(std::string inputText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn);
+    TextInput(std::string promptString, std::string defaultText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn, uint16_t len);
 private:
     std::shared_ptr<Button> cancelBtn;
     std::shared_ptr<Button> okBtn;
+    std::string result;
+    uint16_t maxLen;
+
+    sf::Text inputText;
+    sf::Text promptText;
+protected:
+    virtual void handleEvent(sf::Event event);
+    virtual void sDraw(sf::RenderWindow& window);
 };
 
 #endif

@@ -50,6 +50,7 @@ void Scene::loop(sf::RenderWindow& window) {
                         }
                         break;
                     default:
+                        handleEvent(event);
                         if (!updateButtons(event, window)) return;
                 }
             } while (!active && window.waitEvent(event));
@@ -66,5 +67,6 @@ void Scene::draw(sf::RenderWindow& window)  {
     for (std::shared_ptr<Button> button : buttons) {
         window.draw(*button);
     }
+    sDraw(window);
     window.display();
 }
