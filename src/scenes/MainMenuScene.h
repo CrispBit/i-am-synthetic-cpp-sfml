@@ -8,7 +8,8 @@
 #include "Scene.h"
 #include "../buttons/PlayButton.h"
 #include "../buttons/CreditsButton.h"
-#include "../game-objects/GameObject.h"
+#include "../game-objects/SpriteObject.h"
+#include "../resources/TextureLoader.h"
 
 class MainMenuScene : public Scene {
 public:

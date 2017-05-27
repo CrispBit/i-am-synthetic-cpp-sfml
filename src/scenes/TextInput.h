@@ -6,6 +6,8 @@
 #define I_AM_SYNTHETIC_C_SFML_ITEXTINPUT_H
 
 #include "Scene.h"
+#include "../resources/TextureLoader.h"
+#include  "../game-objects/SpriteObject.h"
 
 class TextInput : public Scene {
 public:

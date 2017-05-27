@@ -5,14 +5,15 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_GAMEOBJECT_H
 #define I_AM_SYNTHETIC_C_SFML_GAMEOBJECT_H
 
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Graphics/Sprite.hpp>
 #include <memory>
-#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics.hpp>
+#include "components/Component.h"
 
 class GameObject {
 public:
-    GameObject();
+    virtual void update(sf::RenderWindow& gWindow) = 0;
+protected:
+    std::vector<std::shared_ptr<Component>> components;
 };
 
 #endif

@@ -9,10 +9,8 @@
 
 class Component {
 public:
-    Component(sf::RenderWindow& window);
+    Component();
     virtual void update(sf::RenderWindow& window, uint16_t delta) {};
-protected:
-    sf::RenderWindow& gWindow;
 };
 
 #endif

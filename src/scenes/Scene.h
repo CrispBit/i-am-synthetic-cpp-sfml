@@ -19,9 +19,10 @@ protected:
     virtual void draw(sf::RenderWindow& window);
     virtual void sDraw(sf::RenderWindow& window) {};
     virtual bool updateButtons(sf::Event event, sf::RenderWindow& window);
+    virtual void updateObjects(sf::RenderWindow& window);
     virtual void handleEvent(sf::Event event) {};
     std::vector<std::shared_ptr<Button>> buttons;
-    std::vector<GameObject> gameObjects;
+    std::vector<std::shared_ptr<GameObject>> gameObjects;
     uint16_t width, height;
     bool fullscreen;
 };

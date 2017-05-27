@@ -19,6 +19,12 @@ bool Scene::updateButtons(sf::Event event, sf::RenderWindow &window) {
     return stay;
 }
 
+void Scene::updateObjects(sf::RenderWindow& window) {
+    for (std::shared_ptr<GameObject> object : gameObjects) {
+        object->update(window);
+    }
+}
+
 void Scene::loop(sf::RenderWindow& window) {
     if (!window.isOpen()) {
         window.create(sf::VideoMode(width, height), "I Am Synthetic", sf::Style::Default |
@@ -52,6 +58,7 @@ void Scene::loop(sf::RenderWindow& window) {
                     default:
                         handleEvent(event);
                         if (!updateButtons(event, window)) return;
+                        updateObjects(window);
                 }
             } while (!active && window.waitEvent(event));
         }
@@ -61,9 +68,6 @@ void Scene::loop(sf::RenderWindow& window) {
 
 void Scene::draw(sf::RenderWindow& window)  {
     window.clear();
-    for (GameObject &obj : gameObjects) {
-        window.draw(*obj.getSprite());
-    }
     for (std::shared_ptr<Button> button : buttons) {
         window.draw(*button);
     }

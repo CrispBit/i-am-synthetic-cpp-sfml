@@ -16,10 +16,11 @@ TextInput::TextInput(std::string promptString, std::string defaultText, std::sha
     this->cancelBtn->setPosition(gap, height - gap - btnHeight);
     this->okBtn->setPosition(width - gap - btnWidth, height - gap - btnHeight);
     sf::IntRect windowBounds = sf::IntRect(0, 0, width, height);
-    std::shared_ptr<sf::Texture> background = std::make_shared<sf::Texture>(Locator::getResource()->loadTexture("standard", "standard-repeated.jpg"));
-    background->setRepeated(true);
-    GameObject backgroundObject = GameObject(background);
-    backgroundObject.sprite.setTextureRect(windowBounds);
+    TextureLoader::put("text-input/background", Locator::getResource()->loadTexture("standard", "standard-repeated.jpg"));
+    sf::Texture& background = TextureLoader::get("text-input/background");
+    background.setRepeated(true);
+    std::shared_ptr<SpriteObject> backgroundObject = std::make_shared<SpriteObject>(background);
+    backgroundObject->getSprite().setTextureRect(windowBounds);
 
     promptText.setCharacterSize(30);
 

@@ -4,6 +4,6 @@
 
 #include "Component.h"
 
-Component::Component(sf::RenderWindow &window) : gWindow(window) {
+Component::Component() {
     // don't do anything
 }

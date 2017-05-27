@@ -9,10 +9,11 @@ MainMenuScene::MainMenuScene() {
                      std::make_shared<CreditsButton>("Credits")};
 
     // load main menu background
-    GameObject backgroundObject(std::make_shared<sf::Texture>(Locator::getResource()->loadTexture("main-menu", "background.png")));
-    sf::Texture background = *backgroundObject.getSprite()->getTexture();
+    TextureLoader::put("main-menu/background", Locator::getResource()->loadTexture("main-menu", "background.png"));
+    sf::Texture& background = TextureLoader::get("main-menu/background");
+    std::shared_ptr<SpriteObject> backgroundObject = std::make_shared<SpriteObject>(background);
     const float backgroundScale = std::max((float) width / background.getSize().x, (float) height / background.getSize().y);
-    backgroundObject.getSprite()->setScale(backgroundScale, backgroundScale);
+    backgroundObject->getSprite().setScale(backgroundScale, backgroundScale);
     this->gameObjects = {backgroundObject};
 
     for (uint8_t i = 0; i < buttons.size(); i++) {
