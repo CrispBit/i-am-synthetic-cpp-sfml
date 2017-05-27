@@ -67,10 +67,10 @@ void Scene::loop(sf::RenderWindow& window) {
 
 void Scene::draw(sf::RenderWindow& window)  {
     window.clear();
+    updateObjects(window);
     for (std::shared_ptr<Button> button : buttons) {
         window.draw(*button);
     }
     sDraw(window);
-    updateObjects(window);
     window.display();
 }
