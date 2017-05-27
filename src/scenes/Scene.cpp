@@ -58,7 +58,6 @@ void Scene::loop(sf::RenderWindow& window) {
                     default:
                         handleEvent(event);
                         if (!updateButtons(event, window)) return;
-                        updateObjects(window);
                 }
             } while (!active && window.waitEvent(event));
         }
@@ -72,5 +71,6 @@ void Scene::draw(sf::RenderWindow& window)  {
         window.draw(*button);
     }
     sDraw(window);
+    updateObjects(window);
     window.display();
 }
