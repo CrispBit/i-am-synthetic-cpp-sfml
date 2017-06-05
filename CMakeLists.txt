@@ -2,10 +2,15 @@ cmake_minimum_required(VERSION 3.6)
 project(i_am_synthetic_c___sfml)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_BUILD_TYPE Debug)
 
 add_compile_options(-Wall)
 
-set(SOURCE_FILES src/main.cpp src/resources/IResources.h src/resources/LocalResources.cpp src/resources/LocalResources.h src/Locator.cpp src/Locator.h src/resources/NullResources.h src/resources/NullResources.cpp src/buttons/Button.cpp src/buttons/Button.h src/buttons/PlayButton.cpp src/buttons/PlayButton.h src/buttons/MainMenuButton.cpp src/buttons/MainMenuButton.h src/buttons/MainMenuTextures.cpp src/buttons/MainMenuTextures.h src/buttons/CreditsButton.cpp src/buttons/CreditsButton.h src/scenes/CreditsScene.cpp src/scenes/CreditsScene.h src/scenes/Scene.cpp src/scenes/Scene.h src/scenes/MainMenuScene.cpp src/scenes/MainMenuScene.h src/game-objects/GameObject.h src/scenes/PlayScene.cpp src/scenes/PlayScene.h src/Data.cpp src/Data.h src/buttons/FileButton.cpp src/buttons/FileButton.h src/buttons/FileAddButton.cpp src/buttons/FileAddButton.h src/scenes/TextInput.cpp src/scenes/TextInput.h src/buttons/ConfirmFilenameButton.cpp src/buttons/ConfirmFilenameButton.h src/buttons/CancelTextInputButton.cpp src/buttons/CancelTextInputButton.h src/game-objects/components/RenderComponent.h src/game-objects/components/RenderComponent.cpp src/game-objects/components/SpriteComponent.cpp src/game-objects/components/SpriteComponent.h src/game-objects/components/DrawableComponent.h src/game-objects/components/Component.cpp src/game-objects/components/Component.h src/game-objects/SpriteObject.cpp src/game-objects/SpriteObject.h src/resources/TextureLoader.h src/resources/TextureLoader.cpp)
+file(GLOB_RECURSE SOURCE_FILES synthy_src
+    "src/*.h"
+    "src/*.cpp"
+)
+
 add_executable(i_am_synthetic_c___sfml ${SOURCE_FILES})
 
 # Detect and add SFML

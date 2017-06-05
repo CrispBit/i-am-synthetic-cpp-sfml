@@ -15,8 +15,8 @@ public:
     sf::Sprite sprite;
 
     using DrawableComponent::update;
-    virtual void update(sf::Texture& texture);
-    virtual void draw(sf::RenderWindow& window);
+    virtual void draw(sf::RenderWindow& window) override;
+    void update(const sf::Texture& texture);
 };
 
 #endif

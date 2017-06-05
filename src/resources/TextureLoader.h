@@ -11,7 +11,7 @@
 class TextureLoader {
 public:
     static sf::Texture& get(std::string id);
-    static void put(std::string id, sf::Texture texture);
+    static sf::Texture& put(std::string id, sf::Texture texture);
 private:
     static std::map<std::string, sf::Texture> textures;
 };

@@ -8,7 +8,7 @@ SpriteComponent::SpriteComponent() {
     // do nothing
 }
 
-void SpriteComponent::update(sf::Texture& texture) {
+void SpriteComponent::update(const sf::Texture& texture) {
     sprite.setTexture(texture);
 }
 

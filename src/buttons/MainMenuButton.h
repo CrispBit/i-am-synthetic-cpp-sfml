@@ -6,7 +6,6 @@
 #define I_AM_SYNTHETIC_C_SFML_MAINMENUBUTTON_H
 
 #include "Button.h"
-#include "MainMenuTextures.h"
 
 class MainMenuButton : public Button {
 public:

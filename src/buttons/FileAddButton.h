@@ -19,7 +19,6 @@ public:
     ~FileAddButton() {}
     void position();
 private:
-    uint16_t width, height;
     bool clickHandler(sf::RenderWindow& window);
     void sHoverHandler(bool first);
     void sHoverExit();

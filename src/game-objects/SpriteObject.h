@@ -13,9 +13,12 @@
 
 class SpriteObject : public GameObject {
 public:
-    SpriteObject(sf::Texture& texture);
-    virtual void update(sf::RenderWindow& gWindow);
-    void update(sf::Texture& texture);
+    SpriteObject(const sf::Texture& texture);
+    virtual bool update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t delta) override;
+    virtual void updatePosition(float tx, float ty) override; 
+    void update(const sf::Texture& texture);
+    void setRelativeScale(float factor);
+    void updateScale(float scaleX, float scaleY);
     sf::Sprite& getSprite();
 private:
     std::shared_ptr<SpriteComponent> sprite_ = std::make_shared<SpriteComponent>();

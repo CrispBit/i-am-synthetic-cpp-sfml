@@ -25,21 +25,3 @@ PlayScene::PlayScene() {
     fileButtons.push_back(newFileButton);
     newFileButton->position();
 }
-
-bool PlayScene::updateButtons(sf::Event event, sf::RenderWindow &window) {
-    bool stay = true;
-    for (std::shared_ptr<Button> button : buttons) {
-        if (!button->update(event, window)) stay = false;
-    }
-
-    for (std::shared_ptr<Button> fileButton : fileButtons) {
-        if (!fileButton->update(event, window)) stay = false;
-    }
-    return stay;
-}
-
-void PlayScene::sDraw(sf::RenderWindow& window)  {
-    for (std::shared_ptr<Button> fileButton : fileButtons) {
-        window.draw(*fileButton);
-    }
-}

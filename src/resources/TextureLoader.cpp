@@ -6,6 +6,7 @@ sf::Texture& TextureLoader::get(std::string id) {
     return textures.at(id);
 }
 
-void TextureLoader::put(std::string id, sf::Texture texture) {
+sf::Texture& TextureLoader::put(std::string id, sf::Texture texture) {
     textures[id] = texture;
+    return textures[id];
 }

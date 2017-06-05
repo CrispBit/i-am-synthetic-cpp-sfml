@@ -11,18 +11,12 @@ Scene::Scene() {
     this->fullscreen = config["video"]["fullscreen"].as<bool>();
 }
 
-bool Scene::updateButtons(sf::Event event, sf::RenderWindow &window) {
+bool Scene::updateObjects(sf::RenderWindow& window, sf::Event& event, uint16_t delta = 0) {
     bool stay = true;
-    for (std::shared_ptr<Button> button : buttons) {
-        if (!button->update(event, window)) stay = false;
+    for (std::shared_ptr<GameObject> object : gameObjects) {
+        if (!object->update(window, event, delta)) stay = false;
     }
     return stay;
-}
-
-void Scene::updateObjects(sf::RenderWindow& window) {
-    for (std::shared_ptr<GameObject> object : gameObjects) {
-        object->update(window);
-    }
 }
 
 void Scene::loop(sf::RenderWindow& window) {
@@ -33,6 +27,7 @@ void Scene::loop(sf::RenderWindow& window) {
     }
     bool active = true;
     while (window.isOpen()) {
+        window.clear();
         sf::Event event;
         while (window.pollEvent(event)) {
             do {
@@ -56,21 +51,13 @@ void Scene::loop(sf::RenderWindow& window) {
                         }
                         break;
                     default:
-                        handleEvent(event);
-                        if (!updateButtons(event, window)) return;
+                        break;
                 }
+                handleEvent(event);
+                if (!updateObjects(window, event)) return;
             } while (!active && window.waitEvent(event));
         }
-        draw(window);
+        updateObjects(window, event, 10); // 10 is delta
+        window.display();
     }
-}
-
-void Scene::draw(sf::RenderWindow& window)  {
-    window.clear();
-    updateObjects(window);
-    for (std::shared_ptr<Button> button : buttons) {
-        window.draw(*button);
-    }
-    sDraw(window);
-    window.display();
 }

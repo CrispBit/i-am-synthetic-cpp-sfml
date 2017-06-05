@@ -6,7 +6,7 @@
 
 FileButton::FileButton(std::vector<std::shared_ptr<Button>>& fileArray) : Button("File", false) {
     this->defaultSize = 350;
-    this->texture = &MainMenuTextures::fileTexture;
+    this->texture = MainMenuTextures::fileTexture;
     this->text.setCharacterSize(autoSize ? this->texture->getSize().x / (int) label.size() * 2 : defaultSize);
     this->text.setOutlineThickness((uint16_t) (this->defaultSize / 7.5));
     this->text.setFillColor(sf::Color::Green);
@@ -14,6 +14,8 @@ FileButton::FileButton(std::vector<std::shared_ptr<Button>>& fileArray) : Button
     this->updateTexture();
 
     fileButtons = fileArray;
+
+    setRelativeScale();
 }
 
 void FileButton::sClickHandler() {
@@ -22,12 +24,12 @@ void FileButton::sClickHandler() {
 
 void FileButton::sHoverHandler(bool first) {
     if (first) {
-        this->texture = &MainMenuTextures::highlightedFileTexture;
+        this->texture = MainMenuTextures::highlightedFileTexture;
         this->updateTexture();
     }
 }
 
 void FileButton::sHoverExit() {
-    this->texture = &MainMenuTextures::fileTexture;
+    this->texture = MainMenuTextures::fileTexture;
     this->updateTexture();
 }

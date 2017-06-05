@@ -4,12 +4,43 @@
 
 #include "SpriteObject.h"
 
-SpriteObject::SpriteObject(sf::Texture& texture) {
+void SpriteObject::update(const sf::Texture& texture) {
     sprite_->update(texture);
+    width = texture.getSize().x;
+    height = texture.getSize().y;
 }
 
-void SpriteObject::update(sf::RenderWindow& gWindow) {
-    render_->update(gWindow, drawableComponents);
+SpriteObject::SpriteObject(const sf::Texture& texture) {
+    update(texture);
+}
+
+void SpriteObject::setRelativeScale(float factor) {
+    // set relative size
+    const float oldWidth = w;
+    const float oldHeight = h;
+    const float ratio = (float) oldHeight / oldWidth;
+    const uint16_t btnWidth = (uint16_t) (oldWidth * .1); // TODO: think about this
+    const uint16_t btnHeight = (uint16_t) (btnWidth * ratio);
+    this->updateScale((float) btnWidth / oldWidth, (float) btnHeight / oldHeight);
+}
+
+void SpriteObject::updateScale(float scaleX, float scaleY) {
+    sprite_->sprite.setScale(scaleX, scaleY);
+    _sX = scaleX;
+    _sY = scaleY;
+}
+
+void SpriteObject::updatePosition(float tx, float ty) {
+    sprite_->sprite.setPosition(tx, ty);
+    _x = tx;
+    _y = ty;
+}
+
+bool SpriteObject::update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t delta) {
+    if (delta) {
+        render_->update(gWindow, drawableComponents);
+    }
+    return true;
 }
 
 sf::Sprite& SpriteObject::getSprite() {
