@@ -15,7 +15,7 @@ protected:
     float _x, _y, _sX, _sY, width, height;
 public:
     float &x = _x, &y = _y, &w = width, &h = height, &sX = _sX, &sY = _sY;
-    virtual bool update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t deltaTime) = 0;
+    virtual bool update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t deltaTime) = 0;
     virtual void updatePosition(float tx, float ty) = 0;
 };
 

@@ -8,9 +8,9 @@
 void handleTransition(sf::RenderWindow& splash) {
     sf::Clock clock;
     std::unique_ptr<sf::Music> introMusic = Locator::getResource()->loadMusic("main-menu", "intro.wav");
-    introMusic -> setVolume(0); // TODO: think about this
-    introMusic -> setLoop(true);
-    introMusic -> play();
+    introMusic->setVolume(0); // TODO: think about this
+    introMusic->setLoop(true);
+    introMusic->play();
 
     std::string configPath = Locator::getResource()->loadPath("config.yaml");
     YAML::Node &config = Locator::currentConfig;
@@ -54,9 +54,10 @@ int main(int argc, char** argv) {
     const uint16_t windowDim = (uint16_t) (std::min(width, height) * scale);
 
     Locator::provideArgs(argv[0]);
-    MainMenuTextures::init();
 
     Locator::provideResourcesService(std::make_unique<LocalResources>());
+    MainMenuTextures::init();
+
     std::string defaultConfigPath = Locator::getResource()->loadPath("default-config.yaml");
     std::string configPath = Locator::getResource()->loadPath("config.yaml");
     Locator::provideConfig(defaultConfigPath, Configs::DEFAULT);

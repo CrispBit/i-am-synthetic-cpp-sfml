@@ -10,6 +10,10 @@ void SpriteObject::update(const sf::Texture& texture) {
     height = texture.getSize().y;
 }
 
+SpriteObject::SpriteObject() {
+    // do nothing
+}
+
 SpriteObject::SpriteObject(const sf::Texture& texture) {
     update(texture);
 }
@@ -34,9 +38,11 @@ void SpriteObject::updatePosition(float tx, float ty) {
     sprite_->sprite.setPosition(tx, ty);
     _x = tx;
     _y = ty;
+    printf("%f\n", tx);
+    printf("%f\n", ty);
 }
 
-bool SpriteObject::update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t delta) {
+bool SpriteObject::update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) {
     if (delta) {
         render_->update(gWindow, drawableComponents);
     }

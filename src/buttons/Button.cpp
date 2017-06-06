@@ -13,20 +13,16 @@ Button::Button() {
 }
 
 void Button::setRelativeScale(float mod) {
-    spriteObj_->setRelativeScale(mod);
+    spriteObj_.setRelativeScale(mod);
 }
 
 void Button::updateScale(float scaleX, float scaleY) {
-    spriteObj_->updateScale(scaleX, scaleY);
+    spriteObj_.updateScale(scaleX, scaleY);
 }
 
 void Button::init(std::string text, bool autoSize) {
     this->autoSize = autoSize;
     this->setLabel(text);
-}
-
-Button::Button(const Button &b2) {
-    this->init(b2.label, b2.autoSize);
 }
 
 void Button::updateTexture() {
@@ -38,11 +34,11 @@ void Button::updateTexture() {
         this->renderTexture.draw(this->text);
     }
     this->renderTexture.display();
-    this->spriteObj_->update(renderTexture.getTexture());
+    this->spriteObj_.update(renderTexture.getTexture());
 }
 
 void Button::updatePosition(float x, float y) {
-    spriteObj_->updatePosition(x, y);
+    spriteObj_.updatePosition(x, y);
     _x = x;
     _y = y;
 }
@@ -54,44 +50,43 @@ void Button::setLabel(std::string text) {
     this->label = text;
 }
 
-bool Button::update(sf::RenderWindow& window, sf::Event& event, uint16_t delta) {
+bool Button::update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) {
     bool stay = true;
-    if (delta) {
-        int mx = sf::Mouse::getPosition(window).x;
-        int my = sf::Mouse::getPosition(window).y;
+    if (!delta) {
+        std::cout << this->event.type << std::endl;
+        int mx = sf::Mouse::getPosition(gWindow).x;
+        int my = sf::Mouse::getPosition(gWindow).y;
         if (mx < x || my < y || mx > (x + w) || my > (y + h)) {
             if (isHovered) {
                 isHovered = false;
                 this->sHoverExit();
             }
-            return stay;
-        }
-        this->event = event;
-        switch (event.type) {
-            case sf::Event::MouseButtonPressed:
-                this->isPressed = true;
-                this->sDownHandler();
-                stay = this->downHandler();
-                break;
-            case sf::Event::MouseButtonReleased:
-                if (this->isPressed) {
-                    this->sClickHandler();
-                    stay = this->clickHandler(window);
-                }
-                else this->sReleaseHandler();
-                this->isPressed = false;
-                break;
-            case sf::Event::MouseMoved:
-                this->sHoverHandler(!isHovered);
-                stay = this->hoverHandler(!isHovered);
-                if (!isHovered) isHovered = true;
-                break;
-            default:
-                break;
+        } else {
+            switch (event) {
+                case sf::Event::MouseButtonPressed:
+                    this->isPressed = true;
+                    this->sDownHandler();
+                    stay = this->downHandler();
+                    break;
+                case sf::Event::MouseButtonReleased:
+                    if (this->isPressed) {
+                        this->sClickHandler();
+                        stay = this->clickHandler(gWindow);
+                    }
+                    else this->sReleaseHandler();
+                    this->isPressed = false;
+                    break;
+                case sf::Event::MouseMoved:
+                    this->sHoverHandler(!isHovered);
+                    stay = this->hoverHandler(!isHovered);
+                    if (!isHovered) isHovered = true;
+                    break;
+                default:
+                    break;
+            }
         }
     }
-    spriteObj_->update(window, event, delta);
-    return stay;
+    return stay && spriteObj_.update(gWindow, event, delta);
 }
 
 const std::string Button::getText() {

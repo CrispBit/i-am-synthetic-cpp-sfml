@@ -11,7 +11,7 @@ Scene::Scene() {
     this->fullscreen = config["video"]["fullscreen"].as<bool>();
 }
 
-bool Scene::updateObjects(sf::RenderWindow& window, sf::Event& event, uint16_t delta = 0) {
+bool Scene::updateObjects(sf::RenderWindow& window, sf::Event::EventType& event, uint16_t delta = 0) {
     bool stay = true;
     for (std::shared_ptr<GameObject> object : gameObjects) {
         if (!object->update(window, event, delta)) stay = false;
@@ -53,11 +53,11 @@ void Scene::loop(sf::RenderWindow& window) {
                     default:
                         break;
                 }
-                handleEvent(event);
-                if (!updateObjects(window, event)) return;
+                handleEvent(event.type);
+                if (!updateObjects(window, event.type)) return;
             } while (!active && window.waitEvent(event));
         }
-        updateObjects(window, event, 10); // 10 is delta
+        updateObjects(window, event.type, 10); // 10 is delta
         window.display();
     }
 }

@@ -12,10 +12,11 @@ MainMenuButton::MainMenuButton(std::string label, bool autoSize) : Button::Butto
     this->text.setFillColor(sf::Color::Green);
     this->font = MainMenuTextures::defaultFont;
     this->updateTexture();
+    this->setRelativeScale();
 }
 
 void MainMenuButton::sClickHandler() {
-    std::cout << this->event.type;
+    std::cout << this->event.type << std::endl;
 }
 
 void MainMenuButton::sHoverHandler(bool first) {

@@ -15,7 +15,7 @@ FileButton::FileButton(std::vector<std::shared_ptr<Button>>& fileArray) : Button
 
     fileButtons = fileArray;
 
-    setRelativeScale();
+    this->setRelativeScale();
 }
 
 void FileButton::sClickHandler() {

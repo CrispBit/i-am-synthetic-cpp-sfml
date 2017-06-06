@@ -18,13 +18,12 @@
 
 class Button : public GameObject {
 public:
-    void setLabel(std::string text);
-    const std::string getText();
     Button();
     Button(std::string text, bool autoSize = false);
-    Button(const Button &b2);
-    virtual bool update(sf::RenderWindow& window, sf::Event& event, uint16_t deltaTime) override;
-    void setRelativeScale(float mod=.1);
+    void setLabel(std::string text);
+    const std::string getText();
+    virtual bool update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t deltaTime) override;
+    void setRelativeScale(float mod = .1);
     void updateScale(float scaleX, float scaleY);
     virtual void updatePosition(float x, float y) override;
     void updateTexture();
@@ -35,8 +34,8 @@ public:
     bool isHovered = false;
     bool hasText = true;
 private:
-    sf::RenderTexture renderTexture;
     void init(std::string text, bool autoSize);
+    sf::RenderTexture renderTexture;
 protected:
     std::string label;
     sf::Text text;
@@ -55,7 +54,7 @@ protected:
     virtual bool downHandler(){return true;}
     virtual bool hoverHandler(bool first){return true;}
 
-    std::unique_ptr<SpriteObject> spriteObj_ = std::make_unique<SpriteObject>(renderTexture.getTexture());
+    SpriteObject spriteObj_ = SpriteObject();
 };
 
 #endif

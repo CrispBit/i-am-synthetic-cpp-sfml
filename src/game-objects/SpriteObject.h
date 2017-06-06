@@ -13,8 +13,9 @@
 
 class SpriteObject : public GameObject {
 public:
+    SpriteObject();
     SpriteObject(const sf::Texture& texture);
-    virtual bool update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t delta) override;
+    virtual bool update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) override;
     virtual void updatePosition(float tx, float ty) override; 
     void update(const sf::Texture& texture);
     void setRelativeScale(float factor);
