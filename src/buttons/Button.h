@@ -55,6 +55,14 @@ protected:
     virtual bool hoverHandler(bool first){return true;}
 
     SpriteObject spriteObj_ = SpriteObject();
+
+public:
+    float &w = spriteObj_.w,
+          &h = spriteObj_.h,
+          &x = spriteObj_.x,
+          &y = spriteObj_.y,
+          &sX = spriteObj_.sX,
+          &sY = spriteObj_.sY;
 };
 
 #endif

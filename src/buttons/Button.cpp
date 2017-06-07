@@ -39,8 +39,6 @@ void Button::updateTexture() {
 
 void Button::updatePosition(float x, float y) {
     spriteObj_.updatePosition(x, y);
-    _x = x;
-    _y = y;
 }
 
 void Button::setLabel(std::string text) {

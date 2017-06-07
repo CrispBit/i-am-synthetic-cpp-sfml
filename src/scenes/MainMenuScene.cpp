@@ -14,7 +14,7 @@ MainMenuScene::MainMenuScene() {
     std::shared_ptr<Button> playBtn = std::make_shared<PlayButton>("Play");
     std::shared_ptr<Button> creditsBtn = std::make_shared<CreditsButton>("Credits");
     
-    this->gameObjects = {backgroundObject, creditsBtn, playBtn};
+    this->gameObjects = {backgroundObject, playBtn, creditsBtn};
 
     std::vector<std::shared_ptr<Button>> buttons = {playBtn, creditsBtn};
 

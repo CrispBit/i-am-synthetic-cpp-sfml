@@ -6,8 +6,8 @@
 
 void SpriteObject::update(const sf::Texture& texture) {
     sprite_->update(texture);
-    width = texture.getSize().x;
-    height = texture.getSize().y;
+    width = this->getSprite().getGlobalBounds().width;
+    height = this->getSprite().getGlobalBounds().height;
 }
 
 SpriteObject::SpriteObject() {
@@ -22,8 +22,8 @@ void SpriteObject::setRelativeScale(float factor) {
     // set relative size
     const float oldWidth = w;
     const float oldHeight = h;
-    const float ratio = (float) oldHeight / oldWidth;
-    const uint16_t btnWidth = (uint16_t) (oldWidth * .1); // TODO: think about this
+    const float ratio = oldHeight / oldWidth;
+    const uint16_t btnWidth = (uint16_t) (oldWidth * factor); // TODO: think about this
     const uint16_t btnHeight = (uint16_t) (btnWidth * ratio);
     this->updateScale((float) btnWidth / oldWidth, (float) btnHeight / oldHeight);
 }
