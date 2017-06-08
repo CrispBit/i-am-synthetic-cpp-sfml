@@ -18,7 +18,8 @@ FileAddButton::FileAddButton(std::vector<std::shared_ptr<Button>>* fileArray, ui
     this->texture = MainMenuTextures::addFileTexture;
     this->updateTexture();
 
-    this->updatePosition(width, height);
+    this->width = width;
+    this->height = height;
 
     this->fileButtons = fileArray;
 }
@@ -52,18 +53,18 @@ void FileAddButton::sHoverExit() {
 }
 
 void FileAddButton::position() {
+    const uint8_t gap = 5;
+    const float scale = .2;
     for (uint8_t i = 0; i < fileButtons->size(); i++) {
         std::shared_ptr<Button> fileButton = (*fileButtons)[i];
-        const uint16_t oldBtnWidth = (uint16_t) fileButton->x;
-        const uint16_t oldBtnHeight = (uint16_t) fileButton->y;
-        const uint8_t gap = 5;
-        const float ratio = (float) oldBtnHeight / oldBtnWidth;
-        const float scale = .2;
-        const uint16_t btnWidth = (uint16_t) (w * scale);
-        const uint16_t btnHeight = (uint16_t) (btnWidth * ratio);
-        const uint16_t startY = (uint16_t) ((h - btnHeight) / 2.5);
+        const float oldBtnWidth = fileButton->w;
+        const float oldBtnHeight = fileButton->h;
+        const float ratio = oldBtnHeight / oldBtnWidth;
+        const float btnWidth = width * scale;
+        const float btnHeight = btnWidth * ratio;
+        const float startY = (height - btnHeight) / 2.5;
         const uint16_t startX = gap;
-        fileButton->updateScale((float) btnWidth / oldBtnWidth, (float) btnHeight / oldBtnHeight);
+        fileButton->updateScale(btnWidth / oldBtnWidth, btnHeight / oldBtnHeight);
         fileButton->updatePosition(i * btnWidth + (i + 1) * gap + startX, startY);
     }
 }

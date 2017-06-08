@@ -22,6 +22,9 @@ PlayScene::PlayScene() {
     }*/
 
     std::shared_ptr<FileAddButton> newFileButton = std::make_shared<FileAddButton>(&fileButtons, width, height);
-    fileButtons.push_back(newFileButton);
+
+    this->fileButtons = {newFileButton};
+    this->gameObjects = {newFileButton};
+    
     newFileButton->position();
 }

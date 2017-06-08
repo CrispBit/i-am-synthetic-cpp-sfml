@@ -14,6 +14,8 @@
 class MainMenuScene : public Scene {
 public:
     MainMenuScene();
+private:
+    std::vector<std::shared_ptr<Button>> buttons;
 };
 
 #endif

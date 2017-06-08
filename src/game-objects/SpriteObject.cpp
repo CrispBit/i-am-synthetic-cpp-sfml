@@ -32,6 +32,8 @@ void SpriteObject::updateScale(float scaleX, float scaleY) {
     sprite_->sprite.setScale(scaleX, scaleY);
     _sX = scaleX;
     _sY = scaleY;
+    width = this->getSprite().getGlobalBounds().width;
+    height = this->getSprite().getGlobalBounds().height;
 }
 
 void SpriteObject::updatePosition(float tx, float ty) {

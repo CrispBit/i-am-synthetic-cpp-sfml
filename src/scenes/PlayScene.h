@@ -15,7 +15,7 @@ class PlayScene : public Scene {
 public:
     PlayScene();
 protected:
-    std::vector<std::shared_ptr<Button>> fileButtons = {};
+    std::vector<std::shared_ptr<Button>> fileButtons;
 };
 
 #endif
