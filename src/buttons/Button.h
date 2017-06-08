@@ -2,8 +2,8 @@
 // Created by cilan on 2/25/2017.
 //
 
-#include <iostream>
 #include <string>
+#include <iostream>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include "../Locator.h"

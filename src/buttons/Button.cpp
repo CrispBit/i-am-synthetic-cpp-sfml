@@ -30,7 +30,7 @@ void Button::updateTexture() {
     this->background.setTexture(*this->texture);
     this->renderTexture.draw(this->background);
     if (this->hasText) {
-        this->text.setPosition(this->texture->getSize().x / 2 - this->text.getLocalBounds().width / 2, this->texture->getSize().x / 2 - this->text.getLocalBounds().height / 2);
+        this->text.setPosition(this->texture->getSize().x / 2 - this->text.getLocalBounds().width / 2, this->texture->getSize().y / 2 - this->text.getLocalBounds().height / 2);
         this->renderTexture.draw(this->text);
     }
     this->renderTexture.display();
@@ -51,7 +51,6 @@ void Button::setLabel(std::string text) {
 bool Button::update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) {
     bool stay = true;
     if (!delta) {
-        std::cout << this->event.type << std::endl;
         int mx = sf::Mouse::getPosition(gWindow).x;
         int my = sf::Mouse::getPosition(gWindow).y;
         if (mx < x || my < y || mx > (x + w) || my > (y + h)) {

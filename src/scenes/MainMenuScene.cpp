@@ -11,8 +11,8 @@ MainMenuScene::MainMenuScene() {
     const float backgroundScale = std::max((float) width / background.getSize().x, (float) height / background.getSize().y);
     backgroundObject->updateScale(backgroundScale, backgroundScale);
 
-    std::shared_ptr<Button> playBtn = std::make_shared<PlayButton>("Play");
-    std::shared_ptr<Button> creditsBtn = std::make_shared<CreditsButton>("Credits");
+    std::shared_ptr<PlayButton> playBtn = std::make_shared<PlayButton>("Play");
+    std::shared_ptr<CreditsButton> creditsBtn = std::make_shared<CreditsButton>("Credits");
     
     this->gameObjects = {backgroundObject, playBtn, creditsBtn};
 
