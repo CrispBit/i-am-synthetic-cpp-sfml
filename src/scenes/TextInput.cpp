@@ -11,12 +11,14 @@ TextInput::TextInput(std::string promptString, std::string defaultText, std::sha
     this->cancelBtn->setRelativeScale();
     this->okBtn->setRelativeScale();
     const uint8_t gap = 20;
-    const float btnWidth = this->cancelBtn->w * this->cancelBtn->sX;
-    const float btnHeight = this->cancelBtn->h * this->cancelBtn->sY;
+    const float btnWidth = this->cancelBtn->w;
+    const float btnHeight = this->cancelBtn->h;
     this->cancelBtn->updatePosition(gap, height - gap - btnHeight);
     this->okBtn->updatePosition(width - gap - btnWidth, height - gap - btnHeight);
     sf::IntRect windowBounds = sf::IntRect(0, 0, width, height);
-    TextureLoader::put("text-input/background", Locator::getResource()->loadTexture("standard", "standard-repeated.jpg"));
+    if (!TextureLoader::exists("text-input/background")) {
+        TextureLoader::put("text-input/background", Locator::getResource()->loadTexture("standard", "standard-repeated.jpg"));
+    }
     sf::Texture& background = TextureLoader::get("text-input/background");
     background.setRepeated(true);
     std::shared_ptr<SpriteObject> backgroundObject = std::make_shared<SpriteObject>(background);
@@ -24,7 +26,7 @@ TextInput::TextInput(std::string promptString, std::string defaultText, std::sha
 
     promptText.setCharacterSize(30);
 
-    this->gameObjects = {this->cancelBtn, this->okBtn, backgroundObject};
+    this->gameObjects = {backgroundObject, this->cancelBtn, this->okBtn};
 }
 
 void TextInput::sDraw(sf::RenderWindow& window) {

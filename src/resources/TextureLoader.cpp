@@ -10,3 +10,7 @@ sf::Texture& TextureLoader::put(std::string id, sf::Texture texture) {
     textures[id] = texture;
     return textures[id];
 }
+
+bool TextureLoader::exists(std::string id) {
+    return !(textures.find(id) == textures.end());
+}
