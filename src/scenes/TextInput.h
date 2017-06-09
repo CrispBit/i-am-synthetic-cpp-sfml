@@ -8,6 +8,7 @@
 #include "Scene.h"
 #include "../resources/TextureLoader.h"
 #include  "../game-objects/SpriteObject.h"
+#include "../game-objects/TextObject.h"
 
 class TextInput : public Scene {
 public:
@@ -15,14 +16,14 @@ public:
 private:
     std::shared_ptr<Button> cancelBtn;
     std::shared_ptr<Button> okBtn;
+    std::shared_ptr<SpriteObject> backgroundObject;
     std::string result;
     uint16_t maxLen;
 
-    sf::Text inputText;
-    sf::Text promptText;
+    std::shared_ptr<TextObject> inputText;
+    std::shared_ptr<TextObject> promptText;
 protected:
-    virtual void handleEvent(sf::Event event);
-    virtual void sDraw(sf::RenderWindow& window);
+    virtual void handleEvent(sf::Event::EventType& event) override;
 };
 
 #endif

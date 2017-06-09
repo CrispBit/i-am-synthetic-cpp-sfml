@@ -4,7 +4,8 @@
 
 #include "TextInput.h"
 
-TextInput::TextInput(std::string promptString, std::string defaultText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn, uint16_t len) : promptText(promptString, MainMenuTextures::defaultFont) {
+TextInput::TextInput(std::string promptString, std::string defaultText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn, uint16_t len) {
+    this->promptText = std::make_shared<TextObject>(promptString, MainMenuTextures::defaultFont);
     this->cancelBtn = cancelBtn;
     this->okBtn = okBtn;
     this->maxLen = len;
@@ -21,18 +22,14 @@ TextInput::TextInput(std::string promptString, std::string defaultText, std::sha
     }
     sf::Texture& background = TextureLoader::get("text-input/background");
     background.setRepeated(true);
-    std::shared_ptr<SpriteObject> backgroundObject = std::make_shared<SpriteObject>(background);
+    this->backgroundObject = std::make_shared<SpriteObject>(background);
     backgroundObject->getSprite().setTextureRect(windowBounds);
 
-    promptText.setCharacterSize(30);
+    promptText->getText().setCharacterSize(30);
 
-    this->gameObjects = {backgroundObject, this->cancelBtn, this->okBtn};
+    this->gameObjects = {this->backgroundObject, this->promptText, this->cancelBtn, this->okBtn};
 }
 
-void TextInput::sDraw(sf::RenderWindow& window) {
-    window.draw(promptText);
-}
-
-void TextInput::handleEvent(sf::Event event) {
-
+void TextInput::handleEvent(sf::Event::EventType& event) {
+    // TODO
 }
