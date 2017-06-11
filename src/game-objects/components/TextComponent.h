@@ -17,6 +17,7 @@ public:
     using DrawableComponent::update;
     virtual void draw(sf::RenderWindow& window) override;
     void update(const std::string label, const sf::Font& font);
+    void update(const std::string label);
 };
 
 #endif

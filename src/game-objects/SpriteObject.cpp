@@ -4,10 +4,18 @@
 
 #include "SpriteObject.h"
 
-void SpriteObject::update(const sf::Texture& texture) {
-    sprite_->update(texture);
+void SpriteObject::update() {
+    _x = this->getSprite().getPosition().x;
+    _y = this->getSprite().getPosition().y;
     width = this->getSprite().getGlobalBounds().width;
     height = this->getSprite().getGlobalBounds().height;
+    _sX = this->getSprite().getScale().x;
+    _sY = this->getSprite().getScale().y;
+}
+
+void SpriteObject::update(const sf::Texture& texture) {
+    sprite_->update(texture);
+    this->update();
 }
 
 SpriteObject::SpriteObject() {
@@ -30,18 +38,12 @@ void SpriteObject::setRelativeScale(float factor) {
 
 void SpriteObject::updateScale(float scaleX, float scaleY) {
     sprite_->sprite.setScale(scaleX, scaleY);
-    _sX = scaleX;
-    _sY = scaleY;
-    width = this->getSprite().getGlobalBounds().width;
-    height = this->getSprite().getGlobalBounds().height;
+    this->update();
 }
 
 void SpriteObject::updatePosition(float tx, float ty) {
     sprite_->sprite.setPosition(tx, ty);
-    _x = tx;
-    _y = ty;
-    printf("%f\n", tx);
-    printf("%f\n", ty);
+    this->update();
 }
 
 bool SpriteObject::update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) {

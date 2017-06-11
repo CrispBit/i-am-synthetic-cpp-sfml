@@ -4,10 +4,21 @@
 
 #include "TextObject.h"
 
-void TextObject::update(const std::string label, const sf::Font& font) {
-    text_->update(label, font);
+void TextObject::update() {
+    _x = this->getText().getPosition().x;
+    _y = this->getText().getPosition().y;
     width = this->getText().getGlobalBounds().width;
     height = this->getText().getGlobalBounds().height;
+}
+
+void TextObject::update(const std::string label, const sf::Font& font) {
+    text_->update(label, font);
+    this->update();
+}
+
+void TextObject::updateText(const std::string label) {
+    text_->update(label);
+    this->update();
 }
 
 TextObject::TextObject() {
@@ -20,8 +31,7 @@ TextObject::TextObject(const std::string label, const sf::Font& font) {
 
 void TextObject::updatePosition(float tx, float ty) {
     text_->text.setPosition(tx, ty);
-    _x = tx;
-    _y = ty;
+    this->update();
 }
 
 bool TextObject::update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) {

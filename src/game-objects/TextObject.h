@@ -15,9 +15,10 @@ class TextObject : public GameObject {
 public:
     TextObject();
     TextObject(const std::string label, const sf::Font& font);
-    virtual bool update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) override;
     virtual void updatePosition(float tx, float ty) override; 
+    virtual bool update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) override;
     void update(const std::string label, const sf::Font& font);
+    void updateText(const std::string label);
     sf::Text& getText();
 private:
     std::shared_ptr<TextComponent> text_ = std::make_shared<TextComponent>();
@@ -25,6 +26,7 @@ private:
     std::vector<std::weak_ptr<DrawableComponent>> drawableComponents = {text_};
 protected:
     std::vector<std::shared_ptr<Component>> components = {text_, render_};
+    virtual void update() override;
 };
 
 #endif

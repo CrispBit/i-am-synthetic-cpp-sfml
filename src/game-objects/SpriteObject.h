@@ -16,8 +16,8 @@ public:
     SpriteObject();
     SpriteObject(const sf::Texture& texture);
     virtual bool update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) override;
-    virtual void updatePosition(float tx, float ty) override; 
     void update(const sf::Texture& texture);
+    virtual void updatePosition(float tx, float ty) override; 
     void setRelativeScale(float factor);
     void updateScale(float scaleX, float scaleY);
     sf::Sprite& getSprite();
@@ -27,6 +27,7 @@ private:
     std::vector<std::weak_ptr<DrawableComponent>> drawableComponents = {sprite_};
 protected:
     std::vector<std::shared_ptr<Component>> components = {sprite_, render_};
+    virtual void update() override;
 };
 
 #endif

@@ -13,6 +13,10 @@ void TextComponent::update(const std::string label, const sf::Font& font) {
     text.setString(label);
 }
 
+void TextComponent::update(const std::string label) {
+    text.setString(label);
+}
+
 void TextComponent::draw(sf::RenderWindow& window) {
     window.draw(text);
 }
