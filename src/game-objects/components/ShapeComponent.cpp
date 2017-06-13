@@ -13,5 +13,5 @@ void ShapeComponent::update(std::unique_ptr<sf::Shape> shape) {
 }
 
 void ShapeComponent::draw(sf::RenderWindow& window) {
-    window.draw(shape);
+    window.draw(*shape);
 }
