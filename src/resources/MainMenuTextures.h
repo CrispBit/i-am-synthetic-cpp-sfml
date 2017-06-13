@@ -21,6 +21,7 @@ public:
                         *highlightedAddFileTexture;
 
     static sf::Font defaultFont;
+    static sf::Font typeFont;
 };
 
 #endif

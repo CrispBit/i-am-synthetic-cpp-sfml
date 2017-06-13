@@ -5,7 +5,16 @@
 #include "TextInput.h"
 
 TextInput::TextInput(std::string promptString, std::string defaultText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn, uint16_t len) {
+    defaultText += "A";
+    current = defaultText.length() - 1;
+
+    for (uint16_t i = len - 1; i > current; i--) {
+        defaultText += "_";
+    }
+
+    this->inputText = std::make_shared<TextObject>(defaultText, MainMenuTextures::typeFont);
     this->promptText = std::make_shared<TextObject>(promptString, MainMenuTextures::defaultFont);
+
     this->cancelBtn = cancelBtn;
     this->okBtn = okBtn;
     this->maxLen = len;
@@ -25,9 +34,14 @@ TextInput::TextInput(std::string promptString, std::string defaultText, std::sha
     this->backgroundObject = std::make_shared<SpriteObject>(background);
     backgroundObject->getSprite().setTextureRect(windowBounds);
 
-    promptText->getText().setCharacterSize(30);
+    inputText->setCharacterSize(50);
 
-    this->gameObjects = {this->backgroundObject, this->promptText, this->cancelBtn, this->okBtn};
+    promptText->setCharacterSize(30);
+
+    inputText->updateScale(1.5, 1);
+    inputText->updatePosition((width - inputText->w) / 2, height / 3 + inputText->h / 2);
+
+    this->gameObjects = {this->backgroundObject, this->promptText, this->inputText, this->cancelBtn, this->okBtn};
 }
 
 void TextInput::handleEvent(sf::Event::EventType& event) {

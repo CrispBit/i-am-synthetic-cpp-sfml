@@ -28,7 +28,7 @@ bool FileAddButton::clickHandler(sf::RenderWindow& window) {
     std::cout << "derp" << std::endl;
     std::shared_ptr<Button> cancelBtn = std::make_shared<CancelTextInputButton>("Cancel");
     std::shared_ptr<Button> confirmBtn = std::make_shared<ConfirmFilenameButton>("Confirm");
-    TextInput("Name your file", "r3[n4[", cancelBtn, confirmBtn, 10).loop(window);
+    TextInput("Name your file", "jason", cancelBtn, confirmBtn, 10).loop(window);
     /*this->fileButtons->insert(this->fileButtons->begin() + this->fileButtons->size() - 1, std::make_shared<FileButton>(*fileButtons));
     Data data = Data();
     data.levelid = 1;

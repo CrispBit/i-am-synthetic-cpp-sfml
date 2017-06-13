@@ -23,7 +23,7 @@ SpriteObject::SpriteObject() {
 }
 
 SpriteObject::SpriteObject(const sf::Texture& texture) {
-    update(texture);
+    this->update(texture);
 }
 
 void SpriteObject::setRelativeScale(float factor) {
@@ -37,12 +37,12 @@ void SpriteObject::setRelativeScale(float factor) {
 }
 
 void SpriteObject::updateScale(float scaleX, float scaleY) {
-    sprite_->sprite.setScale(scaleX, scaleY);
+    this->getSprite().setScale(scaleX, scaleY);
     this->update();
 }
 
 void SpriteObject::updatePosition(float tx, float ty) {
-    sprite_->sprite.setPosition(tx, ty);
+    this->getSprite().setPosition(tx, ty);
     this->update();
 }
 

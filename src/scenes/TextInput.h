@@ -18,6 +18,7 @@ private:
     std::shared_ptr<Button> okBtn;
     std::shared_ptr<SpriteObject> backgroundObject;
     std::string result;
+    uint16_t current;
     uint16_t maxLen;
 
     std::shared_ptr<TextObject> inputText;

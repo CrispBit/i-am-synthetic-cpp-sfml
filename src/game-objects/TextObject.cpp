@@ -9,6 +9,8 @@ void TextObject::update() {
     _y = this->getText().getPosition().y;
     width = this->getText().getGlobalBounds().width;
     height = this->getText().getGlobalBounds().height;
+    sX = this->getText().getScale().x;
+    sY = this->getText().getScale().y;
 }
 
 void TextObject::update(const std::string label, const sf::Font& font) {
@@ -18,6 +20,16 @@ void TextObject::update(const std::string label, const sf::Font& font) {
 
 void TextObject::updateText(const std::string label) {
     text_->update(label);
+    this->update();
+}
+
+void TextObject::updateScale(const float x, const float y) {
+    this->getText().setScale(x, y);
+    this->update();
+}
+
+void TextObject::setCharacterSize(uint16_t size) {
+    this->getText().setCharacterSize(size);
     this->update();
 }
 

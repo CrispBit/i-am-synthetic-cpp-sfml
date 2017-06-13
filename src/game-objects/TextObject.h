@@ -19,6 +19,8 @@ public:
     virtual bool update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) override;
     void update(const std::string label, const sf::Font& font);
     void updateText(const std::string label);
+    void updateScale(const float x, const float y);
+    void setCharacterSize(uint16_t size);
     sf::Text& getText();
 private:
     std::shared_ptr<TextComponent> text_ = std::make_shared<TextComponent>();

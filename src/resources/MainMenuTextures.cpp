@@ -13,6 +13,7 @@ sf::Texture *MainMenuTextures::defaultTexture,
             *MainMenuTextures::highlightedAddFileTexture;
 
 sf::Font MainMenuTextures::defaultFont;
+sf::Font MainMenuTextures::typeFont;
 
 void MainMenuTextures::init() {
     Locator::provideResourcesService(std::make_unique<LocalResources>());
@@ -25,4 +26,5 @@ void MainMenuTextures::init() {
     highlightedAddFileTexture = &TextureLoader::put("main-menu/buttons/file-add_highlighted", Locator::getResource()->loadTexture("file-select", "file-button_add_highlighted.png"));
 
     defaultFont = Locator::getResource()->loadFont("Boogaloo-Regular.ttf");
+    typeFont = Locator::getResource()->loadFont("ChessType.ttf");
 }
