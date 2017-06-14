@@ -5,16 +5,29 @@
 #include "ShapeObject.h"
 
 void ShapeObject::update() {
-    _x = this->getShape()->getPosition().x;
-    _y = this->getShape()->getPosition().y;
-    width = this->getShape()->getGlobalBounds().width;
-    height = this->getShape()->getGlobalBounds().height;
-    _sX = this->getShape()->getScale().x;
-    _sY = this->getShape()->getScale().y;
+    _x = this->getShape().getPosition().x;
+    _y = this->getShape().getPosition().y;
+    width = this->getShape().getGlobalBounds().width;
+    height = this->getShape().getGlobalBounds().height;
+    _sX = this->getShape().getScale().x;
+    _sY = this->getShape().getScale().y;
 }
 
-void ShapeObject::update(std::unique_ptr<sf::Shape> shape) {
-    shape_->update(std::move(shape));
+void ShapeObject::update(sf::Shape& shape) {
+    shape_->update(shape);
+    this->update();
+}
+
+void ShapeObject::updateFillColor(const sf::Color& color) {
+    this->getShape().setFillColor(color);
+}
+
+void ShapeObject::updateOutlineColor(const sf::Color& color) {
+    this->getShape().setOutlineColor(color);
+}
+
+void ShapeObject::updateOutlineThickness(float thickness) {
+    this->getShape().setOutlineThickness(thickness);
     this->update();
 }
 
@@ -22,17 +35,17 @@ ShapeObject::ShapeObject() {
     // do nothing
 }
 
-ShapeObject::ShapeObject(std::unique_ptr<sf::Shape> shape) {
-    this->update(std::move(shape));
+ShapeObject::ShapeObject(sf::Shape& shape) {
+    this->update(shape);
 }
 
 void ShapeObject::updateScale(float scaleX, float scaleY) {
-    this->getShape()->setScale(scaleX, scaleY);
+    this->getShape().setScale(scaleX, scaleY);
     this->update();
 }
 
 void ShapeObject::updatePosition(float tx, float ty) {
-    this->getShape()->setPosition(tx, ty);
+    this->getShape().setPosition(tx, ty);
     this->update();
 }
 
@@ -43,6 +56,6 @@ bool ShapeObject::update(sf::RenderWindow& gWindow, sf::Event::EventType& event,
     return true;
 }
 
-std::unique_ptr<sf::Shape>& ShapeObject::getShape() {
-    return shape_->shape;
+sf::Shape& ShapeObject::getShape() {
+    return *shape_->shape;
 }

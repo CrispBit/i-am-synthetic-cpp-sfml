@@ -9,6 +9,7 @@
 #include "../resources/TextureLoader.h"
 #include  "../game-objects/SpriteObject.h"
 #include "../game-objects/TextObject.h"
+#include "../game-objects/RectangleObject.h"
 
 class TextInput : public Scene {
 public:
@@ -23,6 +24,8 @@ private:
 
     std::shared_ptr<TextObject> inputText;
     std::shared_ptr<TextObject> promptText;
+    
+    std::shared_ptr<RectangleObject> inputRectangle;
 protected:
     virtual void handleEvent(sf::Event::EventType& event) override;
 };

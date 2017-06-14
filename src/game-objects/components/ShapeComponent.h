@@ -8,15 +8,16 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Shape.hpp>
 #include "DrawableComponent.h"
+#include <memory>
 
 class ShapeComponent : public DrawableComponent {
 public:
     ShapeComponent();
-    std::unique_ptr<sf::Shape> shape;
+    sf::Shape* shape;
 
     using DrawableComponent::update;
     virtual void draw(sf::RenderWindow& window) override;
-    void update(std::unique_ptr<sf::Shape> shape);
+    void update(sf::Shape& shape);
 };
 
 #endif

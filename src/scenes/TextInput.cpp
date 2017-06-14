@@ -32,16 +32,20 @@ TextInput::TextInput(std::string promptString, std::string defaultText, std::sha
     sf::Texture& background = TextureLoader::get("text-input/background");
     background.setRepeated(true);
     this->backgroundObject = std::make_shared<SpriteObject>(background);
-    backgroundObject->getSprite().setTextureRect(windowBounds);
+    this->backgroundObject->getSprite().setTextureRect(windowBounds);
 
-    inputText->setCharacterSize(50);
+    this->inputText->setCharacterSize(50);
 
-    promptText->setCharacterSize(30);
+    this->promptText->setCharacterSize(30);
 
-    inputText->updateScale(1.5, 1);
-    inputText->updatePosition((width - inputText->w) / 2, height / 3 + inputText->h / 2);
+    this->inputText->updateScale(1.5, 1);
+    this->inputText->updatePosition((width - this->inputText->w) / 2, height / 3 + this->inputText->h / 2);
 
-    this->gameObjects = {this->backgroundObject, this->promptText, this->inputText, this->cancelBtn, this->okBtn};
+    this->inputRectangle->updateSize(this->inputText->w, this->inputText->h);
+    this->inputRectangle->updateFillColor(sf::Color(255, 0, 0));
+    this->inputRectangle->updatePosition(this->inputText->x, this->inputText->y);
+
+    this->gameObjects = {this->backgroundObject, this->inputRectangle, this->promptText, this->inputText, this->cancelBtn, this->okBtn};
 }
 
 void TextInput::handleEvent(sf::Event::EventType& event) {
