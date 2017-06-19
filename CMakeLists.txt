@@ -7,8 +7,10 @@ set(CMAKE_BUILD_TYPE Debug)
 add_compile_options(-Wall)
 
 file(GLOB_RECURSE SOURCE_FILES synthy_src
-    "src/*.h"
-    "src/*.cpp"
+        "src/*.h"
+        "src/*.cpp"
+        "src/*/*.h"
+        "src/*/*.cpp"
 )
 
 add_executable(i_am_synthetic_c___sfml ${SOURCE_FILES})
