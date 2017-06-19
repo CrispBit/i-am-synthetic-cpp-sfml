@@ -4,11 +4,11 @@
 
 #include "TextInput.h"
 
-TextInput::TextInput(std::string promptString, std::string defaultText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn, uint16_t len) {
+TextInput::TextInput(std::string promptString, std::string defaultText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn, unsigned int len) {
     defaultText += "A";
     current = defaultText.length() - 1;
 
-    for (uint16_t i = len - 1; i > current; i--) {
+    for (unsigned int i = len - 1; i > current; i--) {
         defaultText += "_";
     }
 
