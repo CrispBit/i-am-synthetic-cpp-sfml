@@ -8,8 +8,8 @@
 #include "Scene.h"
 #include "../resources/TextureLoader.h"
 #include  "../game-objects/SpriteObject.h"
-#include "../game-objects/TextObject.h"
 #include "../game-objects/RectangleObject.h"
+#include "../game-objects/InputTextObject.h"
 
 class TextInput : public Scene {
 public:
@@ -18,16 +18,11 @@ private:
     std::shared_ptr<Button> cancelBtn;
     std::shared_ptr<Button> okBtn;
     std::shared_ptr<SpriteObject> backgroundObject;
-    std::string result;
-    unsigned int current;
-    unsigned int maxLen;
 
-    std::shared_ptr<TextObject> inputText;
+    std::shared_ptr<InputTextObject> inputText;
     std::shared_ptr<TextObject> promptText;
     
     std::shared_ptr<RectangleObject> inputRectangle = std::make_shared<RectangleObject>();
-protected:
-    virtual void handleEvent(sf::Event::EventType& event) override;
 };
 
 #endif

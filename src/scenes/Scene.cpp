@@ -21,8 +21,8 @@ bool Scene::updateObjects(sf::RenderWindow& window, sf::Event::EventType& event,
 
 void Scene::loop(sf::RenderWindow& window) {
     if (!window.isOpen()) {
-        window.create(sf::VideoMode(width, height), "I Am Synthetic", sf::Style::Titlebar | sf::Style::Close |
-                (fullscreen ? sf::Style::Fullscreen : 0));
+        window.create(sf::VideoMode(this->width, this->height), "I Am Synthetic", fullscreen ? sf::Style::Fullscreen
+                                                                                 : sf::Style::Close);
         window.requestFocus();
     }
     bool active = true;
@@ -46,14 +46,13 @@ void Scene::loop(sf::RenderWindow& window) {
                             if (this->fullscreen) {
                                 this->fullscreen = false;
                                 window.create(sf::VideoMode(width, height), "I Am Synthetic",
-                                              sf::Style::Titlebar | sf::Style::Close);
+                                              sf::Style::Close);
                             }
                         }
                         break;
                     default:
                         break;
                 }
-                handleEvent(event.type);
                 if (!updateObjects(window, event.type)) return;
             } while (!active && window.waitEvent(event));
         }

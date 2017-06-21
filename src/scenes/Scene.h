@@ -17,7 +17,6 @@ public:
     virtual void loop(sf::RenderWindow& window);
 protected:
     virtual bool updateObjects(sf::RenderWindow& window, sf::Event::EventType& event, uint16_t delta);
-    virtual void handleEvent(sf::Event::EventType& event) {};
     std::vector<std::shared_ptr<GameObject>> gameObjects;
     uint16_t width, height;
     bool fullscreen;

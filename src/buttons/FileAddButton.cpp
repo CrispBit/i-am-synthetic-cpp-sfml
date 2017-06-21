@@ -62,7 +62,7 @@ void FileAddButton::position() {
         const float ratio = oldBtnHeight / oldBtnWidth;
         const float btnWidth = width * scale;
         const float btnHeight = btnWidth * ratio;
-        const float startY = (height - btnHeight) / 2.5;
+        const float startY = (height - btnHeight) / 2.5f;
         const uint16_t startX = gap;
         fileButton->updateScale(btnWidth / oldBtnWidth, btnHeight / oldBtnHeight);
         fileButton->updatePosition(i * btnWidth + (i + 1) * gap + startX, startY);

@@ -5,19 +5,11 @@
 #include "TextInput.h"
 
 TextInput::TextInput(std::string promptString, std::string defaultText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn, unsigned int len) {
-    defaultText += "A";
-    current = defaultText.length() - 1;
-
-    for (unsigned int i = len - 1; i > current; i--) {
-        defaultText += "_";
-    }
-
-    this->inputText = std::make_shared<TextObject>(defaultText, MainMenuTextures::typeFont);
+    this->inputText = std::make_shared<InputTextObject>(defaultText, MainMenuTextures::typeFont, len);
     this->promptText = std::make_shared<TextObject>(promptString, MainMenuTextures::defaultFont);
 
     this->cancelBtn = cancelBtn;
     this->okBtn = okBtn;
-    this->maxLen = len;
     this->cancelBtn->setRelativeScale();
     this->okBtn->setRelativeScale();
     const uint8_t gap = 20;
@@ -41,13 +33,9 @@ TextInput::TextInput(std::string promptString, std::string defaultText, std::sha
     this->inputText->updateScale(1.5, 1);
     this->inputText->updatePosition((width - this->inputText->w) / 2, height / 3 + this->inputText->h / 2);
 
-    this->inputRectangle->updateSize(this->inputText->w, this->inputText->h);
-    this->inputRectangle->updateFillColor(sf::Color(255, 0, 0));
+    this->inputRectangle->updateSize(this->inputText->w + this->inputText->getText().getCharacterSize() / 2, this->inputText->h + this->inputText->getText().getCharacterSize() / 2);
+    this->inputRectangle->updateFillColor(sf::Color(122, 25, 18, 200));
     this->inputRectangle->updatePosition(this->inputText->x, this->inputText->y);
 
     this->gameObjects = {this->backgroundObject, this->inputRectangle, this->promptText, this->inputText, this->cancelBtn, this->okBtn};
-}
-
-void TextInput::handleEvent(sf::Event::EventType& event) {
-    // TODO
 }
