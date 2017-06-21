@@ -9,7 +9,7 @@
 #include "Button.h"
 #include "FileButton.h"
 #include "CancelTextInputButton.h"
-#include "ConfirmFilenameButton.h"
+#include "ConfirmButton.h"
 #include "../Data.h"
 #include "../scenes/TextInput.h"
 
