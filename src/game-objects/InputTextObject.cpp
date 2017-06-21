@@ -111,3 +111,7 @@ bool InputTextObject::update(sf::RenderWindow& gWindow, sf::Event& event, uint16
 sf::Text& InputTextObject::getText() {
     return textObj.getText();
 }
+
+sf::String InputTextObject::getString() {
+    return this->getText().getString().substring(0, current);
+}

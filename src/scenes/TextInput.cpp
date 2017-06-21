@@ -39,3 +39,8 @@ TextInput::TextInput(std::string promptString, std::string defaultText, std::sha
 
     this->gameObjects = {this->backgroundObject, this->inputRectangle, this->promptText, this->inputText, this->cancelBtn, this->okBtn};
 }
+
+std::string& TextInput::getText() {
+    result = this->inputText->getString();
+    return result;
+}

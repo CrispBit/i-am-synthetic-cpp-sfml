@@ -18,6 +18,7 @@ public:
     void updateScale(const float x, const float y);
     void setCharacterSize(uint16_t size);
     sf::Text& getText();
+    sf::String getString();
 private:
     TextObject textObj;
     unsigned int current;
