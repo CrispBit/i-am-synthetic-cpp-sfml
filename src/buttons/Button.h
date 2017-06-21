@@ -22,7 +22,7 @@ public:
     Button(std::string text, bool autoSize = false);
     void setLabel(std::string text);
     const std::string getText();
-    virtual bool update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t deltaTime) override;
+    virtual bool update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t deltaTime) override;
     void setRelativeScale(float mod = .1);
     void updateScale(float scaleX, float scaleY);
     virtual void updatePosition(float x, float y) override;

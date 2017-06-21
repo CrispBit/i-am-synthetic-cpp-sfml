@@ -49,7 +49,7 @@ void ShapeObject::updatePosition(float tx, float ty) {
     this->update();
 }
 
-bool ShapeObject::update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) {
+bool ShapeObject::update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t delta) {
     if (delta) {
         render_->update(gWindow, drawableComponents);
     }

@@ -15,7 +15,7 @@ class ShapeObject : public GameObject {
 public:
     ShapeObject();
     ShapeObject(sf::Shape& shape);
-    virtual bool update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) override;
+    virtual bool update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t delta) override;
     void update(sf::Shape& shape);
     virtual void updatePosition(float tx, float ty) override; 
     void updateScale(float scaleX, float scaleY);

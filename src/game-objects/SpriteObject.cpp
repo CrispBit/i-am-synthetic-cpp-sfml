@@ -46,7 +46,7 @@ void SpriteObject::updatePosition(float tx, float ty) {
     this->update();
 }
 
-bool SpriteObject::update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) {
+bool SpriteObject::update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t delta) {
     if (delta) {
         render_->update(gWindow, drawableComponents);
     }

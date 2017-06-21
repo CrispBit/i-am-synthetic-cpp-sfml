@@ -51,11 +51,11 @@ void InputTextObject::updatePosition(float tx, float ty) {
     this->update();
 }
 
-bool InputTextObject::update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) {
+bool InputTextObject::update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t delta) {
     textObj.update(gWindow, event, delta);
     if (!delta) {
-        if (event == sf::Event::KeyPressed) {
-            printf("test\n");
+        if (event.type == sf::Event::TextEntered) {
+            printf("%c%s", static_cast<char>(event.text.unicode), "\n");
         }
     }
     return true;

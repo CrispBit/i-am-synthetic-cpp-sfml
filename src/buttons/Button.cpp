@@ -48,7 +48,7 @@ void Button::setLabel(std::string text) {
     this->label = text;
 }
 
-bool Button::update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint16_t delta) {
+bool Button::update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t delta) {
     bool stay = true;
     if (!delta) {
         int mx = sf::Mouse::getPosition(gWindow).x;
@@ -59,7 +59,7 @@ bool Button::update(sf::RenderWindow& gWindow, sf::Event::EventType& event, uint
                 this->sHoverExit();
             }
         } else {
-            switch (event) {
+            switch (event.type) {
                 case sf::Event::MouseButtonPressed:
                     this->isPressed = true;
                     this->sDownHandler();
