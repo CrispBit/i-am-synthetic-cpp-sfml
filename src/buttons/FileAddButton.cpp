@@ -4,16 +4,6 @@
 
 #include "FileAddButton.h"
 
-namespace patch
-{
-    template < typename T > std::string to_string( const T& n )
-    {
-        std::ostringstream stm ;
-        stm << n ;
-        return stm.str() ;
-    }
-}
-
 FileAddButton::FileAddButton(std::vector<std::shared_ptr<Button>>* fileArray, uint16_t width, uint16_t height) : Button() {
     this->texture = MainMenuTextures::addFileTexture;
     this->updateTexture();
@@ -27,18 +17,22 @@ FileAddButton::FileAddButton(std::vector<std::shared_ptr<Button>>* fileArray, ui
 bool FileAddButton::clickHandler(sf::RenderWindow& window) {
     std::cout << "derp" << std::endl;
     std::shared_ptr<Button> cancelBtn = std::make_shared<CancelTextInputButton>("Cancel");
-    std::shared_ptr<Button> confirmBtn = std::make_shared<ConfirmFilenameButton>("Confirm");
+    std::shared_ptr<ConfirmFilenameButton> confirmBtn = std::make_shared<ConfirmFilenameButton>("Confirm");
     TextInput fileNameInput("Name your file", "jason", cancelBtn, confirmBtn, 10);
     fileNameInput.loop(window);
-    std::cout << fileNameInput.getText() << std::endl;
-    /*this->fileButtons->insert(this->fileButtons->begin() + this->fileButtons->size() - 1, std::make_shared<FileButton>(*fileButtons));
-    Data data = Data();
-    data.levelid = 1;
-    std::string savePath = Locator::getResource()->loadPath("saves/save" + patch::to_string(this->fileButtons->size() - 1));
-    std::ofstream saveOut = std::ofstream(savePath, std::ios::out | std::ios::binary);
-    saveOut << data;
-    saveOut.close();
-    position();*/
+    if (confirmBtn->wasClicked()) {
+        this->fileButtons->insert(this->fileButtons->begin() + this->fileButtons->size() - 1,
+                                  std::make_shared<FileButton>(*fileButtons, fileNameInput.getText()));
+        Data data = Data();
+        data.levelid = 1;
+        // strcpy(data.name, fileNameInput.getText().c_str());
+        std::string savePath = Locator::getResource()->loadPath(
+                "saves/save" + std::to_string(this->fileButtons->size() - 1));
+        std::ofstream saveOut = std::ofstream(savePath, std::ios::out | std::ios::binary);
+        saveOut << data;
+        saveOut.close();
+        position();
+    }
     return true;
 }
 

@@ -4,7 +4,7 @@
 
 #include "FileButton.h"
 
-FileButton::FileButton(std::vector<std::shared_ptr<Button>>& fileArray) : Button("File", false) {
+FileButton::FileButton(std::vector<std::shared_ptr<Button>>& fileArray, std::string name) : Button(name, false) {
     this->defaultSize = 350;
     this->texture = MainMenuTextures::fileTexture;
     this->text.setCharacterSize(autoSize ? this->texture->getSize().x / (int) label.size() * 2 : defaultSize);

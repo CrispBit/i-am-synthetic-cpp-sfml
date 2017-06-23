@@ -9,7 +9,7 @@
 
 class FileButton : public Button {
 public:
-    FileButton(std::vector<std::shared_ptr<Button>>& fileArray);
+    FileButton(std::vector<std::shared_ptr<Button>>& fileArray, std::string name);
     ~FileButton() {}
 private:
     void sClickHandler();

@@ -4,27 +4,22 @@
 
 #include "PlayScene.h"
 
-namespace patch
-{
-    template < typename T > std::string to_string( const T& n )
-    {
-        std::ostringstream stm ;
-        stm << n ;
-        return stm.str() ;
-    }
-}
-
 PlayScene::PlayScene() {
-    /*uint16_t i = 0;
-    while (boost::filesystem::exists(boost::filesystem::path(Locator::getResource()->loadPath("saves/save" + patch::to_string(++i))))) {
-        std::cout << "test" << std::endl;
-        fileButtons.push_back(std::make_shared<FileButton>(fileButtons));
-    }*/
-
     std::shared_ptr<FileAddButton> newFileButton = std::make_shared<FileAddButton>(&fileButtons, width, height);
-
     this->fileButtons = {newFileButton};
     this->gameObjects = {newFileButton};
-    
+
+    unsigned int i = 0;
+    std::string savePath;
+    while (boost::filesystem::exists(boost::filesystem::path(savePath = Locator::getResource()->loadPath("saves/save" + std::to_string(++i))))) {
+        Data data = Data();
+        std::ifstream saveIn = std::ifstream(savePath, std::ios::in | std::ios::binary);
+        saveIn >> data;
+        std::shared_ptr<FileButton> newFileBtn = std::make_shared<FileButton>(fileButtons, data.name);
+        fileButtons.push_back(newFileBtn);
+        gameObjects.push_back(newFileBtn);
+        saveIn.close();
+    }
+
     newFileButton->position();
 }

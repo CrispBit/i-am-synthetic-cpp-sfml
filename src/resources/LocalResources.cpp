@@ -36,7 +36,7 @@ std::string LocalResources::loadPath(std::string id) {
     // returns path
     std::string path = (Locator::rootPath / "assets" / "config" / id).generic_string();
 
-    printf("loading YAML Node path named %s\n", id.c_str());
+    printf("loading path of file named %s\n", id.c_str());
 
     return path;
 }

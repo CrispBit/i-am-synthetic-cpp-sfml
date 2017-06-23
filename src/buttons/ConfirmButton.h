@@ -12,6 +12,9 @@ class ConfirmFilenameButton : public MainMenuButton {
 public:
     ~ConfirmFilenameButton(){}
     virtual bool clickHandler(sf::RenderWindow& window);
+    bool wasClicked();
+private:
+    bool clicked = false;
 };
 
 #endif

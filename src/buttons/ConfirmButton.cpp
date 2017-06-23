@@ -6,5 +6,10 @@
 
 bool ConfirmFilenameButton::clickHandler(sf::RenderWindow& window) {
     std::cout << "click handler invoked" << std::endl;
+    clicked = true;
     return false;
+}
+
+bool ConfirmFilenameButton::wasClicked() {
+    return this->clicked;
 }
