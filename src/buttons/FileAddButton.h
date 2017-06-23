@@ -15,14 +15,14 @@
 
 class FileAddButton : public Button {
 public:
-    FileAddButton(std::vector<std::shared_ptr<Button>>* fileArray, uint16_t width, uint16_t height);
+    FileAddButton(std::shared_ptr<std::vector<std::shared_ptr<Button>>>& fileArray, uint16_t width, uint16_t height);
     ~FileAddButton() {}
     void position();
 private:
     bool clickHandler(sf::RenderWindow& window);
     void sHoverHandler(bool first);
     void sHoverExit();
-    std::vector<std::shared_ptr<Button>> *fileButtons;
+    std::shared_ptr<std::vector<std::shared_ptr<Button>>> &fileButtons;
 };
 
 #endif

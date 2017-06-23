@@ -6,13 +6,12 @@
 
 std::ofstream& operator<<(std::ofstream& save, Data& data) {
     save.write(reinterpret_cast<char*>(&data.levelid), sizeof(unsigned int));
-    // save.write(data.name, 10);
+    save.write(data.name, 10);
     return save;
 }
 
 std::ifstream& operator>>(std::ifstream& save, Data& data) {
     save.read(reinterpret_cast<char*>(&data.levelid), sizeof(unsigned int));
-    // save.read(data.name, 10);
-    // printf("%s", data.name);
+    save.read(data.name, 10);
     return save;
 }

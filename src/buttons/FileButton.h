@@ -9,13 +9,13 @@
 
 class FileButton : public Button {
 public:
-    FileButton(std::vector<std::shared_ptr<Button>>& fileArray, std::string name);
+    FileButton(std::shared_ptr<std::vector<std::shared_ptr<Button>>>& fileArray, std::string name);
     ~FileButton() {}
 private:
     void sClickHandler();
     void sHoverHandler(bool first);
     void sHoverExit();
-    std::vector<std::shared_ptr<Button>> fileButtons;
+    std::shared_ptr<std::vector<std::shared_ptr<Button>>>& fileButtons;
 };
 
 #endif
