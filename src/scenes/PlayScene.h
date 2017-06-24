@@ -10,11 +10,12 @@
 #include <memory>
 #include "../Data.h"
 #include "../buttons/FileAddButton.h"
+#include "../buttons/BackButton.h"
 
 class PlayScene : public Scene {
 public:
     PlayScene();
-protected:
+private:
     std::shared_ptr<std::vector<std::shared_ptr<Button>>> fileButtons = std::make_shared<std::vector<std::shared_ptr<Button>>>();
 };
 

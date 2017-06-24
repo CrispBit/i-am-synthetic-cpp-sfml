@@ -16,6 +16,7 @@ MainMenuButton::MainMenuButton(std::string label, bool autoSize) : Button::Butto
 }
 
 void MainMenuButton::sClickHandler() {
+    this->sHoverExit();
     std::cout << this->event.type << std::endl;
 }
 

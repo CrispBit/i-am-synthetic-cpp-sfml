@@ -8,7 +8,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "MainMenuButton.h"
 
-class CancelTextInputButton  : public MainMenuButton {
+class CancelTextInputButton : public MainMenuButton {
     using MainMenuButton::MainMenuButton;
 public:
     ~CancelTextInputButton(){}

@@ -8,6 +8,10 @@ PlayScene::PlayScene() {
     std::shared_ptr<FileAddButton> newFileButton = std::make_shared<FileAddButton>(gameObjects, fileButtons, width, height);
     this->fileButtons->push_back(newFileButton);
     this->gameObjects.push_back(newFileButton);
+    
+    std::shared_ptr<BackButton> backBtn = std::make_shared<BackButton>();
+    backBtn->updatePosition(5, 5);
+    this->gameObjects.push_back(backBtn);
 
     unsigned int i = 0;
     std::string savePath;
