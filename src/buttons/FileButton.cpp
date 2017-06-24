@@ -4,7 +4,8 @@
 
 #include "FileButton.h"
 
-FileButton::FileButton(std::vector<std::shared_ptr<FileButton>>& fileArray, std::string name) : Button(name, false), fileButtons(fileArray) {
+FileButton::FileButton(std::vector<std::shared_ptr<FileButton>>& fileArray, std::string name) :
+    Button(name, false), fileButtons(fileArray) {
     this->defaultSize = 350;
     this->texture = MainMenuTextures::fileTexture;
     this->text.setCharacterSize(autoSize ? this->texture->getSize().x / (int) label.size() * 2 : defaultSize);
@@ -17,14 +18,18 @@ FileButton::FileButton(std::vector<std::shared_ptr<FileButton>>& fileArray, std:
 
 void FileButton::sClickHandler() {
     if (!selected) {
-        selected = true;
+        for (std::shared_ptr<FileButton>& fileButton : fileButtons) {
+            fileButton->selected = false; 
+            fileButton->sHoverExit();
+        }
+        this->selected = true;
         this->texture = MainMenuTextures::selectedFileTexture;
         this->updateTexture();
     }
 }
 
 void FileButton::sHoverHandler(bool first) {
-    if (first) {
+    if (first && !selected) {
         this->texture = MainMenuTextures::highlightedFileTexture;
         this->updateTexture();
     }
