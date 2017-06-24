@@ -5,7 +5,7 @@
 #include "FileAddButton.h"
 
 FileAddButton::FileAddButton(std::vector<std::shared_ptr<GameObject>>& gameObjects,
-        std::shared_ptr<std::vector<std::shared_ptr<Button>>>& fileArray,
+        std::vector<std::shared_ptr<FileButton>>& fileArray,
         uint16_t width, uint16_t height) : Button(), fileButtons(fileArray), gameObjects(gameObjects) {
     this->texture = MainMenuTextures::addFileTexture;
     this->updateTexture();
@@ -23,13 +23,13 @@ bool FileAddButton::clickHandler(sf::RenderWindow& window) {
     if (confirmBtn->wasClicked()) {
         std::shared_ptr<FileButton> fileBtn = std::make_shared<FileButton>(fileButtons, fileNameInput.getText());
         fileBtn->setRelativeScale();
-        this->fileButtons->insert(this->fileButtons->begin() + this->fileButtons->size() - 1, fileBtn);
+        this->fileButtons.insert(this->fileButtons.begin(), fileBtn);
         this->gameObjects.push_back(fileBtn);
         Data data = Data();
         data.levelid = 1;
         strcpy(data.name, fileNameInput.getText().c_str());
         std::string savePath = Locator::getResource()->loadPath(
-                "saves/save" + std::to_string(this->fileButtons->size() - 1));
+                "saves/save" + std::to_string(this->fileButtons.size()));
         std::ofstream saveOut = std::ofstream(savePath, std::ios::out | std::ios::binary);
         saveOut << data;
         saveOut.close();
@@ -51,13 +51,17 @@ void FileAddButton::sHoverExit() {
 }
 
 void FileAddButton::position() {
+    const float btnWidth = this->w;
+    const float btnHeight = this->h;
     const uint8_t gap = 5;
-    for (unsigned int i = 0; i < fileButtons->size(); i++) {
-        std::shared_ptr<Button>& fileButton = fileButtons->at(i);
-        const float btnWidth = fileButton->w;
-        const float btnHeight = fileButton->h;
-        const float startY = (height - btnHeight) / 2.5f;
-        const uint16_t startX = gap;
-        fileButton->updatePosition(i * btnWidth + (i + 1) * gap + startX, startY);
+    const uint16_t startX = gap;
+    const float startY = (height - btnHeight) / 2.5f;
+    for (unsigned int i = 0; i < fileButtons.size() + 1; i++) {
+        if (i > 0) {
+            std::shared_ptr<FileButton>& fileButton = fileButtons.at(i - 1);
+            fileButton->updatePosition(i * btnWidth + (i + 1) * gap + startX, startY);
+        } else {
+            this->updatePosition(i * btnWidth + (i + 1) * gap + startX, startY);
+        }
     }
 }

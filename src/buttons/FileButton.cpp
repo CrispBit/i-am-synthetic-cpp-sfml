@@ -4,7 +4,7 @@
 
 #include "FileButton.h"
 
-FileButton::FileButton(std::shared_ptr<std::vector<std::shared_ptr<Button>>>& fileArray, std::string name) : Button(name, false), fileButtons(fileArray) {
+FileButton::FileButton(std::vector<std::shared_ptr<FileButton>>& fileArray, std::string name) : Button(name, false), fileButtons(fileArray) {
     this->defaultSize = 350;
     this->texture = MainMenuTextures::fileTexture;
     this->text.setCharacterSize(autoSize ? this->texture->getSize().x / (int) label.size() * 2 : defaultSize);
@@ -12,14 +12,15 @@ FileButton::FileButton(std::shared_ptr<std::vector<std::shared_ptr<Button>>>& fi
     this->text.setFillColor(sf::Color::Green);
     this->font = Locator::getResource()->loadFont("Boogaloo-Regular.ttf");
     this->updateTexture();
-
-    fileButtons = fileArray;
-
     this->setRelativeScale();
 }
 
 void FileButton::sClickHandler() {
-    std::cout << this->event.type;
+    if (!selected) {
+        selected = true;
+        this->texture = MainMenuTextures::selectedFileTexture;
+        this->updateTexture();
+    }
 }
 
 void FileButton::sHoverHandler(bool first) {
@@ -30,6 +31,8 @@ void FileButton::sHoverHandler(bool first) {
 }
 
 void FileButton::sHoverExit() {
-    this->texture = MainMenuTextures::fileTexture;
-    this->updateTexture();
+    if (!selected) {
+        this->texture = MainMenuTextures::fileTexture;
+        this->updateTexture();
+    }
 }

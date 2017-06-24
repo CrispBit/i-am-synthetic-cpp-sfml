@@ -6,7 +6,6 @@
 
 PlayScene::PlayScene() {
     std::shared_ptr<FileAddButton> newFileButton = std::make_shared<FileAddButton>(gameObjects, fileButtons, width, height);
-    this->fileButtons->push_back(newFileButton);
     this->gameObjects.push_back(newFileButton);
     
     std::shared_ptr<BackButton> backBtn = std::make_shared<BackButton>();
@@ -21,7 +20,7 @@ PlayScene::PlayScene() {
         saveIn >> data;
         saveIn.close();
         std::shared_ptr<FileButton> newFileBtn = std::make_shared<FileButton>(fileButtons, data.name);
-        fileButtons->push_back(newFileBtn);
+        fileButtons.push_back(newFileBtn);
         gameObjects.push_back(newFileBtn);
     }
 
