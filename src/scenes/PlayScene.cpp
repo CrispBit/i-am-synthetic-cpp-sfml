@@ -5,7 +5,7 @@
 #include "PlayScene.h"
 
 PlayScene::PlayScene() {
-    std::shared_ptr<FileAddButton> newFileButton = std::make_shared<FileAddButton>(fileButtons, width, height);
+    std::shared_ptr<FileAddButton> newFileButton = std::make_shared<FileAddButton>(gameObjects, fileButtons, width, height);
     this->fileButtons->push_back(newFileButton);
     this->gameObjects.push_back(newFileButton);
 

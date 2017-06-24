@@ -11,11 +11,12 @@
 #include "CancelTextInputButton.h"
 #include "ConfirmButton.h"
 #include "../Data.h"
+#include "../game-objects/GameObject.h"
 #include "../scenes/TextInput.h"
 
 class FileAddButton : public Button {
 public:
-    FileAddButton(std::shared_ptr<std::vector<std::shared_ptr<Button>>>& fileArray, uint16_t width, uint16_t height);
+    FileAddButton(std::vector<std::shared_ptr<GameObject>>& gameObjects, std::shared_ptr<std::vector<std::shared_ptr<Button>>>& fileArray, uint16_t width, uint16_t height);
     ~FileAddButton() {}
     void position();
 private:
@@ -23,6 +24,7 @@ private:
     void sHoverHandler(bool first);
     void sHoverExit();
     std::shared_ptr<std::vector<std::shared_ptr<Button>>> &fileButtons;
+    std::vector<std::shared_ptr<GameObject>> &gameObjects;
 };
 
 #endif

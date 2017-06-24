@@ -4,15 +4,15 @@
 
 #include "FileAddButton.h"
 
-FileAddButton::FileAddButton(std::shared_ptr<std::vector<std::shared_ptr<Button>>>& fileArray, uint16_t width, uint16_t height) : Button(), fileButtons(fileArray) {
+FileAddButton::FileAddButton(std::vector<std::shared_ptr<GameObject>>& gameObjects,
+        std::shared_ptr<std::vector<std::shared_ptr<Button>>>& fileArray,
+        uint16_t width, uint16_t height) : Button(), fileButtons(fileArray), gameObjects(gameObjects) {
     this->texture = MainMenuTextures::addFileTexture;
     this->updateTexture();
 
     this->width = width;
     this->height = height;
     this->setRelativeScale();
-
-    this->fileButtons = fileArray;
 }
 
 bool FileAddButton::clickHandler(sf::RenderWindow& window) {
@@ -21,8 +21,10 @@ bool FileAddButton::clickHandler(sf::RenderWindow& window) {
     TextInput fileNameInput("Name your file", "jason", cancelBtn, confirmBtn, 10);
     fileNameInput.loop(window);
     if (confirmBtn->wasClicked()) {
-        this->fileButtons->insert(this->fileButtons->begin() + this->fileButtons->size() - 1,
-                                  std::make_shared<FileButton>(fileButtons, fileNameInput.getText()));
+        std::shared_ptr<FileButton> fileBtn = std::make_shared<FileButton>(fileButtons, fileNameInput.getText());
+        fileBtn->setRelativeScale();
+        this->fileButtons->insert(this->fileButtons->begin() + this->fileButtons->size() - 1, fileBtn);
+        this->gameObjects.push_back(fileBtn);
         Data data = Data();
         data.levelid = 1;
         strcpy(data.name, fileNameInput.getText().c_str());
