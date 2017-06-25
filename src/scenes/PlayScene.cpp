@@ -5,7 +5,7 @@
 #include "PlayScene.h"
 
 // the following subroutine was written by Gigi on Stack Overflow and modified by Cilan
-void get_all(const boost::filesystem::path& root, const std::string& ext, std::vector<boost::filesystem::path>& ret)
+static void get_all(const boost::filesystem::path& root, const std::string& ext, std::vector<boost::filesystem::path>& ret)
 {
     if(!boost::filesystem::exists(root) || !boost::filesystem::is_directory(root)) return;
 
@@ -34,11 +34,11 @@ PlayScene::PlayScene() {
     std::vector<boost::filesystem::path> filePaths;
 	get_all(Locator::getResource()->loadPath("saves"), ".saveme", filePaths);
 	for (boost::filesystem::path path : filePaths) {
-        std::string pathStr = path.filename().c_str();
+        std::string pathStr = path.filename().generic_string();
         std::shared_ptr<FileButton> newFileBtn = std::make_shared<FileButton>(fileButtons, pathStr.substr(0, pathStr.length()
                     - std::string(".saveme").length()));
         fileButtons.push_back(newFileBtn);
-        gameObjects.push_back(newFileBtn);
+        gameObjects.push_back(std::move(newFileBtn));
     }
 
     newFileButton->position();

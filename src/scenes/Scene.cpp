@@ -12,11 +12,11 @@ Scene::Scene() {
 }
 
 bool Scene::updateObjects(sf::RenderWindow& window, sf::Event& event, uint16_t delta = 0) {
-    bool stay = true;
-    for (std::shared_ptr<GameObject> object : gameObjects) {
-        if (!object->update(window, event, delta)) stay = false;
+    for (unsigned int i = 0; i < gameObjects.size(); i++) {
+        const std::shared_ptr<GameObject>& object = gameObjects.at(i);
+        if (!object->update(window, event, delta)) return false;
     }
-    return stay;
+    return true;
 }
 
 void Scene::loop(sf::RenderWindow& window) {

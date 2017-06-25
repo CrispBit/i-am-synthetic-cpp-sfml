@@ -24,13 +24,13 @@ bool FileAddButton::clickHandler(sf::RenderWindow& window) {
         Data data = Data();
         data.levelid = 1;
         strncpy(data.name, fileNameInput.getText().c_str(), sizeof(data.name));
-        std::string savePath = Locator::getResource()->loadPath("saves/" + std::string(fileNameInput.getText()) + ".saveme");
+        std::string savePath = Locator::getResource()->loadPath("saves/" + fileNameInput.getText() + ".saveme");
         std::ofstream saveOut(savePath, std::ios::out | std::ios::binary);
         saveOut << data;
         std::shared_ptr<FileButton> fileBtn = std::make_shared<FileButton>(fileButtons, data.name);
         fileBtn->setRelativeScale();
         this->fileButtons.insert(this->fileButtons.begin(), fileBtn);
-        this->gameObjects.push_back(fileBtn);
+        this->gameObjects.push_back(std::move(fileBtn));
         position();
     }
     return true;

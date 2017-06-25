@@ -23,8 +23,8 @@ private:
     bool clickHandler(sf::RenderWindow& window);
     void sHoverHandler(bool first);
     void sHoverExit();
-    std::vector<std::shared_ptr<FileButton>> &fileButtons;
-    std::vector<std::shared_ptr<GameObject>> &gameObjects;
+    std::vector<std::shared_ptr<FileButton>>& fileButtons;
+    std::vector<std::shared_ptr<GameObject>>& gameObjects;
 };
 
 #endif
