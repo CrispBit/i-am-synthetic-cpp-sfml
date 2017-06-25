@@ -10,5 +10,11 @@ PlayLevelButton::PlayLevelButton(std::vector<std::shared_ptr<FileButton>>& fileB
 }
 
 bool PlayLevelButton::clickHandler(sf::RenderWindow& window) {
+    for (std::shared_ptr<FileButton>& fileButton : fileButtons) {
+        if (fileButton->selected) {
+            // loop playing scene
+            return false;
+        }
+    }
     return true;
 }
