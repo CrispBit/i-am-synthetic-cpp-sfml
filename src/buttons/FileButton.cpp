@@ -7,8 +7,8 @@
 FileButton::FileButton(std::vector<std::shared_ptr<FileButton>>& fileArray, std::string name) : 
     Button(name, false), fileButtons(fileArray) {
     std::ifstream file(Locator::getResource()->loadPath("saves/" + name + ".saveme"), std::ios::in | std::ios::binary);
+    if (!file) exit(1);
     file >> data;
-    file.close();
     this->defaultSize = 350;
     this->texture = MainMenuTextures::fileTexture;
     this->text.setCharacterSize(autoSize ? this->texture->getSize().x / (int) label.size() * 2 : defaultSize);

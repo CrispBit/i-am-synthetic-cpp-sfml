@@ -34,7 +34,6 @@ PlayScene::PlayScene() {
     std::vector<boost::filesystem::path> filePaths;
 	get_all(Locator::getResource()->loadPath("saves"), ".saveme", filePaths);
 	for (boost::filesystem::path path : filePaths) {
-		std::cout << path.filename().c_str() << std::endl;
         std::string pathStr = path.filename().c_str();
         std::shared_ptr<FileButton> newFileBtn = std::make_shared<FileButton>(fileButtons, pathStr.substr(0, pathStr.length()
                     - std::string(".saveme").length()));
