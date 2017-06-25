@@ -10,7 +10,7 @@
 
 class Data {
 public:
-    unsigned int levelid;
+    uint16_t levelid;
     char name[10];
     friend std::ofstream& operator<<(std::ofstream& save, Data& data);
     friend std::ifstream& operator>>(std::ifstream& save, Data& data);
