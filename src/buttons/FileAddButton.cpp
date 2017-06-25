@@ -25,7 +25,7 @@ bool FileAddButton::clickHandler(sf::RenderWindow& window) {
         data.levelid = 1;
         strcpy(data.name, fileNameInput.getText().c_str());
         std::string savePath = Locator::getResource()->loadPath("saves/" + std::string(fileNameInput.getText()) + ".saveme");
-        std::ofstream saveOut = std::ofstream(savePath, std::ios::out | std::ios::binary);
+        std::ofstream saveOut(savePath, std::ios::out | std::ios::binary);
         saveOut << data;
         saveOut.close();
         std::shared_ptr<FileButton> fileBtn = std::make_shared<FileButton>(fileButtons, data.name);
