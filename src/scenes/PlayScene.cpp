@@ -9,8 +9,12 @@ PlayScene::PlayScene() {
     this->gameObjects.push_back(newFileButton);
     
     std::shared_ptr<BackButton> backBtn = std::make_shared<BackButton>();
+    std::shared_ptr<PlayLevelButton> playBtn = std::make_shared<PlayLevelButton>(fileButtons);
+
     backBtn->updatePosition(5, 5);
-    this->gameObjects.push_back(backBtn);
+    playBtn->updatePosition(5, height - backBtn->h - 5);
+
+    this->gameObjects.insert(this->gameObjects.end(), {backBtn, playBtn});
 
     unsigned int i = 0;
     std::string savePath;

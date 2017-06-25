@@ -11,6 +11,7 @@
 #include "../Data.h"
 #include "../buttons/FileAddButton.h"
 #include "../buttons/BackButton.h"
+#include "../buttons/PlayLevelButton.h"
 
 class PlayScene : public Scene {
 public:
