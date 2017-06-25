@@ -6,12 +6,14 @@
 #define I_AM_SYNTHETIC_C_SFML_FILEBUTTON_H
 
 #include "Button.h"
+#include "../Data.h"
 
 class FileButton : public Button {
 public:
     FileButton(std::vector<std::shared_ptr<FileButton>>& fileArray, std::string name);
     ~FileButton() {}
     bool selected = false;
+    Data data = Data();
 private:
     void sClickHandler();
     void sHoverHandler(bool first);

@@ -21,18 +21,17 @@ bool FileAddButton::clickHandler(sf::RenderWindow& window) {
     TextInput fileNameInput("Name your file", "jason", cancelBtn, confirmBtn, 10);
     fileNameInput.loop(window);
     if (confirmBtn->wasClicked()) {
-        std::shared_ptr<FileButton> fileBtn = std::make_shared<FileButton>(fileButtons, fileNameInput.getText());
-        fileBtn->setRelativeScale();
-        this->fileButtons.insert(this->fileButtons.begin(), fileBtn);
-        this->gameObjects.push_back(fileBtn);
         Data data = Data();
         data.levelid = 1;
         strcpy(data.name, fileNameInput.getText().c_str());
-        std::string savePath = Locator::getResource()->loadPath(
-                "saves/save" + std::to_string(this->fileButtons.size()));
+        std::string savePath = Locator::getResource()->loadPath("saves/" + std::string(fileNameInput.getText()) + ".saveme");
         std::ofstream saveOut = std::ofstream(savePath, std::ios::out | std::ios::binary);
         saveOut << data;
         saveOut.close();
+        std::shared_ptr<FileButton> fileBtn = std::make_shared<FileButton>(fileButtons, data.name);
+        fileBtn->setRelativeScale();
+        this->fileButtons.insert(this->fileButtons.begin(), fileBtn);
+        this->gameObjects.push_back(fileBtn);
         position();
     }
     return true;

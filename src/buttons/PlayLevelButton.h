@@ -5,6 +5,7 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_PLAYLEVELBUTTON_H
 #define I_AM_SYNTHETIC_C_SFML_PLAYLEVELBUTTON_H
 
+#include "../scenes/LevelScene.h"
 #include "MainMenuButton.h"
 #include "FileButton.h"
 
