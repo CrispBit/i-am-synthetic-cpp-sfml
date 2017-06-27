@@ -46,11 +46,8 @@ void TextObject::updatePosition(float tx, float ty) {
     this->update();
 }
 
-bool TextObject::update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t delta) {
-    if (delta) {
-        render_->update(gWindow, drawableComponents);
-    }
-    return true;
+void TextObject::render(sf::RenderWindow& gWindow, float delta) {
+    render_->update(gWindow, drawableComponents);
 }
 
 sf::Text& TextObject::getText() {

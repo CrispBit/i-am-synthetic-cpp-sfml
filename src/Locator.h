@@ -28,7 +28,6 @@ public:
     static YAML::Node defaultConfig;
     static YAML::Node currentConfig;
     Locator();
-
 private:
     static std::shared_ptr<IResources> resourcesService_;
     static std::shared_ptr<IResources> nullResourcesService_;

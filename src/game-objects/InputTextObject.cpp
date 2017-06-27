@@ -51,54 +51,52 @@ void InputTextObject::updatePosition(float tx, float ty) {
     this->update();
 }
 
-bool InputTextObject::update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t delta) {
-    textObj.update(gWindow, event, delta);
-    if (!delta) {
-        bool changed = false;
-        std::string newStr = this->getText().getString();
-        if (event.type == sf::Event::TextEntered && isalpha(event.text.unicode)) {
-            const sf::String label = this->getText().getString();
-            if (current < label.getSize() - 1) {
-                newStr.at(current) = static_cast<char>(std::tolower(event.text.unicode));
-                current++;
-                newStr.at(current) = 'A';
-                changed = true;
-            }
-        } else {
-            if (event.type == sf::Event::KeyPressed) {
-                switch (event.key.code) {
-                    case sf::Keyboard::Left:
-                    case sf::Keyboard::BackSpace:
-                        if (current > 0) {
-                            newStr.at(current) = '_';
-                            current--;
-                            newStr.at(current) = 'A';
-                            changed = true;
-                        }
-                        break;
-                    case sf::Keyboard::Right:
-                    case sf::Keyboard::Space:
-                        if (current < newStr.size() - 1) {
-                            newStr[current] += 'a' - 'A';
-                            current++;
-                            newStr.at(current) = 'A';
-                            changed = true;
-                        }
-                        break;
-                    case sf::Keyboard::Down:
-                        if (newStr.at(current) != 'A') {
-                            --newStr[current];
-                            changed = true;
-                        }
-                        break;
-                    case sf::Keyboard::Up:
-                        if (newStr.at(current) != 'Z') {
-                            ++newStr[current];
-                            changed = true;
-                        }
-                    default:
-                        break;
-                }
+bool InputTextObject::update(sf::RenderWindow& gWindow, sf::Event& event) {
+    textObj.update(gWindow, event);
+    bool changed = false;
+    std::string newStr = this->getText().getString();
+    if (event.type == sf::Event::TextEntered && isalpha(event.text.unicode)) {
+        const sf::String label = this->getText().getString();
+        if (current < label.getSize() - 1) {
+            newStr.at(current) = static_cast<char>(std::tolower(event.text.unicode));
+            current++;
+            newStr.at(current) = 'A';
+            changed = true;
+        }
+    } else {
+        if (event.type == sf::Event::KeyPressed) {
+            switch (event.key.code) {
+                case sf::Keyboard::Left:
+                case sf::Keyboard::BackSpace:
+                    if (current > 0) {
+                        newStr.at(current) = '_';
+                        current--;
+                        newStr.at(current) = 'A';
+                        changed = true;
+                    }
+                    break;
+                case sf::Keyboard::Right:
+                case sf::Keyboard::Space:
+                    if (current < newStr.size() - 1) {
+                        newStr[current] += 'a' - 'A';
+                        current++;
+                        newStr.at(current) = 'A';
+                        changed = true;
+                    }
+                    break;
+                case sf::Keyboard::Down:
+                    if (newStr.at(current) != 'A') {
+                        --newStr[current];
+                        changed = true;
+                    }
+                    break;
+                case sf::Keyboard::Up:
+                    if (newStr.at(current) != 'Z') {
+                        ++newStr[current];
+                        changed = true;
+                    }
+                default:
+                    break;
             }
         }
         if (changed) {
@@ -106,6 +104,10 @@ bool InputTextObject::update(sf::RenderWindow& gWindow, sf::Event& event, uint16
         }
     }
     return true;
+}
+
+void InputTextObject::render(sf::RenderWindow& gWindow, float delta) {
+    textObj.render(gWindow, delta);
 }
 
 sf::Text& InputTextObject::getText() {

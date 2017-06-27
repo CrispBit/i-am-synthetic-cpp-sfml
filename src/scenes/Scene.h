@@ -16,10 +16,12 @@ public:
     Scene();
     virtual void loop(sf::RenderWindow& window);
 protected:
-    virtual bool updateObjects(sf::RenderWindow& window, sf::Event& event, uint16_t delta);
+    virtual bool updateObjects(sf::RenderWindow& gWindow, sf::Event& event);
+    virtual void renderObjects(sf::RenderWindow& window, float delta);
     std::vector<std::shared_ptr<GameObject>> gameObjects;
     uint16_t width, height;
     bool fullscreen;
+    sf::Time timePerFrame = sf::seconds(1.f / 144.f);
 };
 
 #endif

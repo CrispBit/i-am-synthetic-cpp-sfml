@@ -14,7 +14,8 @@
 class RectangleObject : public GameObject {
 public:
     RectangleObject();
-    virtual bool update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t delta) override;
+    virtual bool update(sf::RenderWindow& gWindow, sf::Event& event) { return true; };
+    virtual void render(sf::RenderWindow& gWindow, float delta);
     void update(sf::Texture* shape);
     virtual void updatePosition(float tx, float ty) override;
     void updateFillColor(const sf::Color& color);

@@ -49,11 +49,8 @@ void RectangleObject::updateSize(float width, float height) {
     this->update();
 }
 
-bool RectangleObject::update(sf::RenderWindow& gWindow, sf::Event& event, uint16_t delta) {
-    if (delta) {
-        render_->update(gWindow, drawableComponents);
-    }
-    return true;
+void RectangleObject::render(sf::RenderWindow& gWindow, float delta) {
+    render_->update(gWindow, drawableComponents);
 }
 
 sf::RectangleShape& RectangleObject::getShape() {
