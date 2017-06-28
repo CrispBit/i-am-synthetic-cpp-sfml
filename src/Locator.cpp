@@ -6,6 +6,7 @@
 
 std::shared_ptr<IResources> Locator::nullResourcesService_ = std::make_shared<NullResources>();
 std::shared_ptr<IResources> Locator::resourcesService_ = Locator::nullResourcesService_;
+std::unique_ptr<sf::Music> Locator::music = std::make_unique<sf::Music>();
 
 YAML::Node Locator::defaultConfig;
 YAML::Node Locator::currentConfig;
@@ -39,4 +40,12 @@ void Locator::provideConfig(std::string path, Configs config) {
             Locator::currentConfig = YAML::LoadFile(path);
             break;
     }
+}
+
+void Locator::provideMusic(std::unique_ptr<sf::Music> copyMusic) {
+    Locator::music = std::move(copyMusic);
+}
+
+std::unique_ptr<sf::Music>& Locator::getMusic() {
+    return Locator::music;
 }

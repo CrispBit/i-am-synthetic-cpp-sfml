@@ -7,8 +7,9 @@
 
 void handleTransition(sf::RenderWindow& splash) {
     sf::Clock clock;
-    std::unique_ptr<sf::Music> introMusic = Locator::getResource()->loadMusic("main-menu", "intro.wav");
-    introMusic->setVolume(0); // TODO: think about this
+    Locator::provideMusic(Locator::getResource()->loadMusic("main-menu", "intro.wav"));
+    std::unique_ptr<sf::Music>& introMusic = Locator::getMusic();
+    introMusic->setVolume(20); // TODO: think about this
     introMusic->setLoop(true);
     introMusic->play();
 

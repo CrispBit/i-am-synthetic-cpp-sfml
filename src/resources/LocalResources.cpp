@@ -27,7 +27,7 @@ std::unique_ptr<sf::Music> LocalResources::loadMusic(std::string state, std::str
     printf("loading music named %s\n", id.c_str());
 
     std::unique_ptr<sf::Music> returnMusic = std::make_unique<sf::Music>();
-    returnMusic -> openFromFile(path);
+    returnMusic->openFromFile(path);
 
     return returnMusic;
 }
