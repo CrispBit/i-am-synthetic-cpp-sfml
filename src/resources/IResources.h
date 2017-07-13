@@ -16,6 +16,7 @@ public:
     virtual std::unique_ptr<sf::Music> loadMusic(std::string state, std::string id) = 0;
     virtual std::string loadPath(std::string id) = 0;
     virtual sf::Font loadFont(std::string id) = 0;
+    virtual sf::Image loadImage(std::string state, std::string id) = 0;
 };
 
 #endif

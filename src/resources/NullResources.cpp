@@ -27,3 +27,9 @@ sf::Font NullResources::loadFont(std::string id) {
     std::cout << "null font being loaded named " << id << std::endl;
     return sf::Font();
 }
+
+sf::Image NullResources::loadImage(std::string state, std::string id) {
+    // load image and return thing
+    std::cout << "null image being loaded named " << id << std::endl;
+    return sf::Image();
+}

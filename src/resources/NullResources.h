@@ -14,6 +14,7 @@ public:
     virtual std::unique_ptr<sf::Music> loadMusic(std::string state, std::string id) override;
     virtual std::string loadPath(std::string state) override;
     virtual sf::Font loadFont(std::string id) override;
+    virtual sf::Image loadImage(std::string state, std::string id) override;
 };
 
 #endif

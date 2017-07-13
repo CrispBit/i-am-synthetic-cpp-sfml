@@ -51,3 +51,15 @@ sf::Font LocalResources::loadFont(std::string id) {
 
     return font;
 }
+
+sf::Image LocalResources::loadImage(std::string state, std::string id) {
+    // load image and return thing
+    std::string path = (Locator::rootPath / "assets" / "images" / state / id).generic_string();
+
+    printf("loading image named %s\n", id.c_str());
+
+    sf::Image returnImage;
+    returnImage.loadFromFile(path);
+
+    return returnImage;
+}
