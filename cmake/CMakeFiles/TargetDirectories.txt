@@ -1,3 +1,0 @@
-/home/cilan/Documents/projects/i-am-synthetic-cpp-sfml/cmake/CMakeFiles/rebuild_cache.dir
-/home/cilan/Documents/projects/i-am-synthetic-cpp-sfml/cmake/CMakeFiles/i_am_synthetic_c___sfml.dir
-/home/cilan/Documents/projects/i-am-synthetic-cpp-sfml/cmake/CMakeFiles/edit_cache.dir
