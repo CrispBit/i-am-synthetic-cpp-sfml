@@ -5,7 +5,7 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_TEXTURELOADER_H
 #define I_AM_SYNTHETIC_C_SFML_TEXTURELOADER_H
 
-#include "../Locator.h"
+#include "../../CrispSynth/Locator.h"
 #include <SFML/Graphics.hpp>
 #include <map>
 

@@ -5,8 +5,8 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_STORYSCENE_H
 #define I_AM_SYNTHETIC_C_SFML_STORYSCENE_H
 
-#include "Scene.h"
-#include "../game-objects/StoryObject.h"
+#include "../../CrispSynth/Scene.h"
+#include "../../CrispSynth/game-objects/StoryObject.h"
 
 class StoryScene : public Scene {
 public:

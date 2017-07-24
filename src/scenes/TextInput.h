@@ -5,11 +5,11 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_ITEXTINPUT_H
 #define I_AM_SYNTHETIC_C_SFML_ITEXTINPUT_H
 
-#include "Scene.h"
+#include "../../CrispSynth/Scene.h"
 #include "../resources/TextureLoader.h"
-#include  "../game-objects/SpriteObject.h"
-#include "../game-objects/RectangleObject.h"
-#include "../game-objects/InputTextObject.h"
+#include  "../../CrispSynth/game-objects/SpriteObject.h"
+#include "../../CrispSynth/game-objects/RectangleObject.h"
+#include "../../CrispSynth/game-objects/InputTextObject.h"
 
 class TextInput : public Scene {
 public:

@@ -6,7 +6,7 @@
 #define I_AM_SYNTHETIC_C_SFML_MAINMENUTEXTURES_H
 
 #include <SFML/Graphics/Texture.hpp>
-#include "../Locator.h"
+#include "../../CrispSynth/Locator.h"
 #include "../resources/TextureLoader.h"
 
 class MainMenuTextures {

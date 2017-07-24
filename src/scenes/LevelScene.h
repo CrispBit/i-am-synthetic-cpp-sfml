@@ -5,7 +5,7 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_LEVELSCENE_H
 #define I_AM_SYNTHETIC_C_SFML_LEVELSCENE_H
 
-#include "Scene.h"
+#include "../../CrispSynth/Scene.h"
 #include "StoryScene.h"
 #include "../Data.h"
 #include <queue>
