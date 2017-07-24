@@ -2,7 +2,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <boost/filesystem.hpp>
-#include "resources/LocalResources.h"
+#include "../CrispSynth/src/resources/LocalResources.h"
 #include "scenes/MainMenuScene.h"
 
 void handleTransition(sf::RenderWindow& splash) {

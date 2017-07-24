@@ -5,11 +5,11 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_MAINMENUSCENE_H
 #define I_AM_SYNTHETIC_C_SFML_MAINMENUSCENE_H
 
-#include "../../CrispSynth/Scene.h"
+#include "../../CrispSynth/src/Scene.h"
 #include "../buttons/PlayButton.h"
 #include "../buttons/CreditsButton.h"
-#include "../../CrispSynth/game-objects/SpriteObject.h"
-#include "../resources/TextureLoader.h"
+#include "../../CrispSynth/src/game-objects/SpriteObject.h"
+#include "../../CrispSynth/src/resources/TextureLoader.h"
 
 class MainMenuScene : public Scene {
 public:
