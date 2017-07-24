@@ -4,3 +4,6 @@
 [submodule "Model-Viewer"]
 	path = Model-Viewer
 	url = https://github.com/CrispBit/Model-Viewer
+[submodule "CrispSynth"]
+	path = CrispSynth
+	url = https://github.com/CrispBit/CrispSynth
