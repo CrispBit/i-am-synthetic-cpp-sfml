@@ -44,7 +44,7 @@ void handleTransition(sf::RenderWindow& splash) {
         }
     }
 
-    mainMenuScene.loop(mainMenu);
+    mainMenuScene.loop(mainMenu, "I am Synthetic");
 }
 
 int main(int argc, char** argv) {
