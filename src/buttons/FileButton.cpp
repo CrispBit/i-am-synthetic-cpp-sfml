@@ -3,6 +3,7 @@
 //
 
 #include "FileButton.h"
+#include "../resources/MainMenuTextures.h"
 
 FileButton::FileButton(std::vector<std::shared_ptr<FileButton>>& fileArray, std::string name) : 
     Button(name, false), fileButtons(fileArray) {

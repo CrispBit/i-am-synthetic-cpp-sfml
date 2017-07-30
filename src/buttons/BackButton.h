@@ -11,9 +11,7 @@
 class BackButton : public MainMenuButton {
 public:
     BackButton();
-    ~BackButton(){}
-    virtual bool clickHandler(sf::RenderWindow& window);
-    void position();
+    bool clickHandler(sf::RenderWindow& window) override;
 };
 
 #endif

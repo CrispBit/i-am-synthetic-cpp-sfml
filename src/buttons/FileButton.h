@@ -5,7 +5,7 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_FILEBUTTON_H
 #define I_AM_SYNTHETIC_C_SFML_FILEBUTTON_H
 
-#include "../../CrispSynth/src/Button.h"
+#include <crispsynth/buttons/Button.h>
 #include "../Data.h"
 
 class FileButton : public Button {

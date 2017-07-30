@@ -11,10 +11,6 @@ file(GLOB_RECURSE SOURCE_FILES synthy_src
         "src/*.cpp"
         "src/*/*.h"
         "src/*/*.cpp"
-        "*/src/*.h"
-        "*/src/*.cpp"
-        "*/src/*/*.h"
-        "*/src/*/*.cpp"
 )
 
 add_executable(i_am_synthetic_c___sfml ${SOURCE_FILES})
@@ -28,8 +24,8 @@ if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(i_am_synthetic_c___sfml ${SFML_LIBRARIES})
 endif()
-set(YAMLCPP_STATIC_LIBRARY TRUE)
 
+set(YAMLCPP_STATIC_LIBRARY TRUE)
 find_package(YamlCpp)
 if(YAMLCPP_FOUND)
     include_directories(${YAMLCPP_INCLUDE_DIR})
@@ -54,4 +50,11 @@ find_package(ASSIMP)
 if (ASSIMP_FOUND)
     include_directories(${ASSIMP_INCLUDE_DIRS})
     target_link_libraries(i_am_synthetic_c___sfml ${ASSIMP_LIBRARIES})
+endif()
+
+set(CRISPSYNTH_STATIC_LIBRARY TRUE)
+find_package(CrispSynth)
+if (CRISPSYNTH_FOUND)
+    include_directories(${CRISPSYNTH_INCLUDE_DIR})
+    target_link_libraries(i_am_synthetic_c___sfml ${CRISPSYNTH_LIBRARY})
 endif()

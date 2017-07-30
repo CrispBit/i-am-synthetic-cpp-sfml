@@ -5,7 +5,7 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_CHAPTERSELECTSCENE_H
 #define I_AM_SYNTHETIC_C_SFML_CHAPTERSELECTSCENE_H
 
-#include "../../CrispSynth/src/Scene.h"
+#include <crispsynth/scenes/Scene.h>
 #include <string>
 #include <memory>
 #include "../Data.h"

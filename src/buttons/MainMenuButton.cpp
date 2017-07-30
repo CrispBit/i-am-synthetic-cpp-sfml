@@ -1,8 +1,10 @@
 //
-// Created by Abraham Hamidi on 3/7/17.
+// Created by cilan on 3/7/17.
 //
 
 #include "MainMenuButton.h"
+#include "../resources/MainMenuTextures.h"
+#include <crispsynth/resources/DefaultTextures.h>
 
 MainMenuButton::MainMenuButton(std::string label, bool autoSize) : Button::Button(label, autoSize) {
     this->defaultSize = 350;
@@ -10,7 +12,7 @@ MainMenuButton::MainMenuButton(std::string label, bool autoSize) : Button::Butto
     this->text.setCharacterSize(autoSize ? this->texture->getSize().x / (int) label.size() * 2 : defaultSize);
     this->text.setOutlineThickness((uint16_t) (this->defaultSize / 7.5));
     this->text.setFillColor(sf::Color::Green);
-    this->font = MainMenuTextures::defaultFont;
+    this->font = DefaultTextures::defaultFont;
     this->updateTexture();
     this->setRelativeScale();
 }

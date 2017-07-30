@@ -2,8 +2,8 @@
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <boost/filesystem.hpp>
-#include "../CrispSynth/src/resources/LocalResources.h"
 #include "scenes/MainMenuScene.h"
+#include "resources/MainMenuTextures.h"
 
 void handleTransition(sf::RenderWindow& splash) {
     sf::Clock clock;

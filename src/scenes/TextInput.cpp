@@ -3,13 +3,14 @@
 //
 
 #include "TextInput.h"
+#include <crispsynth/resources/DefaultTextures.h>
 
 TextInput::TextInput(std::string promptString, std::string defaultText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn, unsigned int len) {
-    this->inputText = std::make_shared<InputTextObject>(defaultText, MainMenuTextures::typeFont, len);
-    this->promptText = std::make_shared<TextObject>(promptString, MainMenuTextures::defaultFont);
+    this->inputText = std::make_shared<InputTextObject>(defaultText, DefaultTextures::typeFont, len);
+    this->promptText = std::make_shared<TextObject>(promptString, DefaultTextures::defaultFont);
 
-    this->cancelBtn = cancelBtn;
-    this->okBtn = okBtn;
+    this->cancelBtn = std::move(cancelBtn);
+    this->okBtn = std::move(okBtn);
     this->cancelBtn->setRelativeScale();
     this->okBtn->setRelativeScale();
     const uint8_t gap = 20;

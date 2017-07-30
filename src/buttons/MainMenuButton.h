@@ -5,7 +5,7 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_MAINMENUBUTTON_H
 #define I_AM_SYNTHETIC_C_SFML_MAINMENUBUTTON_H
 
-#include "../../CrispSynth/src/Button.h"
+#include <crispsynth/buttons/Button.h>
 
 class MainMenuButton : public Button {
 public:

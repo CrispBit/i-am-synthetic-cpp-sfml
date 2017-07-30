@@ -20,7 +20,7 @@ LevelScene::LevelScene(sf::RenderWindow& window, Data& data) {
 
     std::vector<std::string> imagePaths = metadata["contextimages"].as<std::vector<std::string>>();
     std::queue<sf::Texture> textures;
-    for (std::string imagePath : imagePaths) {
+    for (const std::string imagePath : imagePaths) {
         textures.push(Locator::getResource()->loadTexture("story-images", imagePath));
     }
 

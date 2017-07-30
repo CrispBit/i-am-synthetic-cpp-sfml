@@ -6,12 +6,12 @@
 #define I_AM_SYNTHETIC_C_SFML_FILEADDBUTTON_H
 
 #include <vector>
-#include "../../CrispSynth/src/Button.h"
+#include <crispsynth/buttons/Button.h>
+#include <crispsynth/game-objects/GameObject.h>
 #include "FileButton.h"
 #include "CancelTextInputButton.h"
 #include "ConfirmButton.h"
 #include "../Data.h"
-#include "../../CrispSynth/src/game-objects/GameObject.h"
 #include "../scenes/TextInput.h"
 
 class FileAddButton : public Button {

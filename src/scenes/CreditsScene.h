@@ -5,7 +5,7 @@
 #ifndef I_AM_SYNTHETIC_C_SFML_CREDITSSCENE_H
 #define I_AM_SYNTHETIC_C_SFML_CREDITSSCENE_H
 
-#include "../../CrispSynth/src/Scene.h"
+#include <crispsynth/scenes/Scene.h>
 
 class CreditsScene : public Scene {
 public:

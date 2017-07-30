@@ -3,6 +3,7 @@
 //
 
 #include "FileAddButton.h"
+#include "../resources/MainMenuTextures.h"
 
 FileAddButton::FileAddButton(std::vector<std::shared_ptr<GameObject>>& gameObjects,
         std::vector<std::shared_ptr<FileButton>>& fileArray,
