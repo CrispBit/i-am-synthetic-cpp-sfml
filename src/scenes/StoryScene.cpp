@@ -4,9 +4,9 @@
 
 #include "StoryScene.h"
 
-StoryScene::StoryScene(std::queue<sf::Texture>& textures) {
+StoryScene::StoryScene(Game &game, std::queue<sf::Texture>& textures) : Scene(game) {
     std::shared_ptr<StoryObject> storyObj = std::make_shared<StoryObject>(textures);
-    const float backgroundScale = std::max(width / storyObj->w, height / storyObj->h);
+    const float backgroundScale = std::max(game.window.getSize().x / storyObj->w, game.window.getSize().y / storyObj->h);
     storyObj->updateScale(backgroundScale, backgroundScale);
     storyObj->updatePosition(0, 0);
     gameObjects.push_back(std::move(storyObj));

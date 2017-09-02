@@ -4,6 +4,7 @@
 #include <boost/filesystem.hpp>
 #include "scenes/MainMenuScene.h"
 #include "resources/MainMenuTextures.h"
+#include "Synthy.h"
 
 void handleTransition(sf::RenderWindow& splash) {
     sf::Clock clock;
@@ -26,8 +27,8 @@ void handleTransition(sf::RenderWindow& splash) {
     std::ofstream fout(configPath);
     fout << config;
 
-    sf::RenderWindow mainMenu;
-    MainMenuScene mainMenuScene = MainMenuScene();
+    sf::RenderWindow window;
+    Synthy game(window);
 
     while (splash.isOpen()) {
         const float timePassed = clock.getElapsedTime().asSeconds();
@@ -44,7 +45,59 @@ void handleTransition(sf::RenderWindow& splash) {
         }
     }
 
-    mainMenuScene.loop(mainMenu, "I am Synthetic");
+    sf::Time timePerFrame = sf::seconds(1.f / 144.f);
+    window.requestFocus();
+    
+    bool active = true;
+
+    clock.restart();
+    sf::Time timeSinceLastUpdate = sf::Time::Zero;
+    while (window.isOpen()) {
+        sf::Time elapsedTime = clock.restart();
+        timeSinceLastUpdate += elapsedTime;
+        window.clear();
+        sf::Event event;
+        while (timeSinceLastUpdate >= timePerFrame) {
+            // check for transitions
+            if (game.transitioning) {
+                game.previousScene = game.currentScene;
+                game.currentScene = game.transitionScene;
+                game.transitioning = false;
+            }
+
+            // update stuff
+            while (window.pollEvent(event)) {
+                do {
+                    switch (event.type) {
+                        case sf::Event::GainedFocus:
+                            active = true;
+                            break;
+                        case sf::Event::LostFocus:
+                            active = false;
+                            break;
+                        case sf::Event::Closed:
+                            window.close();
+                            break;
+                        case sf::Event::KeyPressed:
+                            if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+                                game.fullscreen = !game.fullscreen;
+                                game.update();
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+
+                    game.currentScene->updateObjects(event);
+                } while (!active && window.waitEvent(event));
+            }
+            timeSinceLastUpdate -= timePerFrame;
+        }
+
+        // render stuff
+        game.currentScene->renderObjects(elapsedTime.asSeconds()); 
+        window.display();
+    }
 }
 
 int main(int argc, char** argv) {

@@ -4,7 +4,12 @@
 
 #include "PlayButton.h"
 
-bool PlayButton::clickHandler(sf::RenderWindow& window) {
-    PlayScene().loop(window);
-    return true;
+void PlayButton::clickHandler(Synthy &game) {
+    game.transitionScene = game.playScene;
+    game.transitioning = true;
+}
+
+void PlayButton::clickHandler(Game &game) {
+    Game *gamePtr = &game;
+    this->clickHandler(*((Synthy*) gamePtr));
 }

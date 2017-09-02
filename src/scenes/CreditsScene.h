@@ -9,7 +9,7 @@
 
 class CreditsScene : public Scene {
 public:
-    CreditsScene();
+    CreditsScene(Game &game);
 };
 
 #endif

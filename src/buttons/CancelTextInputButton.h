@@ -9,10 +9,10 @@
 #include "MainMenuButton.h"
 
 class CancelTextInputButton : public MainMenuButton {
-    using MainMenuButton::MainMenuButton;
 public:
+    CancelTextInputButton();
     ~CancelTextInputButton(){}
-    virtual bool clickHandler(sf::RenderWindow& window);
+    virtual void clickHandler(Game &game) override;
 };
 
 #endif

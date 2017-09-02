@@ -9,12 +9,11 @@ PlayLevelButton::PlayLevelButton(std::vector<std::shared_ptr<FileButton>>& fileB
     // do nothing
 }
 
-bool PlayLevelButton::clickHandler(sf::RenderWindow& window) {
+void PlayLevelButton::clickHandler(Synthy &game) {
     for (std::shared_ptr<FileButton>& fileButton : fileButtons) {
         if (fileButton->selected) {
-            LevelScene(window, fileButton->data).loop(window);
-            return false;
+            game.transitionScene = std::make_unique<LevelScene>(game, fileButton->data);
+            game.transitioning = true;
         }
     }
-    return true;
 }

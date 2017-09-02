@@ -8,11 +8,10 @@
 #include "MainMenuButton.h"
 
 class ConfirmFilenameButton : public MainMenuButton {
-    using MainMenuButton::MainMenuButton;
 public:
+    ConfirmFilenameButton();
     ~ConfirmFilenameButton(){}
-    virtual bool clickHandler(sf::RenderWindow& window);
-    bool wasClicked();
+    virtual void clickHandler(Game &game);
 private:
     bool clicked = false;
 };

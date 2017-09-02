@@ -12,7 +12,7 @@
 
 class LevelScene : public Scene {
 public:
-    LevelScene(sf::RenderWindow& window, Data& data);
+    LevelScene(Game &game, Data& data);
 };
 
 #endif

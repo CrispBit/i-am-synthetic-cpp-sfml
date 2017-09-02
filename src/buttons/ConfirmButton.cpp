@@ -4,12 +4,9 @@
 
 #include "ConfirmButton.h"
 
-bool ConfirmFilenameButton::clickHandler(sf::RenderWindow& window) {
+ConfirmFilenameButton::ConfirmFilenameButton() : MainMenuButton("Cancel") {}
+
+void ConfirmFilenameButton::clickHandler(Game &game) {
     std::cout << "click handler invoked" << std::endl;
     clicked = true;
-    return false;
-}
-
-bool ConfirmFilenameButton::wasClicked() {
-    return this->clicked;
 }

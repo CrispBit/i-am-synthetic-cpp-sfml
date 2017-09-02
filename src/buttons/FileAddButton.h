@@ -14,17 +14,18 @@
 #include "../Data.h"
 #include "../scenes/TextInput.h"
 
-class FileAddButton : public Button {
+class Synthy;
+
+class FileAddButton : public FileButton {
 public:
-    FileAddButton(std::vector<std::shared_ptr<GameObject>>& gameObjects, std::vector<std::shared_ptr<FileButton>>& fileArray, uint16_t width, uint16_t height);
+    FileAddButton(Game &game);
     ~FileAddButton() {}
     void position();
 private:
-    bool clickHandler(sf::RenderWindow& window);
+    void clickHandler(Game &game);
+    void clickHandler(Synthy &game);
     void sHoverHandler(bool first);
     void sHoverExit();
-    std::vector<std::shared_ptr<FileButton>>& fileButtons;
-    std::vector<std::shared_ptr<GameObject>>& gameObjects;
 };
 
 #endif

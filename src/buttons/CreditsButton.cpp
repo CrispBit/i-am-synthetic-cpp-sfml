@@ -4,7 +4,12 @@
 
 #include "CreditsButton.h"
 
-bool CreditsButton::clickHandler(sf::RenderWindow& window) {
-    CreditsScene().loop(window);
-    return true;
+void CreditsButton::clickHandler(Synthy &game) {
+    game.transitionScene = game.creditsScene;
+    game.transitioning = true;
+}
+
+void CreditsButton::clickHandler(Game &game) {
+    Game *gamePtr = &game;
+    this->clickHandler(*((Synthy*) gamePtr));
 }

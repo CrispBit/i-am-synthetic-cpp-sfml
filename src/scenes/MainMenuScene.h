@@ -11,7 +11,7 @@
 
 class MainMenuScene : public Scene {
 public:
-    MainMenuScene();
+    MainMenuScene(Game &game);
 private:
     std::vector<std::shared_ptr<Button>> buttons;
 };

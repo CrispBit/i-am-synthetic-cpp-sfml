@@ -10,7 +10,7 @@
 
 class StoryScene : public Scene {
 public:
-    StoryScene(std::queue<sf::Texture>& textures);
+    StoryScene(Game &game, std::queue<sf::Texture>& textures);
 };
 
 #endif

@@ -8,13 +8,15 @@
 #include "../scenes/LevelScene.h"
 #include "MainMenuButton.h"
 #include "FileButton.h"
+#include "../Synthy.h"
 
 class PlayLevelButton : public MainMenuButton {
 public:
     PlayLevelButton(std::vector<std::shared_ptr<FileButton>>& fileButtons);
     ~PlayLevelButton(){}
 protected:
-    virtual bool clickHandler(sf::RenderWindow& window);
+    using Button::clickHandler;
+    virtual void clickHandler(Synthy &game);
 private:
     std::vector<std::shared_ptr<FileButton>>& fileButtons;
 };

@@ -4,6 +4,6 @@
 
 #include "CreditsScene.h"
 
-CreditsScene::CreditsScene() {
+CreditsScene::CreditsScene(Game &game) : Scene(game) {
     // load credits
 }

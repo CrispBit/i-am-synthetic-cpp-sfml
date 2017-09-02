@@ -4,7 +4,8 @@
 
 #include "CancelTextInputButton.h"
 
-bool CancelTextInputButton::clickHandler(sf::RenderWindow& window) {
+CancelTextInputButton::CancelTextInputButton() : MainMenuButton("Cancel") {}
+
+void CancelTextInputButton::clickHandler(Game &game) {
     std::cout << "cancelling text input" << std::endl;
-    return false;
 }

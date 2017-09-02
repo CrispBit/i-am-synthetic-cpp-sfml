@@ -5,20 +5,18 @@
 #include "TextInput.h"
 #include <crispsynth/resources/DefaultTextures.h>
 
-TextInput::TextInput(std::string promptString, std::string defaultText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn, unsigned int len) {
+TextInput::TextInput(Game &game, std::string &returnString, std::string promptString, std::string defaultText, unsigned int len) : Scene(game) {
     this->inputText = std::make_shared<InputTextObject>(defaultText, DefaultTextures::typeFont, len);
     this->promptText = std::make_shared<TextObject>(promptString, DefaultTextures::defaultFont);
 
-    this->cancelBtn = std::move(cancelBtn);
-    this->okBtn = std::move(okBtn);
     this->cancelBtn->setRelativeScale();
     this->okBtn->setRelativeScale();
     const uint8_t gap = 20;
     const float btnWidth = this->cancelBtn->w;
     const float btnHeight = this->cancelBtn->h;
-    this->cancelBtn->updatePosition(gap, height - gap - btnHeight);
-    this->okBtn->updatePosition(width - gap - btnWidth, height - gap - btnHeight);
-    sf::IntRect windowBounds = sf::IntRect(0, 0, width, height);
+    this->cancelBtn->updatePosition(gap, game.window.getSize().y - gap - btnHeight);
+    this->okBtn->updatePosition(game.window.getSize().x - gap - btnWidth, game.window.getSize().y - gap - btnHeight);
+    sf::IntRect windowBounds = sf::IntRect(0, 0, game.window.getSize().x, game.window.getSize().y);
     if (!TextureLoader::exists("text-input/background")) {
         TextureLoader::put("text-input/background", Locator::getResource()->loadTexture("standard", "standard-repeated.jpg"));
     }
@@ -32,7 +30,7 @@ TextInput::TextInput(std::string promptString, std::string defaultText, std::sha
     this->promptText->setCharacterSize(30);
 
     this->inputText->updateScale(1.5, 1);
-    this->inputText->updatePosition((width - this->inputText->w) / 2, height / 3 + this->inputText->h / 2);
+    this->inputText->updatePosition((game.window.getSize().x - this->inputText->w) / 2, game.window.getSize().y / 3 + this->inputText->h / 2);
 
     this->inputRectangle->updateSize(this->inputText->w + this->inputText->getText().getCharacterSize() / 2, this->inputText->h + this->inputText->getText().getCharacterSize() / 2);
     this->inputRectangle->updateFillColor(sf::Color(122, 25, 18, 200));

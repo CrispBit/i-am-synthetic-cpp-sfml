@@ -4,8 +4,8 @@
 
 #include "LevelScene.h"
 
-LevelScene::LevelScene(sf::RenderWindow& window, Data& data) {
-    timePerFrame = sf::seconds(1.f/60.f);
+LevelScene::LevelScene(Game &game, Data& data) : Scene(game) {
+    game.timePerFrame = sf::seconds(1.f/60.f);
     std::cout << data.levelid << std::endl;
     std::string metadataPath = Locator::getResource()->loadPath("../levels/Level" + std::to_string(data.levelid) +
                                                                 "/Level" + std::to_string(data.levelid) + ".yaml");
@@ -27,5 +27,5 @@ LevelScene::LevelScene(sf::RenderWindow& window, Data& data) {
     std::string tileDataPath = Locator::getResource()->loadPath("../levels/" + metadata["levelfile"].as<std::string>());
     std::ifstream tileData(tileDataPath, std::ios::in | std::ios::binary);
 
-    StoryScene(textures).loop(window);
+    game.transitionScene = std::make_unique<StoryScene>(game, textures);
 }

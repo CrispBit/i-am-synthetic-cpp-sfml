@@ -8,7 +8,8 @@ BackButton::BackButton() : MainMenuButton("Back") {
     // do nothing
 }
 
-bool BackButton::clickHandler(sf::RenderWindow& window) {
+void BackButton::clickHandler(Game &game) {
     std::cout << "going back" << std::endl;
-    return false;
+    game.transitionScene = game.previousScene;
+    game.transitioning = true;
 }

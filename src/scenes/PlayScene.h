@@ -15,8 +15,14 @@
 
 class PlayScene : public Scene {
 public:
-    PlayScene();
+    PlayScene(Synthy &game);
+    virtual void onEnter() override;
+    std::string fileName;
 private:
+    float btnWidth = 0;
+    float btnHeight = 0;
+    void addNewFile();
+    void position();
     std::vector<std::shared_ptr<FileButton>> fileButtons;
 };
 

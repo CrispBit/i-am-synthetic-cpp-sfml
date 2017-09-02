@@ -10,15 +10,17 @@
 #include <crispsynth/game-objects/SpriteObject.h>
 #include <crispsynth/game-objects/RectangleObject.h>
 #include <crispsynth/game-objects/InputTextObject.h>
+#include "../buttons/CancelTextInputButton.h"
+#include "../buttons/ConfirmButton.h"
 
 class TextInput : public Scene {
 public:
     using Scene::Scene;
-    TextInput(std::string promptString, std::string defaultText, std::shared_ptr<Button> cancelBtn, std::shared_ptr<Button> okBtn, unsigned int len);
+    TextInput(Game &game, std::string &returnString, std::string promptString, std::string defaultText, unsigned int len);
     std::string& getText();
 private:
-    std::shared_ptr<Button> cancelBtn;
-    std::shared_ptr<Button> okBtn;
+    std::shared_ptr<CancelTextInputButton> cancelBtn;
+    std::shared_ptr<ConfirmFilenameButton> okBtn;
     std::shared_ptr<SpriteObject> backgroundObject;
 
     std::shared_ptr<InputTextObject> inputText;

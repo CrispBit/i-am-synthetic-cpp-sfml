@@ -11,7 +11,7 @@
 class BackButton : public MainMenuButton {
 public:
     BackButton();
-    bool clickHandler(sf::RenderWindow& window) override;
+    void clickHandler(Game &game) override;
 };
 
 #endif
