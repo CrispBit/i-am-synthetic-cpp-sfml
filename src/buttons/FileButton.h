@@ -10,7 +10,6 @@
 
 class FileButton : public Button {
 public:
-    FileButton() {}
     FileButton(std::vector<std::shared_ptr<FileButton>>& fileArray, std::string name);
     ~FileButton() {}
     bool selected = false;
@@ -19,7 +18,7 @@ private:
     void sClickHandler();
     void sHoverHandler(bool first);
     void sHoverExit();
-    std::vector<std::shared_ptr<FileButton>> *fileButtons;
+    std::vector<std::shared_ptr<FileButton>> &fileButtons;
 };
 
 #endif

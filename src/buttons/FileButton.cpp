@@ -6,7 +6,7 @@
 #include "../resources/MainMenuTextures.h"
 
 FileButton::FileButton(std::vector<std::shared_ptr<FileButton>>& fileArray, std::string name) : 
-    Button(name, false), fileButtons(&fileArray) {
+    Button(name, false), fileButtons(fileArray) {
     std::ifstream file(Locator::getResource()->loadPath("saves/" + name + ".saveme"), std::ios::in | std::ios::binary);
     if (!file) exit(1);
     file >> data;
@@ -22,7 +22,7 @@ FileButton::FileButton(std::vector<std::shared_ptr<FileButton>>& fileArray, std:
 
 void FileButton::sClickHandler() {
     if (!selected) {
-        for (std::shared_ptr<FileButton>& fileButton : *fileButtons) {
+        for (std::shared_ptr<FileButton>& fileButton : fileButtons) {
             fileButton->selected = false; 
             fileButton->sHoverExit();
         }

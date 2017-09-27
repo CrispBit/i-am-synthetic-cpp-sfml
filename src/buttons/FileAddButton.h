@@ -16,7 +16,7 @@
 
 class Synthy;
 
-class FileAddButton : public FileButton {
+class FileAddButton : public Button {
 public:
     FileAddButton(Game &game);
     ~FileAddButton() {}

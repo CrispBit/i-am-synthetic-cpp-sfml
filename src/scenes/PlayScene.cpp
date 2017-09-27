@@ -8,9 +8,13 @@ void PlayScene::position() {
     const uint8_t gap = 5;
     const uint16_t startX = gap;
     const float startY = (game.window.getSize().y - btnHeight) / 2.5f;
-    for (int i = fileButtons.size() - 1; i >= 0; i--) {
-        std::shared_ptr<FileButton>& fileButton = fileButtons.at(i);
-        fileButton->updatePosition(i * btnWidth + (i + 1) * gap + startX, startY);
+    for (int i = fileButtons.size(); i >= 0; i--) {
+        if (i == (int) fileButtons.size()) {
+            this->newFileButton->updatePosition(btnWidth + gap, startY);
+        } else {
+            std::shared_ptr<FileButton>& fileButton = fileButtons.at(i);
+            fileButton->updatePosition(i * btnWidth + (i + 1) * gap + startX, startY);
+        }
     }
 }
 
@@ -30,9 +34,8 @@ inline static void get_all(const boost::filesystem::path& root, const std::strin
 }
 
 PlayScene::PlayScene(Synthy &game) : Scene(game) {
-    std::shared_ptr<FileAddButton> newFileButton = std::make_shared<FileAddButton>(game);
+    newFileButton = std::make_shared<FileAddButton>(game);
     this->gameObjects.push_back(newFileButton);
-    this->fileButtons.push_back(newFileButton);
     
     std::shared_ptr<BackButton> backBtn = std::make_shared<BackButton>();
     std::shared_ptr<PlayLevelButton> playBtn = std::make_shared<PlayLevelButton>(fileButtons);

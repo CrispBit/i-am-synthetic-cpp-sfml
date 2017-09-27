@@ -24,6 +24,7 @@ private:
     void addNewFile();
     void position();
     std::vector<std::shared_ptr<FileButton>> fileButtons;
+    std::shared_ptr<FileAddButton> newFileButton;
 };
 
 #endif

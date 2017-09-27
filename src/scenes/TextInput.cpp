@@ -9,8 +9,11 @@ TextInput::TextInput(Game &game, std::string &returnString, std::string promptSt
     this->inputText = std::make_shared<InputTextObject>(defaultText, DefaultTextures::typeFont, len);
     this->promptText = std::make_shared<TextObject>(promptString, DefaultTextures::defaultFont);
 
-    this->cancelBtn->setRelativeScale();
-    this->okBtn->setRelativeScale();
+    this->cancelBtn = std::make_shared<CancelTextInputButton>();
+    this->okBtn = std::make_shared<ConfirmFilenameButton>();
+
+    this->cancelBtn->setRelativeScale(.2);
+    this->okBtn->setRelativeScale(.2);
     const uint8_t gap = 20;
     const float btnWidth = this->cancelBtn->w;
     const float btnHeight = this->cancelBtn->h;
