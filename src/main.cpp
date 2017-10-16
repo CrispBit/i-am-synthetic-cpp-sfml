@@ -47,7 +47,7 @@ void handleTransition(sf::RenderWindow& splash) {
 
     sf::Time timePerFrame = sf::seconds(1.f / 144.f);
     window.requestFocus();
-    
+
     bool active = true;
 
     clock.restart();
@@ -95,7 +95,7 @@ void handleTransition(sf::RenderWindow& splash) {
         }
 
         // render stuff
-        game.currentScene->renderObjects(elapsedTime.asSeconds()); 
+        game.currentScene->renderObjects(elapsedTime.asSeconds());
         window.display();
     }
 }

@@ -36,7 +36,7 @@ inline static void get_all(const boost::filesystem::path& root, const std::strin
 PlayScene::PlayScene(Synthy &game) : Scene(game) {
     newFileButton = std::make_shared<FileAddButton>(game);
     this->gameObjects.push_back(newFileButton);
-    
+
     std::shared_ptr<BackButton> backBtn = std::make_shared<BackButton>();
     std::shared_ptr<PlayLevelButton> playBtn = std::make_shared<PlayLevelButton>(fileButtons);
 

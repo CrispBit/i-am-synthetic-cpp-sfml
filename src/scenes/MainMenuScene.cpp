@@ -13,10 +13,10 @@ MainMenuScene::MainMenuScene(Game &game) : Scene(game) {
 
     std::shared_ptr<PlayButton> playBtn = std::make_shared<PlayButton>("Play");
     std::shared_ptr<CreditsButton> creditsBtn = std::make_shared<CreditsButton>("Credits");
-    
+
     this->gameObjects = {backgroundObject, playBtn, creditsBtn};
     this->buttons = {playBtn, creditsBtn};
- 
+
     for (uint8_t i = 0; i < buttons.size(); i++) {
         std::shared_ptr<Button> menuButton = buttons[i];
         const uint16_t startY = (uint16_t) (game.window.getSize().y - game.window.getSize().y / 1.2);

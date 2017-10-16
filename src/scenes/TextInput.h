@@ -25,7 +25,7 @@ private:
 
     std::shared_ptr<InputTextObject> inputText;
     std::shared_ptr<TextObject> promptText;
-    
+
     std::shared_ptr<RectangleObject> inputRectangle = std::make_shared<RectangleObject>();
     std::string result;
 };
