@@ -52,6 +52,9 @@ if (ASSIMP_FOUND)
     target_link_libraries(i_am_synthetic_c___sfml ${ASSIMP_LIBRARIES})
 endif()
 
+include_directories(include)
+target_link_libraries(i_am_synthetic_c___sfml ${CMAKE_DL_LIBS})
+
 set(CRISPSYNTH_STATIC_LIBRARY TRUE)
 find_package(CrispSynth)
 if (CRISPSYNTH_FOUND)
